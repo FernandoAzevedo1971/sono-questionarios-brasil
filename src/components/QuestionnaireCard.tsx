@@ -38,6 +38,17 @@ const QuestionnaireCard = ({ questionnaire }: { questionnaire: Questionnaire }) 
               <span>Versão Online</span>
             </Button>
           </Link>
+        ) : questionnaire.id === 'isi' ? (
+          <Link to="/questionarios/isi">
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="flex items-center gap-1 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50"
+            >
+              <ExternalLink size={16} />
+              <span>Versão Online</span>
+            </Button>
+          </Link>
         ) : questionnaire.onlineUrl && (
           <Button 
             variant="outline" 
