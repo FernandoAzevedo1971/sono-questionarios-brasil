@@ -2,6 +2,7 @@
 import { Questionnaire } from "@/data/questionnaires";
 import { Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const QuestionnaireCard = ({ questionnaire }: { questionnaire: Questionnaire }) => {
   return (
@@ -26,7 +27,18 @@ const QuestionnaireCard = ({ questionnaire }: { questionnaire: Questionnaire }) 
           <span>PDF</span>
         </Button>
         
-        {questionnaire.onlineUrl && (
+        {questionnaire.id === 'epworth' ? (
+          <Link to="/questionarios/epworth">
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="flex items-center gap-1 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50"
+            >
+              <ExternalLink size={16} />
+              <span>Versão Online</span>
+            </Button>
+          </Link>
+        ) : questionnaire.onlineUrl && (
           <Button 
             variant="outline" 
             size="sm"

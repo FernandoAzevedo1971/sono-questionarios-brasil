@@ -11,6 +11,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import TermsPage from "./pages/TermsPage";
 import NotFound from "./pages/NotFound";
+import EpworthPage from "./pages/EpworthPage";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/sobre" element={<AboutPage />} />
           <Route path="/contato" element={<ContactPage />} />
           <Route path="/termos" element={<TermsPage />} />
+          <Route path="/questionarios/epworth" element={<EpworthPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
