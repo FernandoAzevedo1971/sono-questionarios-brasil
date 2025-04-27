@@ -65,7 +65,10 @@ export const questionnaires: Questionnaire[] = [
     indication: 'Avaliação da gravidade da insônia em adultos.',
     pdfUrl: '/questionarios/isi.pdf',
     category: 'insonia',
-    references: ['Bastien, C. H., Vallières, A., & Morin, C. M. (2001). Validation of the Insomnia Severity Index as an outcome measure for insomnia research. Sleep Medicine, 2(4), 297-307.'],
+    references: [
+      'Bastien, C. H., Vallières, A., & Morin, C. M. (2001). Validation of the Insomnia Severity Index as an outcome measure for insomnia research. Sleep Medicine, 2(4), 297-307.',
+      'CASTRO, Laura de Siqueira. Adaptação e Validação do Índice de Gravidade de Insônia (IGI): Caracterização Populacional, Valores Normativos e Aspectos Associados. 2011. 104 f. Dissertação (Mestrado) - Escola Paulista de Medicina, Universidade Federal de São Paulo. São Paulo, 2011. URL: http://repositorio.unifesp.br/handle/11600/23193'
+    ],
   },
   {
     id: 'berlin',
