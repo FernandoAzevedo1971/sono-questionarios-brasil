@@ -29,7 +29,7 @@ export const categories: Category[] = [
     id: 'apneia',
     name: 'Apneia do Sono',
     description: 'Instrumentos para triagem e avaliação de apneia obstrutiva do sono.',
-    icon: 'alarm-clock',
+    icon: 'lungs',
   },
   {
     id: 'sonolencia',
@@ -86,7 +86,9 @@ export const questionnaires: Questionnaire[] = [
     indication: 'Identificação de pacientes com risco de apneia obstrutiva do sono.',
     pdfUrl: '/questionarios/stop-bang.pdf',
     category: 'apneia',
-    references: ['Chung, F., Yegneswaran, B., Liao, P., Chung, S. A., Vairavanathan, S., Islam, S., Khajehdehi, A., & Shapiro, C. M. (2008). STOP Questionnaire: A tool to screen patients for obstructive sleep apnea. Anesthesiology, 108(5), 812-821.'],
+    references: [
+      'Fonseca LBM, Silveira EA, Lima NM, Rabahi MF. Tradução e adaptação transcultural do questionário STOP-Bang para a língua portuguesa falada no Brasil. J Bras Pneumol. 2016;42(4):266–272. doi:10.1590/S1806-37562015000000243'
+    ],
   },
   {
     id: 'epworth',
