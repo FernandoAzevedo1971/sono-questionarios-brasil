@@ -33,8 +33,8 @@ export const categories: Category[] = [
   },
   {
     id: 'sonolencia',
-    name: 'Sonolência Excessiva',
-    description: 'Escalas para avaliação de sonolência diurna excessiva.',
+    name: 'Avaliação de Sonolência Diurna e Fadiga',
+    description: 'Escalas para avaliação de sonolência diurna e fadiga.',
     icon: 'moon',
   },
   {
