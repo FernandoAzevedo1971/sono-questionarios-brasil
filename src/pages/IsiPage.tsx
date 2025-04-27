@@ -10,31 +10,38 @@ import Footer from "@/components/Footer";
 const questions = [
   {
     id: 1,
-    text: "Dificuldade para pegar no sono",
+    text: "Dificuldade em pegar no sono",
+    options: ["Nenhuma", "Leve", "Moderada", "Grave", "Muito grave"]
   },
   {
     id: 2,
-    text: "Dificuldade para permanecer dormindo",
+    text: "Dificuldade em manter o sono",
+    options: ["Nenhuma", "Leve", "Moderada", "Grave", "Muito grave"]
   },
   {
     id: 3,
-    text: "Problemas em acordar muito cedo",
+    text: "Problema de despertar muito cedo",
+    options: ["Nenhuma", "Leve", "Moderada", "Grave", "Muito grave"]
   },
   {
     id: 4,
-    text: "Quão satisfeito/insatisfeito você está com seu padrão atual de sono?",
+    text: "Quanto você está satisfeito ou insatisfeito com o padrão atual de seu sono?",
+    options: ["Nenhuma", "Leve", "Moderada", "Grave", "Muito grave"]
   },
   {
     id: 5,
-    text: "Em que medida você considera que seu problema de sono interfere nas suas atividades diurnas?",
+    text: "Em que medida você considera que seu problema de sono interfere nas suas atividades diurnas (por exemplo: fadiga diária, habilidade para trabalhar/ executar atividades diárias, concentração, memória, humor, etc.)",
+    options: ["Nenhuma", "Leve", "Moderada", "Grave", "Muito grave"]
   },
   {
     id: 6,
-    text: "Em que medida você acha que outras pessoas percebem que seu problema de sono prejudica sua qualidade de vida?",
+    text: "Quanto você acha que os outros percebem que o seu problema de sono atrapalha sua qualidade de vida?",
+    options: ["Nenhuma", "Leve", "Moderada", "Grave", "Muito grave"]
   },
   {
     id: 7,
-    text: "Quão preocupado você está com seu problema atual de sono?",
+    text: "O quanto você está preocupado/ estressado com o seu problema de sono?",
+    options: ["Não estou preocupado", "Um pouco preocupado", "De algum modo preocupado", "Muito preocupado", "Extremamente preocupado"]
   },
 ];
 
@@ -51,10 +58,10 @@ const IsiPage = () => {
   };
 
   const getScoreSeverity = (score: number) => {
-    if (score <= 7) return "ausência de insônia";
-    if (score <= 14) return "insônia subclínica";
-    if (score <= 21) return "insônia moderada";
-    return "insônia grave";
+    if (score <= 7) return "ausência de insônia significativa";
+    if (score <= 14) return "limite inferior para insônia";
+    if (score <= 21) return "insônia clínica moderada";
+    return "insônia clínica grave";
   };
 
   return (
@@ -97,8 +104,7 @@ const IsiPage = () => {
               </h1>
               
               <p className="text-neutral-700 mb-6">
-                Para cada questão, por favor marque a resposta que melhor descreve 
-                seu problema de sono nas últimas duas semanas.
+                Avalie a gravidade atual da sua insônia (nas últimas 2 a 4 semanas) em relação a:
               </p>
 
               <div className="space-y-6">
@@ -115,14 +121,14 @@ const IsiPage = () => {
                       }
                       className="grid grid-cols-2 md:grid-cols-5 gap-4"
                     >
-                      {[0, 1, 2, 3, 4].map((value) => (
-                        <div key={value} className="flex items-center space-x-2">
-                          <RadioGroupItem value={value.toString()} id={`q${question.id}-${value}`} />
+                      {question.options.map((option, index) => (
+                        <div key={index} className="flex items-center space-x-2">
+                          <RadioGroupItem value={index.toString()} id={`q${question.id}-${index}`} />
                           <Label
-                            htmlFor={`q${question.id}-${value}`}
+                            htmlFor={`q${question.id}-${index}`}
                             className="text-sm text-neutral-700"
                           >
-                            {value}
+                            {option}
                           </Label>
                         </div>
                       ))}
