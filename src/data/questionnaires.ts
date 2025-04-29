@@ -1,4 +1,3 @@
-
 export type Questionnaire = {
   id: string;
   name: string;
@@ -158,21 +157,13 @@ export const questionnaires: Questionnaire[] = [
   },
   {
     id: 'fss',
-    name: 'Escala de Fadiga (Fatigue Severity Score)',
-    description: 'Avalia o impacto da fadiga na vida diária.',
-    indication: 'Avaliação da intensidade da fadiga em diferentes condições.',
+    name: 'Escala de Gravidade de Fadiga (FSS)',
+    description: 'Avalia o impacto da fadiga no funcionamento físico, social e ocupacional.',
+    indication: 'Avaliação da fadiga em condições neurológicas e outros distúrbios.',
     pdfUrl: '/questionarios/fss.pdf',
-    category: 'outros',
-    references: ['Krupp, L. B., LaRocca, N. G., Muir-Nash, J., & Steinberg, A. D. (1989). The fatigue severity scale: application to patients with multiple sclerosis and systemic lupus erythematosus. Archives of Neurology, 46(10), 1121-1123.'],
-  },
-  {
-    id: 'beck',
-    name: 'Escala de Beck para Depressão e Ansiedade',
-    description: 'Escalas para avaliação de sintomas depressivos e ansiosos.',
-    indication: 'Rastreio de comorbidades psiquiátricas em pacientes com distúrbios do sono.',
-    pdfUrl: '/questionarios/beck.pdf',
-    category: 'outros',
-    references: ['Beck, A. T., Ward, C. H., Mendelson, M., Mock, J., & Erbaugh, J. (1961). An inventory for measuring depression. Archives of General Psychiatry, 4, 561-571.'],
+    onlineUrl: '/questionarios/fss',
+    category: 'sonolencia',
+    references: ['Krupp LB, LaRocca NG, Muir-Nash J, Steinberg AD. The fatigue severity scale. Application to patients with multiple sclerosis and systemic lupus erythematosus. Arch Neurol. 1989 Oct;46(10):1121-3. doi: 10.1001/archneur.1989.00520460115022. PMID: 2803071.'],
   },
 ];
 

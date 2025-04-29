@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import EpworthPage from "./pages/EpworthPage";
 import IsiPage from "./pages/IsiPage";
 import FasPage from "./pages/FasPage";
+import FssPage from "./pages/FssPage";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +34,7 @@ const App = () => (
           <Route path="/questionarios/epworth" element={<EpworthPage />} />
           <Route path="/questionarios/isi" element={<IsiPage />} />
           <Route path="/questionarios/fas" element={<FasPage />} />
+          <Route path="/questionarios/fss" element={<FssPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
