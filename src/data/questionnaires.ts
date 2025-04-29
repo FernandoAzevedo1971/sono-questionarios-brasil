@@ -111,15 +111,6 @@ export const questionnaires: Questionnaire[] = [
     references: ['Krupp LB, LaRocca NG, Muir-Nash J, Steinberg AD. The fatigue severity scale. Application to patients with multiple sclerosis and systemic lupus erythematosus. Arch Neurol. 1989 Oct;46(10):1121-3.'],
   },
   {
-    id: 'stanford',
-    name: 'Stanford Sleepiness Scale',
-    description: 'Escala para avaliação momentânea do estado de sonolência.',
-    indication: 'Medição do nível de sonolência ao longo do dia.',
-    pdfUrl: '/questionarios/stanford.pdf',
-    category: 'sonolencia',
-    references: ['Hoddes, E., Zarcone, V., Smythe, H., Phillips, R., & Dement, W. C. (1973). Quantification of sleepiness: a new approach. Psychophysiology, 10(4), 431-436.'],
-  },
-  {
     id: 'meq',
     name: 'Questionário de Horne e Östberg (MEQ)',
     description: 'Avalia preferências individuais de horários para atividades e sono.',
