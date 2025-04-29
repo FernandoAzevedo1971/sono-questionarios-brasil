@@ -1,3 +1,4 @@
+
 export type Questionnaire = {
   id: string;
   name: string;
@@ -29,7 +30,7 @@ export const categories: Category[] = [
     id: 'apneia',
     name: 'Apneia do Sono',
     description: 'Instrumentos para triagem e avaliação de apneia obstrutiva do sono.',
-    icon: 'lung',
+    icon: 'lungs', // Changed back to 'lungs' to match the icon we'll manually add
   },
   {
     id: 'sonolencia',
