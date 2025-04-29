@@ -29,7 +29,7 @@ export const categories: Category[] = [
     id: 'apneia',
     name: 'Apneia do Sono',
     description: 'Instrumentos para triagem e avaliação de apneia obstrutiva do sono.',
-    icon: 'lungs',
+    icon: 'lung',
   },
   {
     id: 'sonolencia',
