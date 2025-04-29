@@ -165,6 +165,16 @@ export const questionnaires: Questionnaire[] = [
     category: 'sonolencia',
     references: ['Krupp LB, LaRocca NG, Muir-Nash J, Steinberg AD. The fatigue severity scale. Application to patients with multiple sclerosis and systemic lupus erythematosus. Arch Neurol. 1989 Oct;46(10):1121-3. doi: 10.1001/archneur.1989.00520460115022. PMID: 2803071.'],
   },
+  {
+    id: 'goal',
+    name: 'Questionário GOAL',
+    description: 'Instrumento de 4 itens para triagem de apneia obstrutiva do sono.',
+    indication: 'Rastreamento de apneia obstrutiva do sono em população adulta.',
+    pdfUrl: '/questionarios/goal.pdf',
+    onlineUrl: '/questionarios/goal',
+    category: 'apneia',
+    references: ['Duarte RLM, Magalhães-da-Silveira FJ, Oliveira-e-Sá TS, Silva JA, Mello FCQ, Gozal D. Obstructive sleep apnea screening with a 4-item instrument, named GOAL questionnaire: development, validation and comparative study with No-Apnea, STOP-Bang, and NoSAS. Nature and Science of Sleep. 2020;12:57–67. doi: 10.2147/NSS.S238255'],
+  },
 ];
 
 export const getCategoryQuestionnaires = (categoryId: CategoryId): Questionnaire[] => {

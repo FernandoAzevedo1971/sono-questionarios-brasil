@@ -15,6 +15,7 @@ import EpworthPage from "./pages/EpworthPage";
 import IsiPage from "./pages/IsiPage";
 import FasPage from "./pages/FasPage";
 import FssPage from "./pages/FssPage";
+import GoalPage from "./pages/GoalPage";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/questionarios/isi" element={<IsiPage />} />
           <Route path="/questionarios/fas" element={<FasPage />} />
           <Route path="/questionarios/fss" element={<FssPage />} />
+          <Route path="/questionarios/goal" element={<GoalPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
