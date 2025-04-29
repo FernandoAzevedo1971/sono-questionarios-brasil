@@ -2,10 +2,16 @@
 import { Link } from "react-router-dom";
 import { Category } from "@/data/questionnaires";
 import * as icons from "lucide-react";
+import { Lungs } from "lucide-react"; // Explicitly import Lungs icon
 
 const CategoryCard = ({ category }: { category: Category }) => {
   // Dynamically get the icon component
-  const IconComponent = (icons as any)[category.icon.charAt(0).toUpperCase() + category.icon.slice(1)];
+  let IconComponent;
+  if (category.icon === "lungs") {
+    IconComponent = Lungs;
+  } else {
+    IconComponent = (icons as any)[category.icon.charAt(0).toUpperCase() + category.icon.slice(1)];
+  }
 
   return (
     <Link
