@@ -91,6 +91,18 @@ export const questionnaires: Questionnaire[] = [
     ],
   },
   {
+    id: 'sacs',
+    name: 'Escore Clínico da Apneia do Sono (SACS-BR)',
+    description: 'Instrumento validado para triagem da síndrome de apneia obstrutiva do sono.',
+    indication: 'Triagem de apneia do sono em adultos brasileiros.',
+    pdfUrl: '/questionarios/sacs.pdf',
+    onlineUrl: '/questionarios/sacs',
+    category: 'apneia',
+    references: [
+      'Lapas, V. S. C., Faria, A. C., Rufino, R. L., & Costa, C. H. (2020). Tradução e adaptação cultural do questionário Sleep Apnea Clinical Score para uso no Brasil. Jornal Brasileiro de Pneumologia, 46(3), 223-231.'
+    ],
+  },
+  {
     id: 'epworth',
     name: 'Escala de Sonolência de Epworth (ESE)',
     description: 'Avalia a tendência à sonolência diurna em diferentes situações.',
@@ -109,6 +121,16 @@ export const questionnaires: Questionnaire[] = [
     onlineUrl: '/questionarios/fas',
     category: 'sonolencia',
     references: ['Krupp LB, LaRocca NG, Muir-Nash J, Steinberg AD. The fatigue severity scale. Application to patients with multiple sclerosis and systemic lupus erythematosus. Arch Neurol. 1989 Oct;46(10):1121-3.'],
+  },
+  {
+    id: 'fss',
+    name: 'Escala de Gravidade de Fadiga (FSS)',
+    description: 'Avalia o impacto da fadiga no funcionamento físico, social e ocupacional.',
+    indication: 'Avaliação da fadiga em condições neurológicas e outros distúrbios.',
+    pdfUrl: '/questionarios/fss.pdf',
+    onlineUrl: '/questionarios/fss',
+    category: 'sonolencia',
+    references: ['Krupp LB, LaRocca NG, Muir-Nash J, Steinberg AD. The fatigue severity scale. Application to patients with multiple sclerosis and systemic lupus erythematosus. Arch Neurol. 1989 Oct;46(10):1121-3. doi: 10.1001/archneur.1989.00520460115022. PMID: 2803071.'],
   },
   {
     id: 'meq',
@@ -145,16 +167,6 @@ export const questionnaires: Questionnaire[] = [
     pdfUrl: '/questionarios/psqi.pdf',
     category: 'outros',
     references: ['Buysse, D. J., Reynolds, C. F., Monk, T. H., Berman, S. R., & Kupfer, D. J. (1989). The Pittsburgh Sleep Quality Index: a new instrument for psychiatric practice and research. Psychiatry Research, 28(2), 193-213.'],
-  },
-  {
-    id: 'fss',
-    name: 'Escala de Gravidade de Fadiga (FSS)',
-    description: 'Avalia o impacto da fadiga no funcionamento físico, social e ocupacional.',
-    indication: 'Avaliação da fadiga em condições neurológicas e outros distúrbios.',
-    pdfUrl: '/questionarios/fss.pdf',
-    onlineUrl: '/questionarios/fss',
-    category: 'sonolencia',
-    references: ['Krupp LB, LaRocca NG, Muir-Nash J, Steinberg AD. The fatigue severity scale. Application to patients with multiple sclerosis and systemic lupus erythematosus. Arch Neurol. 1989 Oct;46(10):1121-3. doi: 10.1001/archneur.1989.00520460115022. PMID: 2803071.'],
   },
   {
     id: 'goal',
