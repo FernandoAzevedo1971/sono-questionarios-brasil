@@ -5,6 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const QuestionnaireCard = ({ questionnaire }: { questionnaire: Questionnaire }) => {
+  // Function to determine if questionnaire has an internal online version
+  const hasInternalOnlineVersion = (id: string): boolean => {
+    // List of questionnaires with internal online versions
+    const internalOnlineQuestionnaires = [
+      'epworth', 'isi', 'fas', 'fss', 'goal', 'sacs', 'stop-bang', 'ham-a'
+    ];
+    
+    return internalOnlineQuestionnaires.includes(id);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-md p-6 flex flex-col">
       <h3 className="font-semibold text-lg text-primary-700 mb-2">{questionnaire.name}</h3>
@@ -27,85 +37,8 @@ const QuestionnaireCard = ({ questionnaire }: { questionnaire: Questionnaire }) 
           <span>PDF</span>
         </Button>
         
-        {questionnaire.id === 'epworth' ? (
-          <Link to="/questionarios/epworth">
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="flex items-center gap-1 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50"
-            >
-              <ExternalLink size={16} />
-              <span>Versão Online</span>
-            </Button>
-          </Link>
-        ) : questionnaire.id === 'isi' ? (
-          <Link to="/questionarios/isi">
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="flex items-center gap-1 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50"
-            >
-              <ExternalLink size={16} />
-              <span>Versão Online</span>
-            </Button>
-          </Link>
-        ) : questionnaire.id === 'fas' ? (
-          <Link to="/questionarios/fas">
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="flex items-center gap-1 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50"
-            >
-              <ExternalLink size={16} />
-              <span>Versão Online</span>
-            </Button>
-          </Link>
-        ) : questionnaire.id === 'fss' ? (
-          <Link to="/questionarios/fss">
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="flex items-center gap-1 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50"
-            >
-              <ExternalLink size={16} />
-              <span>Versão Online</span>
-            </Button>
-          </Link>
-        ) : questionnaire.id === 'goal' ? (
-          <Link to="/questionarios/goal">
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="flex items-center gap-1 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50"
-            >
-              <ExternalLink size={16} />
-              <span>Versão Online</span>
-            </Button>
-          </Link>
-        ) : questionnaire.id === 'sacs' ? (
-          <Link to="/questionarios/sacs">
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="flex items-center gap-1 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50"
-            >
-              <ExternalLink size={16} />
-              <span>Versão Online</span>
-            </Button>
-          </Link>
-        ) : questionnaire.id === 'stop-bang' ? (
-          <Link to="/questionarios/stop-bang">
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="flex items-center gap-1 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50"
-            >
-              <ExternalLink size={16} />
-              <span>Versão Online</span>
-            </Button>
-          </Link>
-        ) : questionnaire.id === 'ham-a' ? (
-          <Link to="/questionarios/ham-a">
+        {hasInternalOnlineVersion(questionnaire.id) ? (
+          <Link to={`/questionarios/${questionnaire.id}`}>
             <Button 
               variant="outline" 
               size="sm"
