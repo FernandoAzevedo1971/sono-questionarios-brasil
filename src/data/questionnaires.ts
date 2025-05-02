@@ -86,8 +86,11 @@ export const questionnaires: Questionnaire[] = [
     indication: 'Identificação de pacientes com risco de apneia obstrutiva do sono.',
     pdfUrl: '/questionarios/stop-bang.pdf',
     category: 'apneia',
+    onlineUrl: '/questionarios/stop-bang',
     references: [
-      'Fonseca LBM, Silveira EA, Lima NM, Rabahi MF. Tradução e adaptação transcultural do questionário STOP-Bang para a língua portuguesa falada no Brasil. J Bras Pneumol. 2016;42(4):266–272. doi:10.1590/S1806-37562015000000243'
+      'Fonseca LBM, Silveira EA, Lima NM, Rabahi MF. Tradução e adaptação transcultural do questionário STOP-Bang para a língua portuguesa falada no Brasil. J Bras Pneumol. 2016;42(4):266–272. doi:10.1590/S1806-37562015000000243',
+      'Reis R, Teixeira F, Martins V, Sousa L, Batata L, Santos C, Moutinho J. Validation of a Portuguese version of the STOP-Bang questionnaire as a screening tool for obstructive sleep apnea: Analysis in a sleep clinic. Rev Port Pneumol (2014). DOI: 10.1016/j.rppneu.2014.04.007',
+      'Nagappa M, Liao P, Wong J, Auckley D, Ramachandran SK, Memtsoudis S, Mokhlesi B, Chung F. Validation of the STOP-Bang Questionnaire as a Screening Tool for Obstructive Sleep Apnea among Different Populations: A Systematic Review and Meta-Analysis. PLoS ONE. 2015;10(12):e0143697. DOI: 10.1371/journal.pone.0143697'
     ],
   },
   {
