@@ -18,6 +18,7 @@ import FssPage from "./pages/FssPage";
 import GoalPage from "./pages/GoalPage";
 import SacsPage from "./pages/SacsPage";
 import StopBangPage from "./pages/StopBangPage";
+import HamAPage from "./pages/HamAPage";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/questionarios/goal" element={<GoalPage />} />
           <Route path="/questionarios/sacs" element={<SacsPage />} />
           <Route path="/questionarios/stop-bang" element={<StopBangPage />} />
+          <Route path="/questionarios/ham-a" element={<HamAPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
