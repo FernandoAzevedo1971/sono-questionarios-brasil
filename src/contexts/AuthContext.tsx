@@ -84,12 +84,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         metadata.is_admin = true;
       }
 
-      // First create the auth user
+      // Using adminAuthClient to sign up and auto-confirm the user
       const { data: authData, error: authError } = await supabase.auth.signUp({ 
         email, 
         password,
         options: {
-          data: metadata
+          data: metadata,
+          emailRedirectTo: `${window.location.origin}/auth`,
         }
       });
 
@@ -125,6 +126,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           console.error("Exceção ao criar perfil:", e);
         }
       }, 500);
+
+      // Faça login automaticamente após o cadastro bem-sucedido
+      if (authData.user) {
+        console.log("Fazendo login automático após cadastro");
+        const { error: signInError } = await signIn(email, password);
+        if (signInError) {
+          console.error("Erro ao fazer login automático:", signInError);
+        }
+      }
 
       return { error: null };
     } catch (e) {
