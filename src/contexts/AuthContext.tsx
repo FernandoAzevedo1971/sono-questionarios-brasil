@@ -1,7 +1,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { Session, User } from '@supabase/supabase-js';
-import { supabase } from '@/lib/supabase';
+import { supabase, createProfile } from '@/lib/supabase';
 
 type UserMetadata = {
   name?: string;
@@ -71,7 +71,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       metadata.is_admin = true;
     }
 
-    const { error } = await supabase.auth.signUp({ 
+    // First create the auth user
+    const { data: authData, error: authError } = await supabase.auth.signUp({ 
       email, 
       password,
       options: {
@@ -79,7 +80,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     });
 
-    return { error };
+    if (authError || !authData.user) {
+      return { error: authError };
+    }
+    
+    // Then create the profile in the profiles table
+    const { error: profileError } = await createProfile({
+      id: authData.user.id,
+      name: metadata.name || '',
+      birth_date: metadata.birth_date || '',
+      user_type: metadata.user_type || 'usuário comum',
+      is_admin: isAdmin,
+    });
+
+    return { error: profileError };
   };
 
   const signOut = async () => {
