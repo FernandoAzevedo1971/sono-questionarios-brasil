@@ -47,7 +47,6 @@ const questions = [
 ];
 
 const options = [1, 2, 3, 4, 5, 6, 7];
-const optionLabels = ["DISCORDO fortemente", "", "", "Neutro", "", "", "CONCORDO fortemente"];
 
 const FssPage = () => {
   const navigate = useNavigate();
@@ -105,8 +104,9 @@ const FssPage = () => {
               </h1>
               
               <p className="mb-6 text-neutral-600">
-                Para cada afirmação, por favor, selecione um número de 1 a 7 que melhor indica seu grau de concordância, 
-                onde 1 representa "discordo fortemente" e 7 representa "concordo fortemente".
+                Para cada afirmação, por favor, selecione um número de 1 a 7 que melhor indica seu grau de concordância: 
+                <strong className="block mt-2 text-neutral-800">1 = DISCORDO FORTEMENTE, 7 = CONCORDO FORTEMENTE</strong>
+                <span className="block mt-1">As demais pontuações devem refletir o quanto você discorda ou concorda com a afirmação.</span>
               </p>
               
               <div className="space-y-6">
@@ -123,11 +123,8 @@ const FssPage = () => {
                       }
                     >
                       <div className="grid grid-cols-7 gap-2 mt-2">
-                        {options.map((option, index) => (
+                        {options.map((option) => (
                           <div key={option} className="flex flex-col items-center">
-                            <div className="mb-1 text-xs text-center text-neutral-600">
-                              {optionLabels[index]}
-                            </div>
                             <div className="flex flex-col items-center gap-1">
                               <RadioGroupItem 
                                 value={option.toString()} 
