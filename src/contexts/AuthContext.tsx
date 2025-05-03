@@ -84,13 +84,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         metadata.is_admin = true;
       }
 
-      // Using adminAuthClient to sign up and auto-confirm the user
+      // Usando adminAuthClient para cadastrar o usuário e AUTO-CONFIRMAR sem verificação de email
       const { data: authData, error: authError } = await supabase.auth.signUp({ 
         email, 
         password,
         options: {
           data: metadata,
-          emailRedirectTo: `${window.location.origin}/auth`,
+          // Importante: não usamos emailRedirectTo aqui para evitar esperar uma confirmação de email
         }
       });
 
