@@ -8,7 +8,7 @@ import QuestionnaireContent from "@/components/questionnaire/QuestionnaireConten
 import QuestionnaireSidebar from "@/components/questionnaire/QuestionnaireSidebar";
 import ResultDisplay from "@/components/questionnaire/ResultDisplay";
 import QuestionItem from "@/components/questionnaire/QuestionItem";
-import { VolumeX, Tiredness, Eye, Heart, Scale, Clock, CircleUser, Male } from "lucide-react";
+import { VolumeX, Tiredness, Eye, Heart, Scale, Clock, User, Gender } from "lucide-react";
 
 type QuestionItem = {
   id: string;
@@ -66,14 +66,14 @@ const questions: QuestionItem[] = [
     letter: "N",
     text: "eck Circumference (Circunferência do pescoço)",
     description: "Circunferência do pescoço 43 cm ou mais no homem ou 41 cm ou mais na mulher?",
-    icon: CircleUser
+    icon: User
   },
   {
     id: "gender",
     letter: "G",
     text: "ender (Sexo)",
     description: "Sexo = Masculino?",
-    icon: Male
+    icon: Gender
   }
 ];
 
@@ -182,7 +182,7 @@ const StopBangPage = () => {
                 "Risco intermediário de AOS: Sim para 3 a 4 perguntas.",
                 "Risco alto de AOS: Sim para 5 a 8 perguntas, ou:",
                 "- Sim para 2 ou mais das 4 perguntas iniciais + sexo masculino.",
-                "- Sim para 2 ou mais das 4 perguntas iniciais + IMC > 35 kg/m².",
+                "- Sim para 2 ou mais das 4 perguntas iniciais + IMC &gt; 35 kg/m².",
                 "- Sim para 2 ou mais das 4 perguntas iniciais + circunferência do pescoço (43 cm em homens, 41 cm em mulheres)."
               ]}
             />
@@ -206,7 +206,7 @@ const StopBangPage = () => {
           <li>Risco intermediário de AOS: Sim para 3 a 4 perguntas</li>
           <li>Risco alto de AOS: Sim para 5 a 8 perguntas OU</li>
           <li>Sim para 2 ou mais das 4 perguntas iniciais + sexo masculino OU</li>
-          <li>Sim para 2 ou mais das 4 perguntas iniciais + IMC > 35 kg/m² OU</li>
+          <li>Sim para 2 ou mais das 4 perguntas iniciais + IMC &gt; 35 kg/m² OU</li>
           <li>Sim para 2 ou mais das 4 perguntas iniciais + circunferência do pescoço (43 cm em homens, 41 cm em mulheres)</li>
         </ul>
 
