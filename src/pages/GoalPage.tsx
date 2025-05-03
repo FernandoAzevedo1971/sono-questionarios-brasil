@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import QuestionItem from "@/components/questionnaire/QuestionItem";
 
 type QuestionItem = {
   id: string;
@@ -100,18 +101,18 @@ const GoalPage = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Panel - Questionnaire Form */}
             <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h1 className="text-2xl font-bold text-neutral-900 mb-4">
+              <h1 className="text-2xl font-bold text-neutral-900 mb-4 text-left">
                 Questionário GOAL
               </h1>
 
-              <p className="mb-6 text-neutral-600">
+              <p className="mb-6 text-neutral-600 text-left">
                 Responda as 4 perguntas abaixo selecionando "Sim" ou "Não" para cada item.
               </p>
 
               <div className="space-y-6 mb-6">
                 <Card className="overflow-hidden">
                   <div className="bg-primary-50 p-4">
-                    <h3 className="font-medium text-primary-900">Tabela do Questionário GOAL</h3>
+                    <h3 className="font-medium text-primary-900 text-left">Tabela do Questionário GOAL</h3>
                   </div>
                   <CardContent className="p-0">
                     <div className="overflow-x-auto">
@@ -142,7 +143,7 @@ const GoalPage = () => {
                         </tbody>
                       </table>
                     </div>
-                    <div className="px-4 py-3 text-xs text-neutral-500 bg-neutral-50 border-t">
+                    <div className="px-4 py-3 text-xs text-neutral-500 bg-neutral-50 border-t text-left">
                       Nota: Os pontos para cada variável são somados, totalizando uma pontuação final de 0-4 pontos.
                     </div>
                   </CardContent>
@@ -150,7 +151,7 @@ const GoalPage = () => {
 
                 {questions.map((question) => (
                   <div key={question.id} className="p-4 bg-neutral-50 rounded-lg">
-                    <p className="font-medium text-neutral-900 mb-3">{question.text}</p>
+                    <p className="font-medium text-neutral-900 mb-3 text-left">{question.text}</p>
                     <RadioGroup
                       value={answers[question.id] !== undefined ? (answers[question.id] ? "yes" : "no") : ""}
                       onValueChange={(value) => handleOptionChange(question.id, value)}
@@ -158,11 +159,11 @@ const GoalPage = () => {
                     >
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="no" id={`${question.id}-no`} />
-                        <Label htmlFor={`${question.id}-no`}>Não</Label>
+                        <Label htmlFor={`${question.id}-no`} className="text-left">Não</Label>
                       </div>
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="yes" id={`${question.id}-yes`} />
-                        <Label htmlFor={`${question.id}-yes`}>Sim</Label>
+                        <Label htmlFor={`${question.id}-yes`} className="text-left">Sim</Label>
                       </div>
                     </RadioGroup>
                   </div>
@@ -178,13 +179,13 @@ const GoalPage = () => {
 
                 {score !== null && (
                   <div className="mt-6 p-4 bg-primary-50 border border-primary-100 rounded-lg">
-                    <p className="text-primary-900 font-medium mb-1">
+                    <p className="text-primary-900 font-medium mb-1 text-left">
                       Seu escore: {score} pontos
                     </p>
-                    <p className="text-primary-700">
+                    <p className="text-primary-700 text-left">
                       Interpretação: {getScoreInterpretation(score)}
                     </p>
-                    <p className="text-xs text-neutral-500 mt-2">
+                    <p className="text-xs text-neutral-500 mt-2 text-left">
                       * Pontuação mínima = 0 pontos, máxima 4 pontos.<br />
                       * Valores ≥ 2 indicam alto risco para Apneia Obstrutiva do Sono.
                     </p>
@@ -200,20 +201,20 @@ const GoalPage = () => {
                   Baixar versão em PDF
                 </Button>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Sobre o questionário</h2>
-                <p className="text-neutral-700 mb-6">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Sobre o questionário</h2>
+                <p className="text-neutral-700 mb-6 text-left">
                   O questionário GOAL é um instrumento de 4 itens desenvolvido e validado no Brasil para 
                   rastreamento de Apneia Obstrutiva do Sono. A pontuação total varia de 0 a 4 pontos, 
                   com pontuação ≥2 indicando alto risco para AOS.
                 </p>
 
-                <p className="text-neutral-700 mb-6">
+                <p className="text-neutral-700 mb-6 text-left">
                   A capacidade discriminatória do questionário GOAL para rastreamento de AOS foi 
                   similar ao No-Apnea, STOP-Bang e NoSAS, com sensibilidade variando de 83,7% a 94,2%.
                 </p>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Referências</h2>
-                <p className="text-sm text-neutral-600">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Referências</h2>
+                <p className="text-sm text-neutral-600 text-left">
                   Duarte RLM, Magalhães-da-Silveira FJ, Oliveira-e-Sá TS, Silva JA, Mello FCQ, Gozal D. 
                   Obstructive sleep apnea screening with a 4-item instrument, named GOAL questionnaire: 
                   development, validation and comparative study with No-Apnea, STOP-Bang, and NoSAS. 
