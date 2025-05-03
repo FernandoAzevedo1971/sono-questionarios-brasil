@@ -26,8 +26,25 @@ const ProfilePage = () => {
           const { data, error } = await getProfile(user.id);
           if (error) {
             console.error("Error loading profile:", error);
-          } else {
-            setProfile(data);
+          } else if (data) {
+            // Ensure user_type is one of the expected values
+            const validUserType = data.user_type === "profissional de saúde" || 
+                                 data.user_type === "usuário comum" 
+                                 ? data.user_type 
+                                 : "usuário comum";
+            
+            // Create a properly typed profile object
+            const typedProfile: Profile = {
+              id: data.id,
+              name: data.name,
+              birth_date: data.birth_date,
+              is_admin: data.is_admin,
+              user_type: validUserType as "profissional de saúde" | "usuário comum",
+              created_at: data.created_at,
+              updated_at: data.updated_at
+            };
+            
+            setProfile(typedProfile);
           }
         } catch (err) {
           console.error("Exception loading profile:", err);
@@ -103,7 +120,7 @@ const ProfilePage = () => {
                         <Mail className="h-5 w-5 text-muted-foreground" />
                         <span className="font-medium">Email:</span>
                       </div>
-                      <span>{user.email}</span>
+                      <span>{user?.email}</span>
                     </div>
                     
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2">
