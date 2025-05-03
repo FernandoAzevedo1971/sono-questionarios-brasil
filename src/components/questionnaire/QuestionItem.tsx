@@ -13,6 +13,7 @@ type QuestionItemProps = {
   value: string;
   onChange: (value: string) => void;
   variant?: "card" | "panel";
+  inline?: boolean; // New prop to control if options should display inline
 };
 
 const QuestionItem = ({
@@ -24,28 +25,39 @@ const QuestionItem = ({
   value,
   onChange,
   variant = "panel",
+  inline = false, // Default to stacked layout
 }: QuestionItemProps) => {
   const renderContent = () => (
-    <div className="flex flex-col space-y-2">
+    <div className="flex flex-col space-y-2 text-left">
       <div className="mb-2">
-        <h3 className="font-medium text-neutral-900">{title}</h3>
+        <h3 className="font-medium text-neutral-900 text-left">{title}</h3>
         {description && (
-          <p className="text-sm text-neutral-600">{description}</p>
+          <p className="text-sm text-neutral-600 text-left">{description}</p>
         )}
       </div>
       
       <RadioGroup
         value={value}
         onValueChange={onChange}
-        className={`${optionLabels ? "flex flex-col space-y-2" : "grid grid-cols-2 md:grid-cols-5 gap-4"}`}
+        className={`${
+          optionLabels 
+            ? "flex flex-col space-y-2" 
+            : inline 
+              ? "flex flex-wrap gap-4" 
+              : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        }`}
       >
         {options.map((option, index) => (
           <div 
             key={`${id}-${option}`}
-            className={`${optionLabels ? "flex flex-col items-center" : "flex items-center space-x-2"}`}
+            className={`${
+              optionLabels 
+                ? "flex flex-col items-start" 
+                : "flex items-center space-x-2"
+            }`}
           >
             {optionLabels && (
-              <div className="mb-1 text-xs text-center text-neutral-600">
+              <div className="mb-1 text-xs text-left text-neutral-600">
                 {optionLabels[index] || ""}
               </div>
             )}

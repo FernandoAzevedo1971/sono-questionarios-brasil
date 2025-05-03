@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import QuestionnaireContainer from "@/components/questionnaire/QuestionnaireContainer";
 import QuestionnaireContent from "@/components/questionnaire/QuestionnaireContent";
 import QuestionnaireSidebar from "@/components/questionnaire/QuestionnaireSidebar";
@@ -140,25 +138,20 @@ const StopBangPage = () => {
             <div key={question.id} className="p-4 bg-neutral-50 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
                 <question.icon className="h-5 w-5 text-primary-600" />
-                <p className="font-medium text-neutral-900">
+                <p className="font-medium text-neutral-900 text-left">
                   <span className="font-bold underline">{question.letter}</span>{question.text}
                 </p>
               </div>
-              <p className="text-sm text-neutral-600 mb-3">{question.description}</p>
-              <RadioGroup
+              <p className="text-sm text-neutral-600 mb-3 text-left">{question.description}</p>
+              <QuestionItem
+                id={question.id}
+                title=""
+                options={["no", "yes"]}
+                optionLabels={["Não", "Sim"]}
                 value={answers[question.id] !== undefined ? (answers[question.id] ? "yes" : "no") : ""}
-                onValueChange={(value) => handleOptionChange(question.id, value)}
-                className="flex gap-6"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="no" id={`${question.id}-no`} />
-                  <Label htmlFor={`${question.id}-no`}>Não</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="yes" id={`${question.id}-yes`} />
-                  <Label htmlFor={`${question.id}-yes`}>Sim</Label>
-                </div>
-              </RadioGroup>
+                onChange={(value) => handleOptionChange(question.id, value)}
+                inline={true}
+              />
             </div>
           ))}
 
