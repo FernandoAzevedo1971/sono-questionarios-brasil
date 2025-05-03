@@ -24,6 +24,7 @@ import StopBangPage from "./pages/StopBangPage";
 import HamAPage from "./pages/HamAPage";
 import AuthPage from "./pages/AuthPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
             <Route path="/sobre" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
             <Route path="/contato" element={<ProtectedRoute><ContactPage /></ProtectedRoute>} />
             <Route path="/termos" element={<ProtectedRoute><TermsPage /></ProtectedRoute>} />
+            <Route path="/perfil" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
             <Route path="/questionarios/epworth" element={<ProtectedRoute><EpworthPage /></ProtectedRoute>} />
             <Route path="/questionarios/isi" element={<ProtectedRoute><IsiPage /></ProtectedRoute>} />
             <Route path="/questionarios/fas" element={<ProtectedRoute><FasPage /></ProtectedRoute>} />
