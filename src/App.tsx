@@ -4,6 +4,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/contexts/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
+
 import Index from "./pages/Index";
 import CategoryPage from "./pages/CategoryPage";
 import SearchResults from "./pages/SearchResults";
@@ -19,34 +22,43 @@ import GoalPage from "./pages/GoalPage";
 import SacsPage from "./pages/SacsPage";
 import StopBangPage from "./pages/StopBangPage";
 import HamAPage from "./pages/HamAPage";
+import AuthPage from "./pages/AuthPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/categorias/:categoryId" element={<CategoryPage />} />
-          <Route path="/pesquisa" element={<SearchResults />} />
-          <Route path="/sobre" element={<AboutPage />} />
-          <Route path="/contato" element={<ContactPage />} />
-          <Route path="/termos" element={<TermsPage />} />
-          <Route path="/questionarios/epworth" element={<EpworthPage />} />
-          <Route path="/questionarios/isi" element={<IsiPage />} />
-          <Route path="/questionarios/fas" element={<FasPage />} />
-          <Route path="/questionarios/fss" element={<FssPage />} />
-          <Route path="/questionarios/goal" element={<GoalPage />} />
-          <Route path="/questionarios/sacs" element={<SacsPage />} />
-          <Route path="/questionarios/stop-bang" element={<StopBangPage />} />
-          <Route path="/questionarios/ham-a" element={<HamAPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            {/* Public routes */}
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            
+            {/* Protected routes */}
+            <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+            <Route path="/categorias/:categoryId" element={<ProtectedRoute><CategoryPage /></ProtectedRoute>} />
+            <Route path="/pesquisa" element={<ProtectedRoute><SearchResults /></ProtectedRoute>} />
+            <Route path="/sobre" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
+            <Route path="/contato" element={<ProtectedRoute><ContactPage /></ProtectedRoute>} />
+            <Route path="/termos" element={<ProtectedRoute><TermsPage /></ProtectedRoute>} />
+            <Route path="/questionarios/epworth" element={<ProtectedRoute><EpworthPage /></ProtectedRoute>} />
+            <Route path="/questionarios/isi" element={<ProtectedRoute><IsiPage /></ProtectedRoute>} />
+            <Route path="/questionarios/fas" element={<ProtectedRoute><FasPage /></ProtectedRoute>} />
+            <Route path="/questionarios/fss" element={<ProtectedRoute><FssPage /></ProtectedRoute>} />
+            <Route path="/questionarios/goal" element={<ProtectedRoute><GoalPage /></ProtectedRoute>} />
+            <Route path="/questionarios/sacs" element={<ProtectedRoute><SacsPage /></ProtectedRoute>} />
+            <Route path="/questionarios/stop-bang" element={<ProtectedRoute><StopBangPage /></ProtectedRoute>} />
+            <Route path="/questionarios/ham-a" element={<ProtectedRoute><HamAPage /></ProtectedRoute>} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
