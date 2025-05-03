@@ -2,20 +2,32 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { getProfile } from "@/lib/supabase";
+import { getProfile, updateProfile } from "@/lib/supabase";
 import { Profile } from "@/lib/supabase";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Calendar, Mail, User } from "lucide-react";
+import { Calendar, Mail, User, Save } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { toast } from "@/components/ui/sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { format, parse } from "date-fns";
 
 const ProfilePage = () => {
   const { user, userMetadata } = useAuth();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    birth_date: "",
+    user_type: "usuário comum" as "profissional de saúde" | "usuário comum"
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +38,7 @@ const ProfilePage = () => {
           const { data, error } = await getProfile(user.id);
           if (error) {
             console.error("Error loading profile:", error);
+            toast.error("Erro ao carregar perfil");
           } else if (data) {
             // Ensure user_type is one of the expected values
             const validUserType = data.user_type === "profissional de saúde" || 
@@ -45,9 +58,17 @@ const ProfilePage = () => {
             };
             
             setProfile(typedProfile);
+            
+            // Initialize form data
+            setFormData({
+              name: typedProfile.name,
+              birth_date: typedProfile.birth_date,
+              user_type: typedProfile.user_type
+            });
           }
         } catch (err) {
           console.error("Exception loading profile:", err);
+          toast.error("Erro ao carregar perfil");
         } finally {
           setLoading(false);
         }
@@ -56,6 +77,56 @@ const ProfilePage = () => {
 
     loadProfile();
   }, [user]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSelectChange = (value: "profissional de saúde" | "usuário comum") => {
+    setFormData(prev => ({
+      ...prev,
+      user_type: value
+    }));
+  };
+
+  const handleSave = async () => {
+    if (!user || !profile) return;
+    
+    try {
+      setSaving(true);
+      
+      const { error } = await updateProfile(user.id, {
+        name: formData.name,
+        birth_date: formData.birth_date,
+        user_type: formData.user_type
+      });
+      
+      if (error) {
+        console.error("Error updating profile:", error);
+        toast.error("Erro ao atualizar perfil");
+      } else {
+        // Update local profile state with new data
+        setProfile({
+          ...profile,
+          name: formData.name,
+          birth_date: formData.birth_date,
+          user_type: formData.user_type
+        });
+        
+        toast.success("Perfil atualizado com sucesso");
+        setIsEditing(false);
+      }
+    } catch (err) {
+      console.error("Exception updating profile:", err);
+      toast.error("Erro ao atualizar perfil");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   if (!user || loading) {
     return (
@@ -114,35 +185,111 @@ const ProfilePage = () => {
                 </CardHeader>
                 
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                      <div className="flex items-center gap-2">
-                        <Mail className="h-5 w-5 text-muted-foreground" />
-                        <span className="font-medium">Email:</span>
+                  {isEditing ? (
+                    <div className="space-y-4">
+                      <div className="grid gap-2">
+                        <Label htmlFor="name">Nome Completo</Label>
+                        <Input 
+                          id="name" 
+                          name="name" 
+                          value={formData.name} 
+                          onChange={handleInputChange} 
+                        />
                       </div>
-                      <span>{user?.email}</span>
-                    </div>
-                    
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-5 w-5 text-muted-foreground" />
-                        <span className="font-medium">Data de Nascimento:</span>
+                      
+                      <div className="grid gap-2">
+                        <Label htmlFor="birth_date">Data de Nascimento</Label>
+                        <Input 
+                          id="birth_date" 
+                          name="birth_date" 
+                          type="date" 
+                          value={formData.birth_date} 
+                          onChange={handleInputChange} 
+                        />
                       </div>
-                      <span>{formattedBirthDate}</span>
-                    </div>
-                    
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                      <div className="flex items-center gap-2">
-                        <User className="h-5 w-5 text-muted-foreground" />
-                        <span className="font-medium">Tipo de Usuário:</span>
+                      
+                      <div className="grid gap-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input 
+                          id="email" 
+                          value={user?.email || ''} 
+                          disabled 
+                          className="bg-gray-100"
+                        />
+                        <p className="text-xs text-muted-foreground">
+                          O email não pode ser alterado
+                        </p>
                       </div>
-                      <span>{userTypeLabel}</span>
+                      
+                      <div className="grid gap-2">
+                        <Label htmlFor="user_type">Tipo de Usuário</Label>
+                        <Select 
+                          value={formData.user_type} 
+                          onValueChange={(value) => handleSelectChange(value as "profissional de saúde" | "usuário comum")}
+                        >
+                          <SelectTrigger id="user_type">
+                            <SelectValue placeholder="Selecione o tipo de usuário" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="usuário comum">Usuário Comum</SelectItem>
+                            <SelectItem value="profissional de saúde">Profissional de Saúde</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                        <div className="flex items-center gap-2">
+                          <Mail className="h-5 w-5 text-muted-foreground" />
+                          <span className="font-medium">Email:</span>
+                        </div>
+                        <span>{user?.email}</span>
+                      </div>
+                      
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-5 w-5 text-muted-foreground" />
+                          <span className="font-medium">Data de Nascimento:</span>
+                        </div>
+                        <span>{formattedBirthDate}</span>
+                      </div>
+                      
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                        <div className="flex items-center gap-2">
+                          <User className="h-5 w-5 text-muted-foreground" />
+                          <span className="font-medium">Tipo de Usuário:</span>
+                        </div>
+                        <span>{userTypeLabel}</span>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
                 
-                <CardFooter className="flex justify-end">
-                  <Button variant="outline" onClick={() => navigate('/')}>Voltar</Button>
+                <CardFooter className="flex justify-end gap-2">
+                  {isEditing ? (
+                    <>
+                      <Button 
+                        variant="outline" 
+                        onClick={() => setIsEditing(false)}
+                        disabled={saving}
+                      >
+                        Cancelar
+                      </Button>
+                      <Button 
+                        onClick={handleSave}
+                        disabled={saving}
+                      >
+                        {saving ? 'Salvando...' : 'Salvar'} 
+                        {!saving && <Save className="ml-2 h-4 w-4" />}
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button variant="outline" onClick={() => navigate('/')}>Voltar</Button>
+                      <Button onClick={() => setIsEditing(true)}>Editar</Button>
+                    </>
+                  )}
                 </CardFooter>
               </Card>
             </TabsContent>

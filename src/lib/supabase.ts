@@ -48,11 +48,19 @@ export const getProfile = async (userId: string) => {
 };
 
 export const updateProfile = async (userId: string, updates: Partial<Omit<Profile, 'id'>>) => {
+  console.log("Atualizando perfil do usuário:", userId, "com dados:", updates);
+  
   const { data, error } = await supabase
     .from('profiles')
     .update(updates)
     .eq('id', userId)
     .select();
+    
+  if (error) {
+    console.error("Erro ao atualizar perfil:", error);
+  } else {
+    console.log("Perfil atualizado com sucesso:", data);
+  }
 
   return { data, error };
 };
