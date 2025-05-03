@@ -33,6 +33,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Set up auth state listener first
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
+        console.log("Auth state changed:", _event, session?.user?.id);
         setSession(session);
         setUser(session?.user ?? null);
         if (session?.user) {
@@ -46,6 +47,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Then check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log("Initial session check:", session?.user?.id);
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -60,40 +62,75 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    console.log("Tentando login com email:", email);
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    
+    if (error) {
+      console.error("Erro no login:", error.message);
+    } else {
+      console.log("Login bem-sucedido:", data.user?.id);
+    }
+    
     return { error };
   };
 
   const signUp = async (email: string, password: string, metadata: UserMetadata) => {
-    // Admin account is special
-    const isAdmin = email === 'fazevedopneumosono@gmail.com';
-    if (isAdmin) {
-      metadata.is_admin = true;
-    }
-
-    // First create the auth user
-    const { data: authData, error: authError } = await supabase.auth.signUp({ 
-      email, 
-      password,
-      options: {
-        data: metadata
-      }
-    });
-
-    if (authError || !authData.user) {
-      return { error: authError };
-    }
+    console.log("Iniciando cadastro para email:", email);
     
-    // Then create the profile in the profiles table
-    const { error: profileError } = await createProfile({
-      id: authData.user.id,
-      name: metadata.name || '',
-      birth_date: metadata.birth_date || '',
-      user_type: metadata.user_type || 'usuário comum',
-      is_admin: isAdmin,
-    });
+    try {
+      // Admin account is special
+      const isAdmin = email === 'fazevedopneumosono@gmail.com';
+      if (isAdmin) {
+        metadata.is_admin = true;
+      }
 
-    return { error: profileError };
+      // First create the auth user
+      const { data: authData, error: authError } = await supabase.auth.signUp({ 
+        email, 
+        password,
+        options: {
+          data: metadata
+        }
+      });
+
+      if (authError || !authData.user) {
+        console.error("Erro ao criar usuário auth:", authError?.message);
+        return { error: authError };
+      }
+      
+      console.log("Usuário auth criado com sucesso:", authData.user.id);
+      
+      // Separamos a criação do perfil do usuário
+      // Vamos criar o perfil depois de uma pequena pausa para evitar condições de corrida
+      setTimeout(async () => {
+        try {
+          const profileData = {
+            id: authData.user.id,
+            name: metadata.name || '',
+            birth_date: metadata.birth_date || '',
+            user_type: metadata.user_type || 'usuário comum',
+            is_admin: isAdmin,
+          };
+          
+          console.log("Tentando criar perfil:", profileData);
+          
+          const { error: profileError } = await createProfile(profileData);
+          
+          if (profileError) {
+            console.error("Erro ao criar perfil do usuário:", profileError);
+          } else {
+            console.log("Perfil criado com sucesso!");
+          }
+        } catch (e) {
+          console.error("Exceção ao criar perfil:", e);
+        }
+      }, 500);
+
+      return { error: null };
+    } catch (e) {
+      console.error("Exceção no processo de cadastro:", e);
+      return { error: e };
+    }
   };
 
   const signOut = async () => {

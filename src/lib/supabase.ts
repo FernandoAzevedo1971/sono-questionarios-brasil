@@ -16,13 +16,25 @@ export type Profile = {
 };
 
 export const createProfile = async (profile: Omit<Profile, 'created_at' | 'updated_at'>) => {
-  const { data, error } = await supabase
-    .from('profiles')
-    .insert([profile])
-    .select()
-    .single();
-
-  return { data, error };
+  try {
+    console.log("Criando perfil para usuário:", profile.id);
+    
+    const { data, error } = await supabase
+      .from('profiles')
+      .insert([profile])
+      .select();
+    
+    if (error) {
+      console.error("Erro ao criar perfil:", error);
+    } else {
+      console.log("Perfil criado com sucesso:", data);
+    }
+    
+    return { data, error };
+  } catch (e) {
+    console.error("Exceção ao criar perfil:", e);
+    return { data: null, error: e };
+  }
 };
 
 export const getProfile = async (userId: string) => {
@@ -40,8 +52,7 @@ export const updateProfile = async (userId: string, updates: Partial<Omit<Profil
     .from('profiles')
     .update(updates)
     .eq('id', userId)
-    .select()
-    .single();
+    .select();
 
   return { data, error };
 };
