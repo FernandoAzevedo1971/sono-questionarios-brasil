@@ -13,10 +13,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
-// Reset password schema
+// Reset password schema com requisitos de senha reduzidos
 const resetPasswordSchema = z.object({
-  password: z.string().min(6, { message: "Senha deve ter no mínimo 6 caracteres" }),
-  confirm_password: z.string().min(6, { message: "Confirmação de senha é obrigatória" }),
+  password: z.string().min(3, { message: "Senha deve ter no mínimo 3 caracteres" }),
+  confirm_password: z.string().min(3, { message: "Confirmação de senha é obrigatória" }),
 }).refine((data) => data.password === data.confirm_password, {
   message: "As senhas não coincidem",
   path: ["confirm_password"],

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -28,15 +29,15 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 
-// Register form schema with a custom validator for the birth_date
+// Register form schema com requisitos de senha reduzidos
 const registerSchema = z.object({
   name: z.string().min(3, { message: "Nome deve ter no mínimo 3 caracteres" }),
   email: z.string().email({ message: "Email inválido" }),
   birth_date: z.date({ required_error: "Data de nascimento é obrigatória" }),
   birth_date_input: z.string().optional(),
   user_type: z.enum(["profissional de saúde", "usuário comum"]),
-  password: z.string().min(6, { message: "Senha deve ter no mínimo 6 caracteres" }),
-  confirm_password: z.string().min(6, { message: "Confirmação de senha é obrigatória" }),
+  password: z.string().min(3, { message: "Senha deve ter no mínimo 3 caracteres" }),
+  confirm_password: z.string().min(3, { message: "Confirmação de senha é obrigatória" }),
 }).refine((data) => data.password === data.confirm_password, {
   message: "As senhas não coincidem",
   path: ["confirm_password"],

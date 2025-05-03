@@ -19,10 +19,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-// Login form schema
+// Login form schema com requisitos de senha reduzidos
 const loginSchema = z.object({
   email: z.string().email({ message: "Email inválido" }),
-  password: z.string().min(6, { message: "Senha deve ter no mínimo 6 caracteres" }),
+  password: z.string().min(3, { message: "Senha deve ter no mínimo 3 caracteres" }),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
