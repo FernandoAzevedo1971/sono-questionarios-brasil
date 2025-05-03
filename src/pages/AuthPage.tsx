@@ -1,10 +1,9 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { format } from "date-fns";
+import { format, parse, isValid } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -24,11 +23,12 @@ const loginSchema = z.object({
   password: z.string().min(6, { message: "Senha deve ter no mínimo 6 caracteres" }),
 });
 
-// Register form schema
+// Register form schema with a custom validator for the birth_date
 const registerSchema = z.object({
   name: z.string().min(3, { message: "Nome deve ter no mínimo 3 caracteres" }),
   email: z.string().email({ message: "Email inválido" }),
   birth_date: z.date({ required_error: "Data de nascimento é obrigatória" }),
+  birth_date_input: z.string().optional(),
   user_type: z.enum(["profissional de saúde", "usuário comum"]),
   password: z.string().min(6, { message: "Senha deve ter no mínimo 6 caracteres" }),
   confirm_password: z.string().min(6, { message: "Confirmação de senha é obrigatória" }),
@@ -50,6 +50,7 @@ const AuthPage = () => {
   const [activeTab, setActiveTab] = useState<string>("login");
   const [showResetForm, setShowResetForm] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { signIn, signUp, resetPassword } = useAuth();
@@ -70,6 +71,7 @@ const AuthPage = () => {
       name: "",
       email: "",
       birth_date: undefined,
+      birth_date_input: "",
       user_type: "usuário comum",
       password: "",
       confirm_password: "",
@@ -83,6 +85,23 @@ const AuthPage = () => {
       email: "",
     },
   });
+
+  // Handle manual date input
+  const handleDateInput = (value: string) => {
+    registerForm.setValue("birth_date_input", value);
+    
+    // Try to parse the date
+    if (value && value.length === 10) {
+      try {
+        const parsedDate = parse(value, "dd/MM/yyyy", new Date());
+        if (isValid(parsedDate) && parsedDate < new Date() && parsedDate > new Date("1900-01-01")) {
+          registerForm.setValue("birth_date", parsedDate);
+        }
+      } catch (error) {
+        // Invalid date format, leave the birth_date unchanged
+      }
+    }
+  };
 
   // Handle login submission
   const onLoginSubmit = async (data: LoginFormValues) => {
@@ -150,6 +169,19 @@ const AuthPage = () => {
       });
       setShowResetForm(false);
     }
+  };
+
+  // Update birth date display value when form value changes
+  const birthDateValue = registerForm.watch("birth_date");
+  const birthDateInputValue = registerForm.watch("birth_date_input");
+
+  // When calendar date is selected, also update the text input
+  const handleCalendarSelect = (date: Date | undefined) => {
+    if (date) {
+      registerForm.setValue("birth_date", date);
+      registerForm.setValue("birth_date_input", format(date, "dd/MM/yyyy"));
+    }
+    setIsCalendarOpen(false);
   };
 
   return (
@@ -310,37 +342,41 @@ const AuthPage = () => {
                         render={({ field }) => (
                           <FormItem className="flex flex-col">
                             <FormLabel>Data de Nascimento</FormLabel>
-                            <Popover>
-                              <PopoverTrigger asChild>
-                                <FormControl>
-                                  <Button
-                                    variant={"outline"}
-                                    className={cn(
-                                      "w-full pl-3 text-left font-normal",
-                                      !field.value && "text-muted-foreground"
-                                    )}
-                                  >
-                                    {field.value ? (
-                                      format(field.value, "dd/MM/yyyy")
-                                    ) : (
-                                      <span>Selecione uma data</span>
-                                    )}
-                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                  </Button>
-                                </FormControl>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-auto p-0" align="start">
-                                <Calendar
-                                  mode="single"
-                                  selected={field.value}
-                                  onSelect={field.onChange}
-                                  disabled={(date) =>
-                                    date > new Date() || date < new Date("1900-01-01")
-                                  }
-                                  initialFocus
+                            <div className="flex gap-2">
+                              <FormControl>
+                                <Input
+                                  placeholder="DD/MM/AAAA"
+                                  value={birthDateInputValue}
+                                  onChange={(e) => handleDateInput(e.target.value)}
+                                  className="flex-1"
+                                  maxLength={10}
                                 />
-                              </PopoverContent>
-                            </Popover>
+                              </FormControl>
+                              <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
+                                <PopoverTrigger asChild>
+                                  <Button
+                                    type="button"
+                                    variant="outline"
+                                    className="px-3"
+                                    onClick={() => setIsCalendarOpen(true)}
+                                  >
+                                    <CalendarIcon className="h-4 w-4" />
+                                  </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0" align="end">
+                                  <Calendar
+                                    mode="single"
+                                    selected={birthDateValue}
+                                    onSelect={handleCalendarSelect}
+                                    disabled={(date) =>
+                                      date > new Date() || date < new Date("1900-01-01")
+                                    }
+                                    initialFocus
+                                    className="p-3 pointer-events-auto"
+                                  />
+                                </PopoverContent>
+                              </Popover>
+                            </div>
                             <FormMessage />
                           </FormItem>
                         )}
