@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -8,7 +7,7 @@ import QuestionnaireContent from "@/components/questionnaire/QuestionnaireConten
 import QuestionnaireSidebar from "@/components/questionnaire/QuestionnaireSidebar";
 import ResultDisplay from "@/components/questionnaire/ResultDisplay";
 import QuestionItem from "@/components/questionnaire/QuestionItem";
-import { VolumeX, Tiredness, Eye, Heart, Scale, Clock, User, Gender } from "lucide-react";
+import { VolumeX, LucideAlarmClock, Eye, Heart, Scale, Clock, User, UserCircle2 } from "lucide-react";
 
 type QuestionItem = {
   id: string;
@@ -31,7 +30,7 @@ const questions: QuestionItem[] = [
     letter: "T",
     text: "iredness (Cansado)",
     description: "Você frequentemente se sente cansado, exausto ou sonolento durante o dia (como, por exemplo, adormecer enquanto dirige)?",
-    icon: Tiredness
+    icon: LucideAlarmClock
   },
   {
     id: "observed",
@@ -73,7 +72,7 @@ const questions: QuestionItem[] = [
     letter: "G",
     text: "ender (Sexo)",
     description: "Sexo = Masculino?",
-    icon: Gender
+    icon: UserCircle2
   }
 ];
 
