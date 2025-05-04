@@ -1,17 +1,69 @@
 
-import { categories } from "@/data/questionnaires";
-import CategoryCard from "@/components/CategoryCard";
+import { categories, getCategoryQuestionnaires } from "@/data/questionnaires";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
+import * as icons from "lucide-react";
+
+// Import SVG path for lungs icon
+const LungsIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M6.081 20c0-2.21 2.02-4 4.5-4s4.5 1.79 4.5 4"></path>
+    <path d="M4 10c0-1.93 1.57-3.5 3.5-3.5"></path>
+    <path d="M20 10c0-1.93-1.57-3.5-3.5-3.5"></path>
+    <path d="M12 12a4 4 0 0 0-4-4c-.99 0-3 .16-3 2.5C5 13 6 13 6 14c0 .5 0 2 2 2s2 0 2-2"></path>
+    <path d="M12 12a4 4 0 0 1 4-4c.99 0 3 .16 3 2.5 0 2.5-1 2.5-1 3.5 0 .5 0 2-2 2s-2 0-2-2"></path>
+    <path d="M7 16c-2.5.5-5 .5-5-2C2 8 6 6.5 8 7"></path>
+    <path d="M17 16c2.5.5 5 .5 5-2 0-6-4-7.5-6-7"></path>
+    <path d="M8 7c0-3 1.5-5 4-5s4 2 4 5"></path>
+  </svg>
+);
 
 const Index = () => {
+  // Function to get the appropriate icon component
+  const getIconComponent = (iconName: string) => {
+    if (iconName === "lungs") {
+      return LungsIcon;
+    }
+    
+    // First character needs to be uppercase for the icons import
+    const formattedIconName = iconName.charAt(0).toUpperCase() + iconName.slice(1);
+    return (icons as any)[formattedIconName];
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50">
       <Header />
       
       <main className="flex-grow">
+        {/* Logo Section */}
+        <section className="py-8 bg-white">
+          <div className="container mx-auto px-4 text-center">
+            <img 
+              src="/lovable-uploads/687d02db-9bbd-49d4-a884-c1355fcd2739.png" 
+              alt="Fernando Azevedo - Pneumologia e Medicina do Sono" 
+              className="max-w-full h-auto mx-auto" 
+              style={{ maxHeight: "180px" }}
+            />
+          </div>
+        </section>
+
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-16 lg:py-24">
           <div className="container mx-auto px-4">
@@ -23,26 +75,6 @@ const Index = () => {
                 Acesse questionários validados em português para uso na prática clínica
                 da Medicina do Sono no Brasil.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button
-                  className="bg-white text-primary-700 hover:bg-neutral-100"
-                  size="lg"
-                  onClick={() => {
-                    const element = document.getElementById('categorias');
-                    element?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  Explorar Categorias
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white hover:bg-white/10"
-                >
-                  <Download className="mr-2 h-4 w-4" />
-                  Todos os Questionários
-                </Button>
-              </div>
             </div>
           </div>
         </section>
@@ -69,16 +101,55 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Categories Section */}
+        {/* Categories Accordion Section */}
         <section id="categorias" className="py-10 lg:py-16 bg-neutral-100">
           <div className="container mx-auto px-4">
             <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center text-neutral-900">
               Categorias de Distúrbios
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categories.map((category) => (
-                <CategoryCard key={category.id} category={category} />
-              ))}
+            <div className="max-w-3xl mx-auto">
+              <Accordion type="single" collapsible className="w-full">
+                {categories.map((category) => {
+                  const IconComponent = getIconComponent(category.icon);
+                  const questionnaires = getCategoryQuestionnaires(category.id);
+                  
+                  return (
+                    <AccordionItem key={category.id} value={category.id} className="border-b border-neutral-200">
+                      <AccordionTrigger className="py-4 px-2 hover:no-underline">
+                        <div className="flex items-center gap-3 text-left">
+                          {IconComponent && (
+                            <span className="flex items-center justify-center h-10 w-10 rounded-full bg-primary-50 text-primary-600">
+                              <IconComponent className="h-5 w-5" />
+                            </span>
+                          )}
+                          <div>
+                            <h3 className="font-medium text-lg text-neutral-900">{category.name}</h3>
+                            <p className="text-neutral-600 text-sm hidden md:block">{category.description}</p>
+                          </div>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-2">
+                        <div className="pl-12 py-2 space-y-2">
+                          {questionnaires.length > 0 ? (
+                            questionnaires.map((questionnaire) => (
+                              <Link 
+                                key={questionnaire.id} 
+                                to={questionnaire.onlineUrl ? questionnaire.onlineUrl : `/questionario/${questionnaire.id}`}
+                                className="block p-2 rounded-md hover:bg-white transition-colors duration-200"
+                              >
+                                <h4 className="text-primary-600 font-medium">{questionnaire.name}</h4>
+                                <p className="text-sm text-neutral-600">{questionnaire.description}</p>
+                              </Link>
+                            ))
+                          ) : (
+                            <p className="text-neutral-500 italic">Nenhum questionário disponível nesta categoria.</p>
+                          )}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
+              </Accordion>
             </div>
           </div>
         </section>
