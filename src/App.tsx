@@ -26,7 +26,8 @@ import HamAPage from "./pages/HamAPage";
 import PsqiPage from "./pages/PsqiPage";
 import BerlinPage from "./pages/BerlinPage";
 import MeqHoPage from "./pages/MeqHoPage";
-import NoSasPage from "./pages/NoSasPage"; // Nova importação
+import NoSasPage from "./pages/NoSasPage";
+import HdasPage from "./pages/HdasPage"; // Nova importação
 import AuthPage from "./pages/AuthPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -65,7 +66,8 @@ const App = () => (
             <Route path="/questionarios/psqi" element={<ProtectedRoute><PsqiPage /></ProtectedRoute>} />
             <Route path="/questionarios/berlin" element={<ProtectedRoute><BerlinPage /></ProtectedRoute>} />
             <Route path="/questionarios/meq-ho" element={<ProtectedRoute><MeqHoPage /></ProtectedRoute>} />
-            <Route path="/questionarios/nosas" element={<ProtectedRoute><NoSasPage /></ProtectedRoute>} /> {/* Nova rota */}
+            <Route path="/questionarios/nosas" element={<ProtectedRoute><NoSasPage /></ProtectedRoute>} />
+            <Route path="/questionarios/hdas" element={<ProtectedRoute><HdasPage /></ProtectedRoute>} /> {/* Nova rota */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

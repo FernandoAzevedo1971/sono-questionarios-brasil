@@ -16,7 +16,7 @@ export type Category = {
   icon: string;
 };
 
-export type CategoryId = 'insonia' | 'apneia' | 'sonolencia' | 'cronotipos' | 'movimentos' | 'outros';
+export type CategoryId = 'insonia' | 'apneia' | 'sonolencia' | 'cronotipos' | 'movimentos' | 'outros' | 'ansiedade';
 
 export const categories: Category[] = [
   {
@@ -48,6 +48,12 @@ export const categories: Category[] = [
     name: 'Síndromes de Movimentos',
     description: 'Instrumentos para avaliação de síndrome das pernas inquietas e outros distúrbios de movimento.',
     icon: 'book',
+  },
+  {
+    id: 'ansiedade',
+    name: 'Avaliação de Ansiedade e Depressão',
+    description: 'Escalas para avaliação de ansiedade e depressão relacionadas aos distúrbios do sono.',
+    icon: 'brain',
   },
   {
     id: 'outros',
@@ -227,6 +233,19 @@ export const questionnaires: Questionnaire[] = [
     onlineUrl: '/questionarios/nosas',
     references: [
       'Marti-Soler H, Hirotsu C, Marques-Vidal P, Vollenweider P, Waeber G, Preisig M, Tafti M, Tufik SB, Bittencourt L, Tufik S, Haba-Rubio J, Heinzer R. The NoSAS score for screening of sleep-disordered breathing: a derivation and validation study. Lancet Respir Med. 2016 Sep;4(9):742-748. doi: 10.1016/S2213-2600(16)30075-3. Epub 2016 Jun 16. PMID: 27321086.'
+    ],
+  },
+  {
+    id: 'hdas',
+    name: 'Escala Hospitalar de Ansiedade e Depressão (HDAS)',
+    description: 'Avalia sintomas de ansiedade e depressão em ambiente hospitalar.',
+    indication: 'Rastreamento de transtornos de ansiedade e depressão em pacientes com distúrbios do sono.',
+    pdfUrl: '/questionarios/hdas.pdf',
+    category: 'ansiedade',
+    onlineUrl: '/questionarios/hdas',
+    references: [
+      'Zigmond AS, Snaith RP - The hospital anxiety and depression scale. Acta Psychiatr Scand, 1983;67:361-370.',
+      'Botega NJ, Bio MR, Zomignani MA et al - Transtornos de humor em enfermarias de clínica médica e validação de escala de medida (HAD) de ansiedade e depressão. Rev Saúde Pública, 1995;29:355-363.'
     ],
   },
 ];
