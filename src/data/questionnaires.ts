@@ -217,6 +217,18 @@ export const questionnaires: Questionnaire[] = [
       'Nota: Não há validação oficial para a língua portuguesa. A tradução utilizada é uma tradução livre.'
     ],
   },
+  {
+    id: 'nosas',
+    name: 'Escore NoSAS',
+    description: 'Ferramenta de triagem para distúrbios respiratórios do sono.',
+    indication: 'Identificação de pacientes com alta probabilidade de distúrbios respiratórios do sono.',
+    pdfUrl: '/questionarios/nosas.pdf',
+    category: 'apneia',
+    onlineUrl: '/questionarios/nosas',
+    references: [
+      'Marti-Soler H, Hirotsu C, Marques-Vidal P, Vollenweider P, Waeber G, Preisig M, Tafti M, Tufik SB, Bittencourt L, Tufik S, Haba-Rubio J, Heinzer R. The NoSAS score for screening of sleep-disordered breathing: a derivation and validation study. Lancet Respir Med. 2016 Sep;4(9):742-748. doi: 10.1016/S2213-2600(16)30075-3. Epub 2016 Jun 16. PMID: 27321086.'
+    ],
+  },
 ];
 
 export const getCategoryQuestionnaires = (categoryId: CategoryId): Questionnaire[] => {
