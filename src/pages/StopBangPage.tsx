@@ -187,11 +187,13 @@ const StopBangPage = () => {
       {/* Right Panel - Info and Download */}
       <QuestionnaireSidebar pdfUrl='/questionarios/stop-bang.pdf'>
         <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Sobre o questionário</h2>
-        <p className="text-neutral-700 mb-6 text-left">
+        <p className="text-neutral-700 mb-3 text-left">
           O questionário STOP-BANG é uma ferramenta validada para triagem de Apneia Obstrutiva do Sono (AOS).
           É composto por oito perguntas de sim/não, sendo um dos instrumentos mais utilizados mundialmente
-          para identificação de pacientes com risco de AOS. O questionário tem validação para a língua portuguesa,
-          conforme a referência Fonseca et al., 2016.
+          para identificação de pacientes com risco de AOS.
+        </p>
+        <p className="text-neutral-700 mb-6 text-left">
+          <strong>Validação para o português:</strong> Sim. O questionário foi traduzido e adaptado para a língua portuguesa falada no Brasil por Fonseca et al. (2016).
         </p>
 
         <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Critérios de Pontuação</h2>

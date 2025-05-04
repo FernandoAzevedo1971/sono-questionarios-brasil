@@ -132,10 +132,14 @@ const EpworthPage = () => {
 
       <QuestionnaireSidebar pdfUrl="/questionarios/epworth.pdf">
         <h2 className="text-lg font-semibold text-neutral-900 mb-3">Sobre a escala</h2>
-        <p className="text-neutral-700 mb-6 text-left">
+        <p className="text-neutral-700 mb-3 text-left">
           A Escala de Sonolência de Epworth avalia a propensão à sonolência diurna em diferentes 
           situações do cotidiano. É composta por oito perguntas em escala de 0 a 3, gerando 
           escore total de 0 a 24, com valores ≥ 10 sugerindo sonolência excessiva.
+        </p>
+        <p className="text-neutral-700 mb-6 text-left">
+          <strong>Validação para o português:</strong> Sim. A escala foi validada para uso no Brasil 
+          por Bertolazi et al. (2009).
         </p>
 
         <h2 className="text-lg font-semibold text-neutral-900 mb-3">Referências</h2>
