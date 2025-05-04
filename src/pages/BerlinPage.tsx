@@ -462,9 +462,9 @@ const BerlinPage = () => {
         </p>
         
         <p className="text-neutral-600 mb-2 text-left">
-          Categoria 3: Saúde Geral - Positivo se houver 1 ou mais pontos ou IMC {">"}> 30 kg/m².
+          Categoria 3: Saúde Geral - Positivo se houver 1 ou mais pontos ou IMC &gt; 30 kg/m².
           Questão 10: a) 1 ponto
-          IMC {">"}> 30 kg/m²: 1 ponto
+          IMC &gt; 30 kg/m²: 1 ponto
         </p>
 
         <p className="text-neutral-600 mb-4 text-left">
