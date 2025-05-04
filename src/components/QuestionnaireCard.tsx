@@ -16,7 +16,7 @@ const QuestionnaireCard = ({ questionnaire }: { questionnaire: Questionnaire }) 
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 flex flex-col">
+    <div className="bg-white rounded-lg shadow-md p-6 flex flex-col text-left">
       <h3 className="font-semibold text-lg text-primary-700 mb-2">{questionnaire.name}</h3>
       <p className="text-neutral-700 mb-4">{questionnaire.description}</p>
       

@@ -43,15 +43,19 @@ const CategoryCard = ({ category }: { category: Category }) => {
   return (
     <Link
       to={`/categorias/${category.id}`}
-      className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-6 flex flex-col items-center text-center group"
+      className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-6 flex flex-col items-start text-left group"
     >
-      {IconComponent && (
-        <div className="w-16 h-16 rounded-full bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors">
-          <IconComponent className="h-8 w-8 text-primary-600" />
+      <div className="flex items-center gap-3 w-full">
+        {IconComponent && (
+          <div className="w-16 h-16 rounded-full bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors">
+            <IconComponent className="h-8 w-8 text-primary-600" />
+          </div>
+        )}
+        <div>
+          <h3 className="font-semibold text-lg text-neutral-900 mb-2">{category.name}</h3>
+          <p className="text-neutral-600 text-sm">{category.description}</p>
         </div>
-      )}
-      <h3 className="font-semibold text-lg text-neutral-900 mb-2">{category.name}</h3>
-      <p className="text-neutral-600 text-sm">{category.description}</p>
+      </div>
     </Link>
   );
 };

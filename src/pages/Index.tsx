@@ -115,7 +115,7 @@ const Index = () => {
                   
                   return (
                     <AccordionItem key={category.id} value={category.id} className="border-b border-neutral-200">
-                      <AccordionTrigger className="py-4 px-2 hover:no-underline">
+                      <AccordionTrigger className="py-4 px-2 hover:no-underline text-left">
                         <div className="flex items-center gap-3 text-left">
                           {IconComponent && (
                             <span className="flex items-center justify-center h-10 w-10 rounded-full bg-primary-50 text-primary-600">
@@ -135,14 +135,14 @@ const Index = () => {
                               <Link 
                                 key={questionnaire.id} 
                                 to={questionnaire.onlineUrl ? questionnaire.onlineUrl : `/questionario/${questionnaire.id}`}
-                                className="block p-2 rounded-md hover:bg-white transition-colors duration-200"
+                                className="block p-2 rounded-md hover:bg-white transition-colors duration-200 text-left"
                               >
                                 <h4 className="text-primary-600 font-medium">{questionnaire.name}</h4>
                                 <p className="text-sm text-neutral-600">{questionnaire.description}</p>
                               </Link>
                             ))
                           ) : (
-                            <p className="text-neutral-500 italic">Nenhum questionário disponível nesta categoria.</p>
+                            <p className="text-neutral-500 italic text-left">Nenhum questionário disponível nesta categoria.</p>
                           )}
                         </div>
                       </AccordionContent>
