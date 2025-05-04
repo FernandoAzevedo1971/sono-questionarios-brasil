@@ -65,6 +65,7 @@ export const questionnaires: Questionnaire[] = [
     indication: 'Avaliação da gravidade da insônia em adultos.',
     pdfUrl: '/questionarios/isi.pdf',
     category: 'insonia',
+    onlineUrl: '/questionarios/isi',
     references: [
       'CASTRO, Laura de Siqueira. Adaptação e Validação do Índice de Gravidade de Insônia (IGI): Caracterização Populacional, Valores Normativos e Aspectos Associados. 2011. 104 f. Dissertação (Mestrado) - Escola Paulista de Medicina, Universidade Federal de São Paulo. São Paulo, 2011. URL: http://repositorio.unifesp.br/handle/11600/23193',
       'Morin, C. M. (1993). Insomnia Severity Index (ISI) [Database record]. APA PsycTests. https://doi.org/10.1037/t07115-000',
@@ -118,7 +119,7 @@ export const questionnaires: Questionnaire[] = [
     description: 'Avalia a tendência à sonolência diurna em diferentes situações.',
     indication: 'Avaliação de sonolência em adultos.',
     pdfUrl: '/questionarios/epworth.pdf',
-    onlineUrl: '/questionarios/online/epworth',
+    onlineUrl: '/questionarios/epworth',
     category: 'sonolencia',
     references: ['Johns, M. W. (1991). A new method for measuring daytime sleepiness: the Epworth sleepiness scale. Sleep, 14(6), 540-545.'],
   },

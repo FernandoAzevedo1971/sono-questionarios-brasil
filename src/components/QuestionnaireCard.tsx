@@ -9,7 +9,7 @@ const QuestionnaireCard = ({ questionnaire }: { questionnaire: Questionnaire }) 
   const hasInternalOnlineVersion = (id: string): boolean => {
     // List of questionnaires with internal online versions
     const internalOnlineQuestionnaires = [
-      'epworth', 'isi', 'fas', 'fss', 'goal', 'sacs', 'stop-bang', 'ham-a'
+      'epworth', 'isi', 'fas', 'fss', 'goal', 'sacs', 'stop-bang', 'ham-a', 'berlin', 'psqi'
     ];
     
     return internalOnlineQuestionnaires.includes(id);

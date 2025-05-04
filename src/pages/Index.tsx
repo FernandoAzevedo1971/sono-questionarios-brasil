@@ -134,7 +134,7 @@ const Index = () => {
                             questionnaires.map((questionnaire) => (
                               <Link 
                                 key={questionnaire.id} 
-                                to={questionnaire.onlineUrl ? questionnaire.onlineUrl : `/questionario/${questionnaire.id}`}
+                                to={`/questionarios/${questionnaire.id}`}
                                 className="block p-2 rounded-md hover:bg-white transition-colors duration-200 text-left"
                               >
                                 <h4 className="text-primary-600 font-medium">{questionnaire.name}</h4>

@@ -23,7 +23,7 @@ import SacsPage from "./pages/SacsPage";
 import StopBangPage from "./pages/StopBangPage";
 import HamAPage from "./pages/HamAPage";
 import PsqiPage from "./pages/PsqiPage";
-import BerlinPage from "./pages/BerlinPage"; // Nova importação
+import BerlinPage from "./pages/BerlinPage";
 import AuthPage from "./pages/AuthPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -59,7 +59,7 @@ const App = () => (
             <Route path="/questionarios/stop-bang" element={<ProtectedRoute><StopBangPage /></ProtectedRoute>} />
             <Route path="/questionarios/ham-a" element={<ProtectedRoute><HamAPage /></ProtectedRoute>} />
             <Route path="/questionarios/psqi" element={<ProtectedRoute><PsqiPage /></ProtectedRoute>} />
-            <Route path="/questionarios/berlin" element={<ProtectedRoute><BerlinPage /></ProtectedRoute>} /> {/* Nova rota */}
+            <Route path="/questionarios/berlin" element={<ProtectedRoute><BerlinPage /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
