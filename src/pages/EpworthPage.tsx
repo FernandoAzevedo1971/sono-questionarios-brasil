@@ -97,6 +97,8 @@ const EpworthPage = () => {
               value={answers[question.id]?.toString() || ""}
               onChange={(value) => handleOptionChange(question.id, value)}
               variant="panel"
+              inline={true}
+              hideOptionNumbers={true}
             />
           ))}
 
