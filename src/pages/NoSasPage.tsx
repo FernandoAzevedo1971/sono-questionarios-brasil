@@ -124,6 +124,26 @@ const NoSasPage = () => {
           identificar indivíduos com alta probabilidade desses distúrbios. Ele considera cinco fatores de risco: 
           circunferência do pescoço, IMC, ronco, idade e sexo.
         </p>
+        <p className="text-neutral-700 mb-3 text-left">
+          <strong>Cálculo do escore:</strong>
+        </p>
+        <ul className="list-disc pl-5 mb-4 text-neutral-700 text-left space-y-1">
+          <li>Circunferência do pescoço &gt; 40 cm: 4 pontos</li>
+          <li>IMC:
+            <ul className="list-disc pl-5 mt-1">
+              <li>25,0 kg/m² a 29,9 kg/m² (sobrepeso): 3 pontos</li>
+              <li>≥ 30,0 kg/m² (obesidade): 5 pontos</li>
+              <li>&lt; 25,0 kg/m² (normal): 0 pontos</li>
+            </ul>
+          </li>
+          <li>Presença de ronco: 2 pontos</li>
+          <li>Idade superior a 55 anos: 4 pontos</li>
+          <li>Sexo masculino: 2 pontos</li>
+        </ul>
+        <p className="text-neutral-700 mb-3 text-left">
+          O escore total varia de 0 a 17 pontos. Um valor ≥ 8 indica alta probabilidade de 
+          distúrbio respiratório do sono.
+        </p>
         <p className="text-neutral-700 mb-6 text-left">
           <strong>Validação para o português:</strong> Não. Por se tratar de um escore baseado em 
           medidas objetivas e não um questionário com elementos subjetivos, não é esperado prejuízo 
@@ -134,7 +154,7 @@ const NoSasPage = () => {
         <div className="text-sm text-neutral-600 text-left space-y-2">
           <p>
             Marti-Soler H, Hirotsu C, Marques-Vidal P, Vollenweider P, Waeber G, Preisig M, Tafti M, 
-            Tufik SB, Bittencourt L, Tufik S, Haba-Rubio J, Heinzer R. The NoSAS score for screening 
+            Bittencourt L, Tufik SB, Tufik S, Haba-Rubio J, Heinzer R. The NoSAS score for screening 
             of sleep-disordered breathing: a derivation and validation study. Lancet Respir Med. 
             2016 Sep;4(9):742-748. doi: 10.1016/S2213-2600(16)30075-3.
           </p>
