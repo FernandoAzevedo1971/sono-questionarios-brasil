@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import QuestionnaireContainer from "@/components/questionnaire/QuestionnaireContainer";
@@ -151,6 +152,7 @@ const StopBangPage = () => {
                 value={answers[question.id] !== undefined ? (answers[question.id] ? "yes" : "no") : ""}
                 onChange={(value) => handleOptionChange(question.id, value)}
                 inline={true}
+                hideOptionNumbers={true}
               />
             </div>
           ))}
@@ -184,26 +186,30 @@ const StopBangPage = () => {
 
       {/* Right Panel - Info and Download */}
       <QuestionnaireSidebar pdfUrl='/questionarios/stop-bang.pdf'>
-        <h2 className="text-lg font-semibold text-neutral-900 mb-3">Sobre o questionário</h2>
-        <p className="text-neutral-700 mb-6">
+        <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Sobre o questionário</h2>
+        <p className="text-neutral-700 mb-6 text-left">
           O questionário STOP-BANG é uma ferramenta validada para triagem de Apneia Obstrutiva do Sono (AOS).
           É composto por oito perguntas de sim/não, sendo um dos instrumentos mais utilizados mundialmente
-          para identificação de pacientes com risco de AOS.
+          para identificação de pacientes com risco de AOS. O questionário tem validação para a língua portuguesa,
+          conforme a referência Fonseca et al., 2016.
         </p>
 
-        <h2 className="text-lg font-semibold text-neutral-900 mb-3">Critérios de Pontuação</h2>
-        <p className="text-sm text-neutral-600 mb-2">Para a população geral:</p>
-        <ul className="text-sm text-neutral-600 list-disc pl-5 mb-6 space-y-1">
-          <li>Baixo risco de AOS: Sim para 0 a 2 perguntas</li>
-          <li>Risco intermediário de AOS: Sim para 3 a 4 perguntas</li>
-          <li>Risco alto de AOS: Sim para 5 a 8 perguntas OU</li>
-          <li>Sim para 2 ou mais das 4 perguntas iniciais + sexo masculino OU</li>
-          <li>Sim para 2 ou mais das 4 perguntas iniciais + IMC &gt; 35 kg/m² OU</li>
-          <li>Sim para 2 ou mais das 4 perguntas iniciais + circunferência do pescoço (43 cm em homens, 41 cm em mulheres)</li>
-        </ul>
+        <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Critérios de Pontuação</h2>
+        <p className="text-sm text-neutral-600 mb-2 text-left">Para a população geral:</p>
+        <p className="text-sm text-neutral-600 mb-2 text-left">
+          Baixo risco de AOS: Sim para 0 a 2 perguntas
+        </p>
+        <p className="text-sm text-neutral-600 mb-2 text-left">
+          Risco intermediário de AOS: Sim para 3 a 4 perguntas
+        </p>
+        <p className="text-sm text-neutral-600 mb-2 text-left">
+          Risco alto de AOS: Sim para 5 a 8 perguntas OU Sim para 2 ou mais das 4 perguntas iniciais + sexo masculino OU
+          Sim para 2 ou mais das 4 perguntas iniciais + IMC &gt; 35 kg/m² OU Sim para 2 ou mais das 4 perguntas iniciais + 
+          circunferência do pescoço (43 cm em homens, 41 cm em mulheres)
+        </p>
 
-        <h2 className="text-lg font-semibold text-neutral-900 mb-3">Referências</h2>
-        <div className="text-sm text-neutral-600 space-y-4">
+        <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Referências</h2>
+        <div className="text-sm text-neutral-600 space-y-4 text-left">
           <p>
             Fonseca LBM, Silveira EA, Lima NM, Rabahi MF. 
             Tradução e adaptação transcultural do questionário STOP-Bang para a língua portuguesa falada no Brasil. 
@@ -212,7 +218,11 @@ const StopBangPage = () => {
           </p>
           <p>
             Chung F, Yegneswaran B, Liao P, et al. STOP questionnaire: a tool to screen patients for obstructive sleep apnea. 
-            Anesthesiology. 2008; 108(5):812-821
+            Anesthesiology. 2008;108(5):812-821
+          </p>
+          <p>
+            Chung F, Subramanyam R, Liao P, Sasaki E, Shapiro C, Sun Y. High STOP-Bang score indicates a high probability of 
+            obstructive sleep apnoea. Br J Anaesth. 2012 May;108(5):768-75.
           </p>
         </div>
       </QuestionnaireSidebar>

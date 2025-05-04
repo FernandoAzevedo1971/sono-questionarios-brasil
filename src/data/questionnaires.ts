@@ -91,8 +91,8 @@ export const questionnaires: Questionnaire[] = [
     onlineUrl: '/questionarios/stop-bang',
     references: [
       'Fonseca LBM, Silveira EA, Lima NM, Rabahi MF. Tradução e adaptação transcultural do questionário STOP-Bang para a língua portuguesa falada no Brasil. J Bras Pneumol. 2016;42(4):266–272. doi:10.1590/S1806-37562015000000243',
-      'Reis R, Teixeira F, Martins V, Sousa L, Batata L, Santos C, Moutinho J. Validation of a Portuguese version of the STOP-Bang questionnaire as a screening tool for obstructive sleep apnea: Analysis in a sleep clinic. Rev Port Pneumol (2014). DOI: 10.1016/j.rppneu.2014.04.007',
-      'Nagappa M, Liao P, Wong J, Auckley D, Ramachandran SK, Memtsoudis S, Mokhlesi B, Chung F. Validation of the STOP-Bang Questionnaire as a Screening Tool for Obstructive Sleep Apnea among Different Populations: A Systematic Review and Meta-Analysis. PLoS ONE. 2015;10(12):e0143697. DOI: 10.1371/journal.pone.0143697'
+      'Chung F, Yegneswaran B, Liao P, et al. STOP questionnaire: a tool to screen patients for obstructive sleep apnea. Anesthesiology. 2008;108(5):812-821',
+      'Chung F, Subramanyam R, Liao P, Sasaki E, Shapiro C, Sun Y. High STOP-Bang score indicates a high probability of obstructive sleep apnoea. Br J Anaesth. 2012 May;108(5):768-75.'
     ],
   },
   {
