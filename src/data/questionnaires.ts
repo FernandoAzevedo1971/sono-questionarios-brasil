@@ -150,7 +150,18 @@ export const questionnaires: Questionnaire[] = [
     indication: 'Determinação de cronotipos (matutino, vespertino ou intermediário).',
     pdfUrl: '/questionarios/meq.pdf',
     category: 'cronotipos',
+    onlineUrl: '/questionarios/meq-ho',
     references: ['Horne, J. A., & Östberg, O. (1976). A self-assessment questionnaire to determine morningness-eveningness in human circadian rhythms. International Journal of Chronobiology, 4, 97-110.'],
+  },
+  {
+    id: 'meq-ho',
+    name: 'Questionário de Horne e Oestberg original (1976)',
+    description: 'Versão original do questionário que avalia o cronotipo dos indivíduos.',
+    indication: 'Classificação do cronotipo em definitivamente matutino, moderadamente matutino, intermediário, moderadamente vespertino ou definitivamente vespertino.',
+    pdfUrl: '/questionarios/meq-ho.pdf',
+    category: 'cronotipos',
+    onlineUrl: '/questionarios/meq-ho',
+    references: ['Horne JA, Östberg O. A self-assessment questionnaire to determine morningness-eveningness in human circadian rhythms. Int J Chronobiol. 1976;4(2):97–110.'],
   },
   {
     id: 'mctq',
