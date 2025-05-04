@@ -11,6 +11,7 @@ type ResultDisplayProps = {
   minScore?: number;
   notes?: string[];
   severity: Severity;
+  children?: React.ReactNode; // Added children prop
 };
 
 const ResultDisplay = ({
@@ -20,6 +21,7 @@ const ResultDisplay = ({
   minScore = 0,
   notes,
   severity,
+  children, // Added children to destructuring
 }: ResultDisplayProps) => {
   const getSeverityClasses = () => {
     switch (severity) {
@@ -87,6 +89,9 @@ const ResultDisplay = ({
           </div>
         </div>
       )}
+      
+      {/* Render children if provided */}
+      {children}
     </div>
   );
 };
