@@ -13,7 +13,8 @@ type QuestionItemProps = {
   value: string;
   onChange: (value: string) => void;
   variant?: "card" | "panel";
-  inline?: boolean; // New prop to control if options should display inline
+  inline?: boolean; 
+  hideOptionNumbers?: boolean; // New prop to control displaying option numbers
 };
 
 const QuestionItem = ({
@@ -25,7 +26,8 @@ const QuestionItem = ({
   value,
   onChange,
   variant = "panel",
-  inline = false, // Default to stacked layout
+  inline = false,
+  hideOptionNumbers = false, // Default to showing option numbers
 }: QuestionItemProps) => {
   const renderContent = () => (
     <div className="flex flex-col space-y-2 text-left">
@@ -56,7 +58,7 @@ const QuestionItem = ({
                 : "flex items-center space-x-2"
             }`}
           >
-            {optionLabels && (
+            {optionLabels && !hideOptionNumbers && (
               <div className="mb-1 text-xs text-left text-neutral-600">
                 {optionLabels[index] || ""}
               </div>
@@ -72,7 +74,7 @@ const QuestionItem = ({
                 htmlFor={`q${id}-${option}`}
                 className="text-sm text-neutral-700 cursor-pointer"
               >
-                {optionLabels ? option.toString() : option.toString()}
+                {optionLabels && hideOptionNumbers ? optionLabels[index] : option.toString()}
               </Label>
             </div>
           </div>

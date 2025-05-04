@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import QuestionItem from "@/components/questionnaire/QuestionItem";
+import ResultDisplay from "@/components/questionnaire/ResultDisplay";
 
 const questions = [
   {
@@ -70,6 +71,13 @@ const IsiPage = () => {
     return "insônia clínica grave";
   };
 
+  const getSeverityType = (score: number) => {
+    if (score <= 7) return "success";
+    if (score <= 14) return "info";
+    if (score <= 21) return "warning";
+    return "danger";
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50">
       <Header />
@@ -129,6 +137,7 @@ const IsiPage = () => {
                       }))
                     }
                     inline={true}
+                    hideOptionNumbers={true} // Add this prop to hide the option numbers
                   />
                 ))}
 
@@ -141,11 +150,18 @@ const IsiPage = () => {
                 </Button>
 
                 {score !== null && (
-                  <div className="mt-6 p-4 bg-primary-50 border border-primary-100 rounded-lg">
-                    <p className="text-primary-900 font-medium text-left">
-                      Seu escore: {score} - {getScoreSeverity(score)}
-                    </p>
-                  </div>
+                  <ResultDisplay 
+                    score={score}
+                    maxScore={28}
+                    interpretation={getScoreSeverity(score)}
+                    severity={getSeverityType(score)}
+                    notes={[
+                      "0-7: ausência de insônia significativa",
+                      "8-14: limite inferior para insônia",
+                      "15-21: insônia clínica moderada",
+                      "22-28: insônia clínica grave"
+                    ]}
+                  />
                 )}
               </div>
             </div>
