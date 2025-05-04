@@ -179,13 +179,36 @@ const IsiPage = () => {
                   impacto na qualidade de vida. É composto por sete perguntas em escala de 0 a 4, 
                   resultando em escore total de 0 a 28.
                 </p>
+                
+                <p className="text-neutral-700 mb-6 text-left">
+                  O ISI tem validação na lingua portuguesa.
+                </p>
 
                 <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Referências</h2>
-                <p className="text-sm text-neutral-600 text-left">
-                  Morin CM, Belleville G, Bélanger L, Ivers H. Validation of the Insomnia Severity Index 
-                  as an outcome measure for insomnia research. Sleep Med. 2011;34(5):601–608. 
-                  DOI: 10.1093/sleep/34.5.601
-                </p>
+                <div className="space-y-3">
+                  <p className="text-sm text-neutral-600 text-left">
+                    CASTRO, Laura de Siqueira. Adaptação e Validação do Índice de Gravidade de Insônia (IGI): 
+                    Caracterização Populacional, Valores Normativos e Aspectos Associados. 2011. 104 f. 
+                    Dissertação (Mestrado) - Escola Paulista de Medicina, Universidade Federal de São Paulo. 
+                    São Paulo, 2011. URL: http://repositorio.unifesp.br/handle/11600/23193
+                  </p>
+                  
+                  <p className="text-sm text-neutral-600 text-left">
+                    Morin, C. M. (1993). Insomnia Severity Index (ISI) [Database record]. APA PsycTests.
+                    https://doi.org/10.1037/t07115-000
+                  </p>
+                  
+                  <p className="text-sm text-neutral-600 text-left">
+                    Morin CM, Belleville G, Bélanger L, Ivers H. The Insomnia Severity Index: psychometric 
+                    indicators to detect insomnia cases and evaluate treatment response. Sleep. 2011 May;34(5):601–608.
+                  </p>
+                  
+                  <p className="text-sm text-neutral-600 text-left">
+                    Bastien CH, Vallières A, Morin CM. Validation of the Insomnia Severity Index as an 
+                    outcome measure for insomnia research. Sleep Med. 2001;2(4):297–307. 
+                    doi:10.1016/S1389-9457(00)00065-4
+                  </p>
+                </div>
               </div>
             </div>
           </div>
