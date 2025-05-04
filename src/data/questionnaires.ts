@@ -29,7 +29,7 @@ export const categories: Category[] = [
     id: 'apneia',
     name: 'Apneia do Sono',
     description: 'Instrumentos para triagem e avaliação de apneia obstrutiva do sono.',
-    icon: 'lungs', // Changed back to 'lungs' to match the icon we'll manually add
+    icon: 'lungs',
   },
   {
     id: 'sonolencia',
@@ -164,12 +164,16 @@ export const questionnaires: Questionnaire[] = [
   },
   {
     id: 'psqi',
-    name: 'Questionário de Avaliação de Qualidade de Sono de Pittsburgh (PSQI)',
-    description: 'Avalia a qualidade e distúrbios do sono durante o mês anterior.',
-    indication: 'Avaliação da qualidade do sono em população adulta.',
+    name: 'Índice de Qualidade de Sono de Pittsburgh (PSQI-BR)',
+    description: 'Avalia a qualidade do sono no último mês, considerando aspectos subjetivos e objetivos.',
+    indication: 'Avaliação da qualidade do sono em adultos.',
     pdfUrl: '/questionarios/psqi.pdf',
+    onlineUrl: '/questionarios/psqi',
     category: 'outros',
-    references: ['Buysse, D. J., Reynolds, C. F., Monk, T. H., Berman, S. R., & Kupfer, D. J. (1989). The Pittsburgh Sleep Quality Index: a new instrument for psychiatric practice and research. Psychiatry Research, 28(2), 193-213.'],
+    references: [
+      'Buysse DJ et al. The Pittsburgh Sleep Quality Index: a new instrument for psychiatric practice and research. Psychiatry Res. 1989;28(2):193-213.',
+      'Bertolazi AN et al. Validation of the Brazilian Portuguese version of the Pittsburgh Sleep Quality Index. Sleep Med. 2010;11(9):907-913.'
+    ],
   },
   {
     id: 'goal',
