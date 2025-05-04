@@ -245,7 +245,7 @@ const BerlinPage = () => {
     }
     
     // Verificar perguntas condicionais
-    if (formData.q1 === "a" && (!formData.q2 || !formData.q3])) return false;
+    if (formData.q1 === "a" && (!formData.q2 || !formData.q3)) return false;
     if (formData.q8 === "a" && !formData.q9) return false;
     
     return true;
