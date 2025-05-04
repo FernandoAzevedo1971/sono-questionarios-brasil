@@ -79,7 +79,12 @@ export const questionnaires: Questionnaire[] = [
     indication: 'Triagem para apneia do sono em população geral.',
     pdfUrl: '/questionarios/berlin.pdf',
     category: 'apneia',
-    references: ['Netzer, N. C., Stoohs, R. A., Netzer, C. M., Clark, K., & Strohl, K. P. (1999). Using the Berlin Questionnaire to identify patients at risk for the sleep apnea syndrome. Annals of Internal Medicine, 131(7), 485-491.'],
+    onlineUrl: '/questionarios/berlin',
+    references: [
+      'Netzer NC, Stoohs RA, Netzer CM, Clark K, Strohl KP. Using the Berlin Questonnaire to identfy patents at risk for the sleep apnea syndrome. Ann Intern Med. 1999 Oct 5;131(7):485-91.',
+      'Vaz AP, Drummond M, Mota PC, et al. Tradução do Questionário de Berlim para língua Portuguesa e sua aplicação na identifcação da SAOS numa consulta de patologia respiratória do sono. Rev Port Pneumol. 2011;17(2):59-65.',
+      'ANDRECHUK, Carla Renata Silva. Adaptação cultural e validação do "Berlin Questionnaire" para o contexto brasileiro. 2018. Tese (doutorado) - Universidade Estadual de Campinas, Faculdade de Enfermagem, Campinas, SP. Disponível em: https://hdl.handle.net/20.500.12733/1637880.'
+    ],
   },
   {
     id: 'stop-bang',
