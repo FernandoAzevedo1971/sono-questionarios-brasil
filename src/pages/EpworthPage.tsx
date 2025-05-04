@@ -62,9 +62,11 @@ const EpworthPage = () => {
   };
 
   const getScoreSeverity = (score: number) => {
-    if (score <= 9) return { text: "normal", severity: "success" as const };
-    if (score <= 15) return { text: "sonolência moderada", severity: "warning" as const };
-    return { text: "sonolência grave", severity: "danger" as const };
+    if (score <= 5) return { text: "Sonolência diurna normal / baixa", severity: "success" as const };
+    if (score <= 10) return { text: "Sonolência diurna normal / alta", severity: "success" as const };
+    if (score <= 12) return { text: "Sonolência diurna excessiva leve", severity: "warning" as const };
+    if (score <= 15) return { text: "Sonolência diurna excessiva moderada", severity: "warning" as const };
+    return { text: "Sonolência diurna excessiva grave", severity: "danger" as const };
   };
 
   const answeredQuestionsCount = Object.keys(answers).length;
@@ -81,7 +83,7 @@ const EpworthPage = () => {
       >
         <ProgressBar current={answeredQuestionsCount} total={questions.length} />
 
-        <div className="space-y-6">
+        <div className="space-y-6 text-left">
           {questions.map((question) => (
             <QuestionItem
               key={question.id}
@@ -116,9 +118,11 @@ const EpworthPage = () => {
               interpretation={getScoreSeverity(score).text}
               maxScore={24}
               notes={[
-                "0-9: Considerado normal",
-                "10-15: Sonolência moderada",
-                "16-24: Sonolência grave"
+                "0–5: Sonolência diurna normal / baixa",
+                "6–10: Sonolência diurna normal / alta",
+                "11–12: Sonolência diurna excessiva leve",
+                "13–15: Sonolência diurna excessiva moderada",
+                "16–24: Sonolência diurna excessiva grave"
               ]}
               severity={getScoreSeverity(score).severity}
             />
@@ -128,17 +132,28 @@ const EpworthPage = () => {
 
       <QuestionnaireSidebar pdfUrl="/questionarios/epworth.pdf">
         <h2 className="text-lg font-semibold text-neutral-900 mb-3">Sobre a escala</h2>
-        <p className="text-neutral-700 mb-6">
+        <p className="text-neutral-700 mb-6 text-left">
           A Escala de Sonolência de Epworth avalia a propensão à sonolência diurna em diferentes 
           situações do cotidiano. É composta por oito perguntas em escala de 0 a 3, gerando 
           escore total de 0 a 24, com valores ≥ 10 sugerindo sonolência excessiva.
         </p>
 
         <h2 className="text-lg font-semibold text-neutral-900 mb-3">Referências</h2>
-        <p className="text-sm text-neutral-600">
-          Johns, M. W. (1991). A new method for measuring daytime sleepiness: the Epworth 
-          sleepiness scale. Sleep, 14(6), 540-545. DOI: 10.1093/sleep/14.6.540
-        </p>
+        <div className="text-sm text-neutral-600 text-left space-y-2">
+          <p>
+            Johns, M. W. (1991). A new method for measuring daytime sleepiness: the Epworth 
+            sleepiness scale. Sleep, 14(6), 540-545. DOI: 10.1093/sleep/14.6.540
+          </p>
+          <p>
+            Johns MW. Reliability and factor analysis of the Epworth Sleepiness Scale. Sleep, 1992; 15: 376-381.
+          </p>
+          <p>
+            Johns MW. Sleepiness in different situations measured by the Epworth Sleepiness Scale. Sleep, 1994; 17: 703-710.
+          </p>
+          <p>
+            Bertolazi AN, Fagondes SC, Hoff LS, Pedro VD, Barreto SSM, Johns MW. Validação da escala de sonolência de Epworth em português para uso no Brasil. J Bras Pneumol. 2009;35(9):877–83. doi:10.1590/S1806-37132009000900009
+          </p>
+        </div>
       </QuestionnaireSidebar>
     </QuestionnaireContainer>
   );

@@ -11,7 +11,7 @@ type ResultDisplayProps = {
   minScore?: number;
   notes?: string[];
   severity: Severity;
-  children?: React.ReactNode; // Added children prop
+  children?: React.ReactNode;
 };
 
 const ResultDisplay = ({
@@ -21,7 +21,7 @@ const ResultDisplay = ({
   minScore = 0,
   notes,
   severity,
-  children, // Added children to destructuring
+  children,
 }: ResultDisplayProps) => {
   const getSeverityClasses = () => {
     switch (severity) {
@@ -52,7 +52,7 @@ const ResultDisplay = ({
   };
 
   return (
-    <div className={`mt-6 p-4 border rounded-lg animate-fade-in ${getSeverityClasses()}`}>
+    <div className={`mt-6 p-4 border rounded-lg animate-fade-in ${getSeverityClasses()} text-left`}>
       <div className="flex items-center gap-2 mb-1">
         {getIcon()}
         <p className="font-medium">
@@ -64,11 +64,9 @@ const ResultDisplay = ({
       </p>
       
       {notes && notes.length > 0 && (
-        <ul className="text-xs mt-2 space-y-1 list-disc pl-4">
-          {notes.map((note, index) => (
-            <li key={index}>{note}</li>
-          ))}
-        </ul>
+        <p className="text-xs mt-2">
+          {notes.join(". ")}
+        </p>
       )}
       
       {maxScore && (
@@ -90,7 +88,6 @@ const ResultDisplay = ({
         </div>
       )}
       
-      {/* Render children if provided */}
       {children}
     </div>
   );
