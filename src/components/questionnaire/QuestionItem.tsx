@@ -14,7 +14,8 @@ type QuestionItemProps = {
   onChange: (value: string) => void;
   variant?: "card" | "panel";
   inline?: boolean; 
-  hideOptionNumbers?: boolean; // New prop to control displaying option numbers
+  hideOptionNumbers?: boolean;
+  optionSpacing?: "normal" | "wide"; // New prop to control spacing between options
 };
 
 const QuestionItem = ({
@@ -27,7 +28,8 @@ const QuestionItem = ({
   onChange,
   variant = "panel",
   inline = false,
-  hideOptionNumbers = false, // Default to showing option numbers
+  hideOptionNumbers = false,
+  optionSpacing = "normal", // Default to normal spacing
 }: QuestionItemProps) => {
   const renderContent = () => (
     <div className="flex flex-col space-y-2 text-left">
@@ -45,7 +47,7 @@ const QuestionItem = ({
           optionLabels 
             ? "flex flex-col space-y-2" 
             : inline 
-              ? "flex flex-wrap gap-4" 
+              ? "flex flex-row flex-wrap gap-x-4 gap-y-2" 
               : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         }`}
       >
@@ -56,7 +58,7 @@ const QuestionItem = ({
               optionLabels 
                 ? "flex flex-col items-start" 
                 : "flex items-center space-x-2"
-            }`}
+            } ${optionSpacing === "wide" ? "mr-8" : ""}`}
           >
             {optionLabels && !hideOptionNumbers && (
               <div className="mb-1 text-xs text-left text-neutral-600">

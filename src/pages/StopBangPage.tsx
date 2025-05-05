@@ -153,6 +153,7 @@ const StopBangPage = () => {
                 onChange={(value) => handleOptionChange(question.id, value)}
                 inline={true}
                 hideOptionNumbers={true}
+                optionSpacing="wide"
               />
             </div>
           ))}
