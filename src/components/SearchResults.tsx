@@ -1,7 +1,7 @@
 
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Questionnaire, searchQuestionnaires } from "@/data";
+import { Questionnaire } from "@/data";
 import { Search } from "lucide-react";
 import QuestionnaireList from "./QuestionnaireList";
 
@@ -12,6 +12,17 @@ const SearchResults = () => {
 
   useEffect(() => {
     if (query) {
+      // Função local para buscar questionários
+      const searchQuestionnaires = (searchQuery: string) => {
+        // Importar questionários apenas quando necessário
+        const { questionnaires } = require("@/data");
+        
+        return questionnaires.filter((q: Questionnaire) => {
+          const searchText = `${q.title} ${q.description} ${q.category}`.toLowerCase();
+          return searchText.includes(searchQuery.toLowerCase());
+        });
+      };
+      
       const foundQuestionnaires = searchQuestionnaires(query);
       setResults(foundQuestionnaires);
     } else {

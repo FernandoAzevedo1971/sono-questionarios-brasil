@@ -8,6 +8,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import QuestionItem from "@/components/questionnaire/QuestionItem";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 type QuestionItem = {
   id: string;
@@ -115,37 +124,39 @@ const GoalPage = () => {
                     <h3 className="font-medium text-primary-900 text-left">Tabela do Questionário GOAL</h3>
                   </div>
                   <CardContent className="p-0">
-                    <div className="overflow-x-auto">
-                      <table className="w-full">
-                        <thead>
-                          <tr className="border-b">
-                            <th className="px-4 py-3 text-left text-sm font-medium text-neutral-900">Parâmetros</th>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-neutral-900">Pontos</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr className="border-b">
-                            <td className="px-4 py-3 text-sm text-neutral-700">G - Gênero masculino</td>
-                            <td className="px-4 py-3 text-sm text-neutral-700">Não = 0 Sim = 1</td>
-                          </tr>
-                          <tr className="border-b">
-                            <td className="px-4 py-3 text-sm text-neutral-700">O - Obesidade: índice de massa corporal ≥ 30 kg/m²</td>
-                            <td className="px-4 py-3 text-sm text-neutral-700">Não = 0 Sim = 1</td>
-                          </tr>
-                          <tr className="border-b">
-                            <td className="px-4 py-3 text-sm text-neutral-700">A - Idade ≥ 50 anos</td>
-                            <td className="px-4 py-3 text-sm text-neutral-700">Não = 0 Sim = 1</td>
-                          </tr>
-                          <tr>
-                            <td className="px-4 py-3 text-sm text-neutral-700">L - Ronco alto</td>
-                            <td className="px-4 py-3 text-sm text-neutral-700">Não = 0 Sim = 1</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div className="px-4 py-3 text-xs text-neutral-500 bg-neutral-50 border-t text-left">
-                      Nota: Os pontos para cada variável são somados, totalizando uma pontuação final de 0-4 pontos.
-                    </div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="text-left text-sm font-medium text-neutral-900">Parâmetros</TableHead>
+                          <TableHead className="text-left text-sm font-medium text-neutral-900">Pontos</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell className="text-left text-sm text-neutral-700">G - Gênero masculino</TableCell>
+                          <TableCell className="text-left text-sm text-neutral-700">Não = 0 Sim = 1</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="text-left text-sm text-neutral-700">O - Obesidade: índice de massa corporal ≥ 30 kg/m²</TableCell>
+                          <TableCell className="text-left text-sm text-neutral-700">Não = 0 Sim = 1</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="text-left text-sm text-neutral-700">A - Idade ≥ 50 anos</TableCell>
+                          <TableCell className="text-left text-sm text-neutral-700">Não = 0 Sim = 1</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="text-left text-sm text-neutral-700">L - Ronco alto</TableCell>
+                          <TableCell className="text-left text-sm text-neutral-700">Não = 0 Sim = 1</TableCell>
+                        </TableRow>
+                      </TableBody>
+                      <TableFooter>
+                        <TableRow>
+                          <TableCell colSpan={2} className="text-left text-xs text-neutral-500 bg-neutral-50">
+                            Nota: Os pontos para cada variável são somados, totalizando uma pontuação final de 0-4 pontos.
+                          </TableCell>
+                        </TableRow>
+                      </TableFooter>
+                    </Table>
                   </CardContent>
                 </Card>
 
