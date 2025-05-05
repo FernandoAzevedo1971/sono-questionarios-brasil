@@ -137,13 +137,13 @@ const StopBangPage = () => {
         <div className="space-y-6 mb-6">
           {questions.map((question) => (
             <div key={question.id} className="p-4 bg-neutral-50 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-1">
                 <question.icon className="h-5 w-5 text-primary-600" />
                 <p className="font-medium text-neutral-900 text-left">
                   <span className="font-bold underline">{question.letter}</span>{question.text}
                 </p>
               </div>
-              <p className="text-sm text-neutral-600 mb-3 text-left">{question.description}</p>
+              <p className="text-sm text-neutral-600 mb-2 text-left">{question.description}</p>
               <QuestionItem
                 id={question.id}
                 title=""
@@ -154,6 +154,7 @@ const StopBangPage = () => {
                 inline={true}
                 hideOptionNumbers={true}
                 optionSpacing="wide"
+                reducedSpacing={true}
               />
             </div>
           ))}

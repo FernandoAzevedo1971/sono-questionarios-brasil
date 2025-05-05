@@ -15,7 +15,8 @@ type QuestionItemProps = {
   variant?: "card" | "panel";
   inline?: boolean; 
   hideOptionNumbers?: boolean;
-  optionSpacing?: "normal" | "wide"; // New prop to control spacing between options
+  optionSpacing?: "normal" | "wide";
+  reducedSpacing?: boolean; // Nova propriedade para reduzir espaço entre pergunta e opções
 };
 
 const QuestionItem = ({
@@ -29,11 +30,12 @@ const QuestionItem = ({
   variant = "panel",
   inline = false,
   hideOptionNumbers = false,
-  optionSpacing = "normal", // Default to normal spacing
+  optionSpacing = "normal",
+  reducedSpacing = false, // Valor padrão falso
 }: QuestionItemProps) => {
   const renderContent = () => (
-    <div className="flex flex-col space-y-2 text-left">
-      <div className="mb-2">
+    <div className="flex flex-col text-left">
+      <div className={`${reducedSpacing ? 'mb-1' : 'mb-2'}`}>
         <h3 className="font-medium text-neutral-900 text-left">{title}</h3>
         {description && (
           <p className="text-sm text-neutral-600 text-left">{description}</p>
@@ -47,9 +49,9 @@ const QuestionItem = ({
           optionLabels 
             ? "flex flex-col space-y-2" 
             : inline 
-              ? "flex flex-row flex-wrap gap-x-4 gap-y-2" 
+              ? "flex flex-row items-center gap-x-6" 
               : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-        }`}
+        } ${reducedSpacing ? 'mt-1' : ''}`}
       >
         {options.map((option, index) => (
           <div 
