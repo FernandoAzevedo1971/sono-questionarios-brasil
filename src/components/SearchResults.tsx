@@ -18,7 +18,7 @@ const SearchResults = () => {
         const { questionnaires } = require("@/data");
         
         return questionnaires.filter((q: Questionnaire) => {
-          const searchText = `${q.title} ${q.description} ${q.category}`.toLowerCase();
+          const searchText = `${q.name} ${q.description} ${q.category}`.toLowerCase();
           return searchText.includes(searchQuery.toLowerCase());
         });
       };
