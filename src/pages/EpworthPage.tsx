@@ -83,7 +83,7 @@ const EpworthPage = () => {
       >
         <ProgressBar current={answeredQuestionsCount} total={questions.length} />
 
-        <div className="space-y-6 text-left">
+        <div className="space-y-6">
           {questions.map((question) => (
             <QuestionItem
               key={question.id}
@@ -131,7 +131,7 @@ const EpworthPage = () => {
       </QuestionnaireContent>
 
       <QuestionnaireSidebar pdfUrl="/questionarios/epworth.pdf">
-        <h2 className="text-lg font-semibold text-neutral-900 mb-3">Sobre a escala</h2>
+        <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Sobre a escala</h2>
         <p className="text-neutral-700 mb-3 text-left">
           A Escala de Sonolência de Epworth avalia a propensão à sonolência diurna em diferentes 
           situações do cotidiano. É composta por oito perguntas em escala de 0 a 3, gerando 
@@ -142,7 +142,7 @@ const EpworthPage = () => {
           por Bertolazi et al. (2009).
         </p>
 
-        <h2 className="text-lg font-semibold text-neutral-900 mb-3">Referências</h2>
+        <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Referências</h2>
         <div className="text-sm text-neutral-600 text-left space-y-2">
           <p>
             Johns, M. W. (1991). A new method for measuring daytime sleepiness: the Epworth 

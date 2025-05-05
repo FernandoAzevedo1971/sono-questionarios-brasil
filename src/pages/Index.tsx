@@ -93,7 +93,7 @@ const Index = () => {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 Portal de Questionários em Medicina do Sono – Brasil
               </h1>
-              <p className="text-lg md:text-xl opacity-90 mb-8">
+              <p className="text-lg md:text-xl opacity-90 mb-8 text-left">
                 Acesse questionários validados em português para uso na prática clínica
                 da Medicina do Sono no Brasil.
               </p>
@@ -104,17 +104,17 @@ const Index = () => {
         {/* Intro Section */}
         <section className="py-12 lg:py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-neutral-900">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-neutral-900 text-center">
                 A importância dos questionários na Medicina do Sono
               </h2>
-              <p className="text-neutral-700 mb-4">
+              <p className="text-neutral-700 mb-4 text-left">
                 Os questionários validados são ferramentas essenciais para o diagnóstico, 
                 acompanhamento e pesquisa em distúrbios do sono. Eles permitem uma abordagem 
                 padronizada e comparável para a avaliação de diversos aspectos relacionados 
                 ao sono dos pacientes.
               </p>
-              <p className="text-neutral-700">
+              <p className="text-neutral-700 text-left">
                 Este portal reúne os principais instrumentos validados em português do Brasil,
                 organizados por categorias de distúrbios, para facilitar o acesso por 
                 profissionais de saúde, pesquisadores e estudantes da área.

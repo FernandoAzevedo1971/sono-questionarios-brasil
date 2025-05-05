@@ -72,7 +72,7 @@ const QuestionItem = ({
               />
               <Label
                 htmlFor={`q${id}-${option}`}
-                className="text-sm text-neutral-700 cursor-pointer"
+                className="text-sm text-neutral-700 cursor-pointer text-left"
               >
                 {optionLabels && hideOptionNumbers ? optionLabels[index] : option.toString()}
               </Label>

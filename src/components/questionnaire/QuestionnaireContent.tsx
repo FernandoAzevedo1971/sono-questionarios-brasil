@@ -15,10 +15,12 @@ const QuestionnaireContent = ({ title, description, children }: QuestionnaireCon
       </h1>
       
       {description && (
-        <p className="text-neutral-700 mb-6">{description}</p>
+        <p className="text-neutral-700 mb-6 text-left">{description}</p>
       )}
 
-      {children}
+      <div className="text-left">
+        {children}
+      </div>
     </div>
   );
 };
