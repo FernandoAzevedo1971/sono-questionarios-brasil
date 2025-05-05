@@ -53,7 +53,7 @@ const AuthPage = () => {
               <Card>
                 <CardHeader>
                   <CardTitle>Login</CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-left">
                     Entre com suas credenciais para acessar o sistema
                   </CardDescription>
                 </CardHeader>
@@ -75,7 +75,7 @@ const AuthPage = () => {
               <Card>
                 <CardHeader>
                   <CardTitle>Cadastro</CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-left">
                     Crie sua conta para acessar o sistema
                   </CardDescription>
                 </CardHeader>

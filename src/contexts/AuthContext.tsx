@@ -84,13 +84,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         metadata.is_admin = true;
       }
 
-      // Usando adminAuthClient para cadastrar o usuário e AUTO-CONFIRMAR sem verificação de email
+      // Usando signUp com auto-confirm
       const { data: authData, error: authError } = await supabase.auth.signUp({ 
         email, 
         password,
         options: {
           data: metadata,
-          // Importante: não usamos emailRedirectTo aqui para evitar esperar uma confirmação de email
+          emailRedirectTo: window.location.origin,
         }
       });
 
@@ -101,31 +101,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       console.log("Usuário auth criado com sucesso:", authData.user.id);
       
-      // Separamos a criação do perfil do usuário
-      // Vamos criar o perfil depois de uma pequena pausa para evitar condições de corrida
-      setTimeout(async () => {
-        try {
-          const profileData = {
-            id: authData.user.id,
-            name: metadata.name || '',
-            birth_date: metadata.birth_date || '',
-            user_type: metadata.user_type || 'usuário comum',
-            is_admin: isAdmin,
-          };
-          
-          console.log("Tentando criar perfil:", profileData);
-          
-          const { error: profileError } = await createProfile(profileData);
-          
-          if (profileError) {
-            console.error("Erro ao criar perfil do usuário:", profileError);
-          } else {
-            console.log("Perfil criado com sucesso!");
-          }
-        } catch (e) {
-          console.error("Exceção ao criar perfil:", e);
+      // Criar o perfil do usuário
+      try {
+        const profileData = {
+          id: authData.user.id,
+          name: metadata.name || '',
+          birth_date: metadata.birth_date || '',
+          user_type: metadata.user_type || 'usuário comum',
+          is_admin: isAdmin,
+        };
+        
+        console.log("Tentando criar perfil:", profileData);
+        
+        const { error: profileError } = await createProfile(profileData);
+        
+        if (profileError) {
+          console.error("Erro ao criar perfil do usuário:", profileError);
+        } else {
+          console.log("Perfil criado com sucesso!");
         }
-      }, 500);
+      } catch (e) {
+        console.error("Exceção ao criar perfil:", e);
+      }
 
       // Faça login automaticamente após o cadastro bem-sucedido
       if (authData.user) {
