@@ -1,0 +1,54 @@
+
+import { CategoryId } from './types';
+
+export type Category = {
+  id: CategoryId;
+  name: string;
+  description: string;
+  icon: string;
+};
+
+export const categories: Category[] = [
+  {
+    id: 'insonia',
+    name: 'Insônia',
+    description: 'Questionários relacionados ao diagnóstico e avaliação de insônia.',
+    icon: 'bed',
+  },
+  {
+    id: 'apneia',
+    name: 'Apneia do Sono',
+    description: 'Instrumentos para triagem e avaliação de apneia obstrutiva do sono.',
+    icon: 'lungs',
+  },
+  {
+    id: 'sonolencia',
+    name: 'Avaliação de Sonolência Diurna e Fadiga',
+    description: 'Escalas para avaliação de sonolência diurna e fadiga.',
+    icon: 'moon',
+  },
+  {
+    id: 'cronotipos',
+    name: 'Distúrbios de Ritmo Circadiano',
+    description: 'Questionários para avaliação de cronotipos e ritmo circadiano.',
+    icon: 'clock',
+  },
+  {
+    id: 'movimentos',
+    name: 'Síndromes de Movimentos',
+    description: 'Instrumentos para avaliação de síndrome das pernas inquietas e outros distúrbios de movimento.',
+    icon: 'book',
+  },
+  {
+    id: 'ansiedade',
+    name: 'Avaliação de Ansiedade e Depressão',
+    description: 'Escalas para avaliação de ansiedade e depressão relacionadas aos distúrbios do sono.',
+    icon: 'brain',
+  },
+  {
+    id: 'outros',
+    name: 'Outros',
+    description: 'Questionários diversos relacionados à medicina do sono.',
+    icon: 'file-text',
+  },
+];

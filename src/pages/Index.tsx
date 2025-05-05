@@ -1,5 +1,5 @@
 
-import { categories, getCategoryQuestionnaires } from "@/data/questionnaires";
+import { categories, getCategoryQuestionnaires } from "@/data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { 

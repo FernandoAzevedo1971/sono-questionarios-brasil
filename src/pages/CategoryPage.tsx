@@ -1,6 +1,6 @@
 
 import { useParams } from "react-router-dom";
-import { categories, getCategoryQuestionnaires } from "@/data/questionnaires";
+import { categories, getCategoryQuestionnaires } from "@/data";
 import QuestionnaireList from "@/components/QuestionnaireList";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";

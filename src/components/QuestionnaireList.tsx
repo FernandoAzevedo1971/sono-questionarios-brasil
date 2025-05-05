@@ -1,5 +1,5 @@
 
-import { Questionnaire } from "@/data/questionnaires";
+import { Questionnaire } from "@/data";
 import QuestionnaireCard from "./QuestionnaireCard";
 
 const QuestionnaireList = ({ questionnaires }: { questionnaires: Questionnaire[] }) => {
