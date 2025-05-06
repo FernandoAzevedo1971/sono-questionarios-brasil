@@ -122,7 +122,7 @@ const RbdsqPage = () => {
 
   const score = calculateScore();
   const interpretation = interpretScore(score);
-  const progress = (Object.keys(answers).length / questions.length) * 100;
+  const answeredQuestions = Object.keys(answers).length;
 
   return (
     <QuestionnaireContainer
@@ -138,11 +138,9 @@ const RbdsqPage = () => {
           <ResultDisplay
             score={score}
             maxScore={questions.length}
-            title="Resultado RBDSQ"
             interpretation={interpretation.result}
-            recommendation={interpretation.recommendation}
-            color={interpretation.color}
-            onReset={handleReset}
+            notes={[interpretation.recommendation]}
+            severity={score >= 5 ? "danger" : "success"}
           >
             <div className="mt-6">
               <h3 className="text-lg font-medium mb-3">Informações adicionais:</h3>
@@ -180,11 +178,20 @@ const RbdsqPage = () => {
                 </TableBody>
               </Table>
             </div>
+            
+            <div className="mt-6">
+              <Button onClick={handleReset} variant="outline">
+                Reiniciar questionário
+              </Button>
+            </div>
           </ResultDisplay>
         ) : (
           <>
             <div className="mb-6">
-              <ProgressBar progress={progress} />
+              <ProgressBar
+                current={answeredQuestions}
+                total={questions.length}
+              />
             </div>
             
             <div className="space-y-8">
