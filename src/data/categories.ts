@@ -35,8 +35,8 @@ export const categories: Category[] = [
   },
   {
     id: 'movimentos',
-    name: 'Síndromes de Movimentos',
-    description: 'Instrumentos para avaliação de síndrome das pernas inquietas e outros distúrbios de movimento.',
+    name: 'Distúrbios de Movimento e Parassonias',
+    description: 'Instrumentos para avaliação de síndrome das pernas inquietas, distúrbio comportamental do sono REM e outros distúrbios de movimento.',
     icon: 'book',
   },
   {
