@@ -27,7 +27,8 @@ import PsqiPage from "./pages/PsqiPage";
 import BerlinPage from "./pages/BerlinPage";
 import MeqHoPage from "./pages/MeqHoPage";
 import NoSasPage from "./pages/NoSasPage";
-import HdasPage from "./pages/HdasPage"; // Nova importação
+import HdasPage from "./pages/HdasPage";
+import RbdsqPage from "./pages/RbdsqPage"; // New import for RBDSQ page
 import AuthPage from "./pages/AuthPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -67,7 +68,8 @@ const App = () => (
             <Route path="/questionarios/berlin" element={<ProtectedRoute><BerlinPage /></ProtectedRoute>} />
             <Route path="/questionarios/meq-ho" element={<ProtectedRoute><MeqHoPage /></ProtectedRoute>} />
             <Route path="/questionarios/nosas" element={<ProtectedRoute><NoSasPage /></ProtectedRoute>} />
-            <Route path="/questionarios/hdas" element={<ProtectedRoute><HdasPage /></ProtectedRoute>} /> {/* Nova rota */}
+            <Route path="/questionarios/hdas" element={<ProtectedRoute><HdasPage /></ProtectedRoute>} />
+            <Route path="/questionarios/rbdsq" element={<ProtectedRoute><RbdsqPage /></ProtectedRoute>} /> {/* New route for RBDSQ */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
