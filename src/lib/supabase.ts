@@ -19,6 +19,18 @@ export const createProfile = async (profile: Omit<Profile, 'created_at' | 'updat
   try {
     console.log("Criando perfil para usuário:", profile.id);
     
+    // Verifica se o perfil já existe
+    const { data: existingProfile } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', profile.id)
+      .single();
+      
+    if (existingProfile) {
+      console.log("Perfil já existe, atualizando:", profile.id);
+      return updateProfile(profile.id, profile);
+    }
+    
     const { data, error } = await supabase
       .from('profiles')
       .insert([profile])
@@ -50,17 +62,23 @@ export const getProfile = async (userId: string) => {
 export const updateProfile = async (userId: string, updates: Partial<Omit<Profile, 'id'>>) => {
   console.log("Atualizando perfil do usuário:", userId, "com dados:", updates);
   
-  const { data, error } = await supabase
-    .from('profiles')
-    .update(updates)
-    .eq('id', userId)
-    .select();
-    
-  if (error) {
-    console.error("Erro ao atualizar perfil:", error);
-  } else {
-    console.log("Perfil atualizado com sucesso:", data);
-  }
+  try {
+    // Garantir que estamos atualizando o registro correto
+    const { data, error } = await supabase
+      .from('profiles')
+      .update(updates)
+      .eq('id', userId)
+      .select();
+      
+    if (error) {
+      console.error("Erro ao atualizar perfil:", error);
+    } else {
+      console.log("Perfil atualizado com sucesso:", data);
+    }
 
-  return { data, error };
+    return { data, error };
+  } catch (e) {
+    console.error("Exceção ao atualizar perfil:", e);
+    return { data: null, error: e };
+  }
 };

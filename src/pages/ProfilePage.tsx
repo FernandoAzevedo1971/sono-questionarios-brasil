@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -65,6 +64,27 @@ const ProfilePage = () => {
               birth_date: typedProfile.birth_date,
               user_type: typedProfile.user_type
             });
+          } else {
+            // Se o perfil não foi encontrado, podemos tentar criá-lo com os dados do userMetadata
+            if (userMetadata) {
+              const newProfile = {
+                id: user.id,
+                name: userMetadata.name || '',
+                birth_date: userMetadata.birth_date || '',
+                user_type: (userMetadata.user_type as "profissional de saúde" | "usuário comum") || "usuário comum",
+                is_admin: !!userMetadata.is_admin
+              };
+              
+              const { data: createdProfile } = await updateProfile(user.id, newProfile);
+              if (createdProfile) {
+                setProfile(createdProfile[0] as Profile);
+                setFormData({
+                  name: createdProfile[0].name,
+                  birth_date: createdProfile[0].birth_date,
+                  user_type: createdProfile[0].user_type
+                });
+              }
+            }
           }
         } catch (err) {
           console.error("Exception loading profile:", err);
@@ -76,7 +96,7 @@ const ProfilePage = () => {
     };
 
     loadProfile();
-  }, [user]);
+  }, [user, userMetadata]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -99,11 +119,16 @@ const ProfilePage = () => {
     try {
       setSaving(true);
       
-      const { error } = await updateProfile(user.id, {
+      // Garantir que temos todos os dados necessários
+      const updateData = {
         name: formData.name,
         birth_date: formData.birth_date,
         user_type: formData.user_type
-      });
+      };
+      
+      console.log("Enviando dados para atualizar:", updateData);
+      
+      const { error } = await updateProfile(user.id, updateData);
       
       if (error) {
         console.error("Error updating profile:", error);

@@ -1,7 +1,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { Session, User } from '@supabase/supabase-js';
-import { supabase, createProfile } from '@/lib/supabase';
+import { supabase, createProfile, getProfile } from '@/lib/supabase';
 
 type UserMetadata = {
   name?: string;
@@ -32,12 +32,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Set up auth state listener first
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      async (_event, session) => {
         console.log("Auth state changed:", _event, session?.user?.id);
         setSession(session);
         setUser(session?.user ?? null);
+        
         if (session?.user) {
           setUserMetadata(session.user.user_metadata as UserMetadata);
+          
+          // Check if profile exists for this user, if not create it
+          if (_event === 'SIGNED_IN') {
+            const { data: profile, error } = await getProfile(session.user.id);
+            if (error || !profile) {
+              console.log("Profile not found, creating one from metadata");
+              const metadata = session.user.user_metadata as UserMetadata;
+              await createProfile({
+                id: session.user.id,
+                name: metadata.name || '',
+                birth_date: metadata.birth_date || '',
+                user_type: metadata.user_type || 'usuário comum',
+                is_admin: metadata.is_admin || false,
+              });
+            }
+          }
         } else {
           setUserMetadata(null);
         }
@@ -46,13 +63,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     );
 
     // Then check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       console.log("Initial session check:", session?.user?.id);
       setSession(session);
       setUser(session?.user ?? null);
+      
       if (session?.user) {
         setUserMetadata(session.user.user_metadata as UserMetadata);
+        
+        // Check if profile exists
+        const { data: profile } = await getProfile(session.user.id);
+        if (!profile) {
+          console.log("Profile not found during initial load, creating one");
+          const metadata = session.user.user_metadata as UserMetadata;
+          await createProfile({
+            id: session.user.id,
+            name: metadata.name || '',
+            birth_date: metadata.birth_date || '',
+            user_type: metadata.user_type || 'usuário comum',
+            is_admin: metadata.is_admin || false,
+          });
+        }
       }
+      
       setLoading(false);
     });
 
@@ -113,18 +146,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         console.log("Tentando criar perfil:", profileData);
         
-        const { error: profileError } = await createProfile(profileData);
-        
-        if (profileError) {
-          console.error("Erro ao criar perfil do usuário:", profileError);
-        } else {
-          console.log("Perfil criado com sucesso!");
-        }
+        await createProfile(profileData);
+        console.log("Perfil criado com sucesso!");
       } catch (e) {
         console.error("Exceção ao criar perfil:", e);
       }
 
-      // Faça login automaticamente após o cadastro bem-sucedido
+      // Faça login automático após o cadastro bem-sucedido
       if (authData.user) {
         console.log("Fazendo login automático após cadastro");
         const { error: signInError } = await signIn(email, password);
