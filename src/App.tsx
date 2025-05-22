@@ -24,11 +24,13 @@ import SacsPage from "./pages/SacsPage";
 import StopBangPage from "./pages/StopBangPage";
 import HamAPage from "./pages/HamAPage";
 import PsqiPage from "./pages/PsqiPage";
+import PsqiIntroPage from "./pages/PsqiIntroPage"; // New import
+import PsqiPtPage from "./pages/PsqiPtPage"; // New import
 import BerlinPage from "./pages/BerlinPage";
 import MeqHoPage from "./pages/MeqHoPage";
 import NoSasPage from "./pages/NoSasPage";
 import HdasPage from "./pages/HdasPage";
-import RbdsqPage from "./pages/RbdsqPage"; // New import for RBDSQ page
+import RbdsqPage from "./pages/RbdsqPage";
 import AuthPage from "./pages/AuthPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -65,11 +67,13 @@ const App = () => (
             <Route path="/questionarios/stop-bang" element={<ProtectedRoute><StopBangPage /></ProtectedRoute>} />
             <Route path="/questionarios/ham-a" element={<ProtectedRoute><HamAPage /></ProtectedRoute>} />
             <Route path="/questionarios/psqi" element={<ProtectedRoute><PsqiPage /></ProtectedRoute>} />
+            <Route path="/questionarios/psqi-intro" element={<ProtectedRoute><PsqiIntroPage /></ProtectedRoute>} /> {/* New route */}
+            <Route path="/questionarios/psqi-pt" element={<ProtectedRoute><PsqiPtPage /></ProtectedRoute>} /> {/* New route */}
             <Route path="/questionarios/berlin" element={<ProtectedRoute><BerlinPage /></ProtectedRoute>} />
             <Route path="/questionarios/meq-ho" element={<ProtectedRoute><MeqHoPage /></ProtectedRoute>} />
             <Route path="/questionarios/nosas" element={<ProtectedRoute><NoSasPage /></ProtectedRoute>} />
             <Route path="/questionarios/hdas" element={<ProtectedRoute><HdasPage /></ProtectedRoute>} />
-            <Route path="/questionarios/rbdsq" element={<ProtectedRoute><RbdsqPage /></ProtectedRoute>} /> {/* New route for RBDSQ */}
+            <Route path="/questionarios/rbdsq" element={<ProtectedRoute><RbdsqPage /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

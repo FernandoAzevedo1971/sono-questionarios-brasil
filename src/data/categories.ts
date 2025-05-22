@@ -11,8 +11,8 @@ export type Category = {
 export const categories: Category[] = [
   {
     id: 'insonia',
-    name: 'Insônia',
-    description: 'Questionários relacionados ao diagnóstico e avaliação de insônia.',
+    name: 'Insônia e Qualidade do Sono',
+    description: 'Questionários relacionados ao diagnóstico e avaliação de insônia e qualidade do sono.',
     icon: 'bed',
   },
   {
