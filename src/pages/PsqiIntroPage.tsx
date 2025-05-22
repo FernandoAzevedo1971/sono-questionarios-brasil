@@ -17,7 +17,6 @@ const PsqiIntroPage = () => {
     >
       <QuestionnaireContent
         title="Índice de Qualidade de Sono de Pittsburgh (PSQI)"
-        description="Informações importantes sobre o questionário"
       >
         <div className="space-y-6">
           <Card>
