@@ -1,4 +1,3 @@
-
 import { Questionnaire, CategoryId } from './types';
 
 export const questionnaires: Questionnaire[] = [
@@ -145,7 +144,7 @@ export const questionnaires: Questionnaire[] = [
     indication: 'Avaliação da qualidade do sono em adultos.',
     pdfUrl: '/questionarios/psqi.pdf',
     onlineUrl: '/questionarios/psqi-intro',
-    category: 'insonia',  // Alterado de 'outros' para 'insonia'
+    category: 'insonia',
     references: [
       'Buysse DJ et al. The Pittsburgh Sleep Quality Index: a new instrument for psychiatric practice and research. Psychiatry Res. 1989;28(2):193-213.',
       'Bertolazi AN et al. Validation of the Brazilian Portuguese version of the Pittsburgh Sleep Quality Index. Sleep Med. 2010;11(9):907-913.'
@@ -200,4 +199,3 @@ export const questionnaires: Questionnaire[] = [
     ],
   },
 ];
-
