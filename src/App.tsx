@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -66,9 +66,10 @@ const App = () => (
             <Route path="/questionarios/sacs" element={<ProtectedRoute><SacsPage /></ProtectedRoute>} />
             <Route path="/questionarios/stop-bang" element={<ProtectedRoute><StopBangPage /></ProtectedRoute>} />
             <Route path="/questionarios/ham-a" element={<ProtectedRoute><HamAPage /></ProtectedRoute>} />
-            <Route path="/questionarios/psqi" element={<ProtectedRoute><PsqiPage /></ProtectedRoute>} />
-            <Route path="/questionarios/psqi-intro" element={<ProtectedRoute><PsqiIntroPage /></ProtectedRoute>} /> {/* New route */}
-            <Route path="/questionarios/psqi-pt" element={<ProtectedRoute><PsqiPtPage /></ProtectedRoute>} /> {/* New route */}
+            {/* Redirect from /questionarios/psqi to the intro page */}
+            <Route path="/questionarios/psqi" element={<ProtectedRoute><Navigate to="/questionarios/psqi-intro" replace /></ProtectedRoute>} />
+            <Route path="/questionarios/psqi-intro" element={<ProtectedRoute><PsqiIntroPage /></ProtectedRoute>} />
+            <Route path="/questionarios/psqi-pt" element={<ProtectedRoute><PsqiPtPage /></ProtectedRoute>} />
             <Route path="/questionarios/berlin" element={<ProtectedRoute><BerlinPage /></ProtectedRoute>} />
             <Route path="/questionarios/meq-ho" element={<ProtectedRoute><MeqHoPage /></ProtectedRoute>} />
             <Route path="/questionarios/nosas" element={<ProtectedRoute><NoSasPage /></ProtectedRoute>} />
