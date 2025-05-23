@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import QuestionnaireContainer from "@/components/questionnaire/QuestionnaireContainer";
 import QuestionnaireContent from "@/components/questionnaire/QuestionnaireContent";
@@ -126,10 +125,10 @@ const partnerDisturbances: SleepDisturbanceType[] = [
 ];
 
 const PsqiPage = () => {
-  const [bedTime, setBedTime] = useState("23:00");
-  const [fallAsleepTime, setFallAsleepTime] = useState("15");
-  const [wakeTime, setWakeTime] = useState("07:00");
-  const [sleepHours, setSleepHours] = useState("7");
+  const [bedTime, setBedTime] = useState("");
+  const [fallAsleepTime, setFallAsleepTime] = useState("");
+  const [wakeTime, setWakeTime] = useState("");
+  const [sleepHours, setSleepHours] = useState("");
   const [disturbances, setDisturbances] = useState<SleepDisturbanceType[]>(sleepDisturbances);
   const [sleepQuality, setSleepQuality] = useState("");
   const [medication, setMedication] = useState("");
@@ -300,10 +299,10 @@ const PsqiPage = () => {
   const countAnsweredQuestions = (): number => {
     let count = 0;
     
-    if (bedTime !== "23:00") count++; // Question 1
-    if (fallAsleepTime !== "15") count++; // Question 2
-    if (wakeTime !== "07:00") count++; // Question 3
-    if (sleepHours !== "7") count++; // Question 4
+    if (bedTime !== "") count++; // Question 1
+    if (fallAsleepTime !== "") count++; // Question 2
+    if (wakeTime !== "") count++; // Question 3
+    if (sleepHours !== "") count++; // Question 4
     
     // Count answered disturbances (Question 5)
     disturbances.forEach(item => {
