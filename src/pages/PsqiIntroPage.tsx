@@ -12,8 +12,8 @@ const PsqiIntroPage = () => {
   return (
     <QuestionnaireContainer
       title="Índice de Qualidade de Sono de Pittsburgh (PSQI)"
-      categoryPath="/categorias/insonia"
-      categoryName="Insônia e Qualidade do Sono"
+      categoryPath="/categorias/outros"  // Changed to match the category in the data file
+      categoryName="Outros"
     >
       <QuestionnaireContent
         title="Índice de Qualidade de Sono de Pittsburgh (PSQI)"
@@ -71,12 +71,18 @@ const PsqiIntroPage = () => {
             </CardContent>
           </Card>
 
-          <div className="flex justify-center mt-8">
+          <div className="flex justify-center gap-4 mt-8">
+            <Button 
+              size="lg"
+              onClick={() => navigate("/questionarios/psqi")}
+            >
+              Versão Original
+            </Button>
             <Button 
               size="lg"
               onClick={() => navigate("/questionarios/psqi-pt")}
             >
-              Inserir Resultados
+              Versão Portuguesa
             </Button>
           </div>
         </div>
