@@ -9,10 +9,14 @@ import { Card, CardContent } from "@/components/ui/card";
 const PsqiIntroPage = () => {
   const navigate = useNavigate();
 
+  const handleOriginalVersionClick = () => {
+    window.open("https://www.sleep.pitt.edu/psqi", "_blank");
+  };
+
   return (
     <QuestionnaireContainer
       title="Índice de Qualidade de Sono de Pittsburgh (PSQI)"
-      categoryPath="/categorias/outros"  // Changed to match the category in the data file
+      categoryPath="/categorias/outros"
       categoryName="Outros"
     >
       <QuestionnaireContent
@@ -30,7 +34,14 @@ const PsqiIntroPage = () => {
                   Copyright for the PSQI is owned by the University of Pittsburgh and may be used without charge only for non-commercial research and educational purposes. Changes or modifications of the PSQI require prior written permission from the University of Pittsburgh.
                 </p>
                 <p>
-                  You can download the instrument from website: Pittsburgh Sleep Quality Index
+                  You can download the instrument from website: <a 
+                    href="https://www.sleep.pitt.edu/psqi" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Pittsburgh Sleep Quality Index
+                  </a>
                 </p>
                 <p>
                   All publications, presentations, reports, or developments resulting from or relative to the use of this material shall be referenced as follows:
@@ -56,7 +67,14 @@ const PsqiIntroPage = () => {
                   O copyright do PSQI pertence à Universidade de Pittsburgh e seu uso é permitido gratuitamente apenas para fins educacionais e de pesquisa não comercial. Alterações no instrumento exigem autorização prévia da universidade.
                 </p>
                 <p>
-                  Você pode baixar o instrumento original no site: Pittsburgh Sleep Quality Index
+                  Você pode baixar o instrumento original no site: <a 
+                    href="https://www.sleep.pitt.edu/psqi" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Pittsburgh Sleep Quality Index
+                  </a>
                 </p>
                 <p>
                   Todas as publicações, apresentações ou desenvolvimentos que utilizem esse material devem referenciar:
@@ -74,7 +92,7 @@ const PsqiIntroPage = () => {
           <div className="flex justify-center gap-4 mt-8">
             <Button 
               size="lg"
-              onClick={() => navigate("/questionarios/psqi")}
+              onClick={handleOriginalVersionClick}
             >
               Versão Original
             </Button>
