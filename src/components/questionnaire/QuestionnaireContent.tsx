@@ -3,7 +3,7 @@ import React from "react";
 
 type QuestionnaireContentProps = {
   title: string;
-  description?: string;
+  description?: string | React.ReactNode;
   children: React.ReactNode;
 };
 
@@ -15,7 +15,9 @@ const QuestionnaireContent = ({ title, description, children }: QuestionnaireCon
       </h1>
       
       {description && (
-        <p className="text-neutral-700 mb-6 text-left">{description}</p>
+        <div className="text-neutral-700 mb-6 text-left">
+          {typeof description === 'string' ? <p>{description}</p> : description}
+        </div>
       )}
 
       <div className="text-left">
