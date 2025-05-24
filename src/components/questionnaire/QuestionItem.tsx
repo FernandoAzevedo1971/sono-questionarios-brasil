@@ -16,7 +16,9 @@ type QuestionItemProps = {
   inline?: boolean; 
   hideOptionNumbers?: boolean;
   optionSpacing?: "normal" | "wide";
-  reducedSpacing?: boolean; // Nova propriedade para reduzir espaço entre pergunta e opções
+  reducedSpacing?: boolean;
+  boldTitle?: boolean; // Nova propriedade para título em negrito
+  largerTitle?: boolean; // Nova propriedade para título maior
 };
 
 const QuestionItem = ({
@@ -31,12 +33,20 @@ const QuestionItem = ({
   inline = false,
   hideOptionNumbers = false,
   optionSpacing = "normal",
-  reducedSpacing = false, // Valor padrão falso
+  reducedSpacing = false,
+  boldTitle = false, // Valor padrão falso
+  largerTitle = false, // Valor padrão falso
 }: QuestionItemProps) => {
   const renderContent = () => (
     <div className="flex flex-col text-left">
       <div className={`${reducedSpacing ? 'mb-1' : 'mb-2'}`}>
-        <h3 className="font-medium text-neutral-900 text-left">{title}</h3>
+        <h3 className={`text-neutral-900 text-left ${
+          boldTitle ? 'font-bold' : 'font-medium'
+        } ${
+          largerTitle ? 'text-lg' : 'text-base'
+        }`}>
+          {title}
+        </h3>
         {description && (
           <p className="text-sm text-neutral-600 text-left">{description}</p>
         )}

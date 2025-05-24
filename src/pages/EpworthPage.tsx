@@ -101,6 +101,8 @@ const EpworthPage = () => {
               variant="panel"
               inline={true}
               hideOptionNumbers={true}
+              boldTitle={true}
+              largerTitle={true}
             />
           ))}
 
