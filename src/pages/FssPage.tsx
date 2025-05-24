@@ -99,11 +99,11 @@ const FssPage = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Panel - Questionnaire Form */}
             <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h1 className="text-2xl font-bold text-neutral-900 mb-4">
+              <h1 className="text-2xl font-bold text-neutral-900 mb-4 text-left">
                 Escala de Gravidade de Fadiga (FSS)
               </h1>
               
-              <p className="mb-6 text-neutral-600">
+              <p className="mb-6 text-neutral-600 text-left">
                 Para cada afirmação, por favor, selecione um número de 1 a 7 que melhor indica seu grau de concordância: 
                 <strong className="block mt-2 text-neutral-800">1 = DISCORDO FORTEMENTE, 7 = CONCORDO FORTEMENTE</strong>
                 <span className="block mt-1">As demais pontuações devem refletir o quanto você discorda ou concorda com a afirmação.</span>
@@ -112,7 +112,7 @@ const FssPage = () => {
               <div className="space-y-6">
                 {questions.map((question) => (
                   <div key={question.id} className="p-4 bg-neutral-50 rounded-lg">
-                    <p className="font-medium text-neutral-900 mb-3">{question.id}. {question.text}</p>
+                    <p className="font-medium text-neutral-900 mb-3 text-left">{question.id}. {question.text}</p>
                     <RadioGroup
                       value={answers[question.id]?.toString()}
                       onValueChange={(value) =>
@@ -155,13 +155,13 @@ const FssPage = () => {
 
                 {score !== null && (
                   <div className="mt-6 p-4 bg-primary-50 border border-primary-100 rounded-lg">
-                    <p className="text-primary-900 font-medium mb-1">
+                    <p className="text-primary-900 font-medium mb-1 text-left">
                       Seu escore: {score} pontos
                     </p>
-                    <p className="text-primary-700">
+                    <p className="text-primary-700 text-left">
                       Interpretação: {getScoreSeverity(score)}
                     </p>
-                    <p className="text-xs text-neutral-500 mt-2">
+                    <p className="text-xs text-neutral-500 mt-2 text-left">
                       * Pontuação mínima = 9 pontos, máxima 63 pontos.<br />
                       * Valores ≥ 36 podem ser considerados como indicador de presença de fadiga significativa.
                     </p>
@@ -177,19 +177,19 @@ const FssPage = () => {
                   Baixar versão em PDF
                 </Button>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Sobre a escala</h2>
-                <p className="text-neutral-700 mb-6">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Sobre a escala</h2>
+                <p className="text-neutral-700 mb-6 text-left">
                   A Escala de Gravidade de Fadiga (FSS) é um questionário de 9 itens que avalia o impacto 
                   da fadiga no funcionamento físico, social e ocupacional. O escore total varia de 9 a 63 pontos.
                 </p>
                 
-                <div className="text-neutral-700 mb-6">
+                <div className="text-neutral-700 mb-6 text-left">
                   <p className="text-red-600 mb-2 font-medium">Importante:</p>
                   <p>Esta é uma tradução livre do questionário original. Não há validação oficial para a língua portuguesa.</p>
                 </div>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Referências</h2>
-                <p className="text-sm text-neutral-600">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Referências</h2>
+                <p className="text-sm text-neutral-600 text-left">
                   Krupp LB, LaRocca NG, Muir-Nash J, Steinberg AD. The fatigue severity scale. Application to patients with multiple 
                   sclerosis and systemic lupus erythematosus. Arch Neurol. 1989 Oct;46(10):1121-3. doi: 10.1001/archneur.1989.00520460115022. PMID: 2803071.
                 </p>
