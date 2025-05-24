@@ -79,7 +79,12 @@ const EpworthPage = () => {
     >
       <QuestionnaireContent
         title="Escala de Sonolência de Epworth (ESE)"
-        description="Qual é a probabilidade de você cochilar ou adormecer nas situações apresentadas a seguir? Considere o seu modo de vida atual. Mesmo que você não tenha feito algumas destas coisas recentemente, tente imaginar como elas o afetariam."
+        description={
+          <div>
+            <span className="font-bold text-lg">Qual é a probabilidade de você cochilar ou adormecer nas situações apresentadas a seguir?</span>
+            {" "}Considere as suas últimas 4 semanas, no seu modo de vida atual. Mesmo que você não tenha feito algumas destas coisas recentemente, tente imaginar como elas o afetariam.
+          </div>
+        }
       >
         <ProgressBar current={answeredQuestionsCount} total={questions.length} />
 
@@ -91,10 +96,10 @@ const EpworthPage = () => {
               title={question.text}
               options={[0, 1, 2, 3]}
               optionLabels={[
-                "Nunca cochilaria", 
-                "Pequena chance", 
-                "Chance moderada", 
-                "Alta chance"
+                "Nenhuma chance", 
+                "Chance PEQUENA", 
+                "Chance MÉDIA", 
+                "Chance ALTA"
               ]}
               value={answers[question.id]?.toString() || ""}
               onChange={(value) => handleOptionChange(question.id, value)}
