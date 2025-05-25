@@ -137,7 +137,8 @@ const IsiPage = () => {
                       }))
                     }
                     inline={true}
-                    hideOptionNumbers={true} // Add this prop to hide the option numbers
+                    hideOptionNumbers={true}
+                    boldTitle={true}
                   />
                 ))}
 
