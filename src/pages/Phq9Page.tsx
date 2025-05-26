@@ -248,8 +248,8 @@ const Phq9Page = () => {
                     <ul className="text-sm text-neutral-600 space-y-1">
                       <li>• Sensibilidade: 77,5%</li>
                       <li>• Especificidade: 86,7%</li>
-                      <li>• Ponto de corte ≥ 10</li>
-                      <li>• Alfa de Cronbach > 0,80</li>
+                      <li>• Ponto de corte {">="} 10</li>
+                      <li>• Alfa de Cronbach {">"} 0,80</li>
                     </ul>
                   </div>
 
