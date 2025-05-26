@@ -6,6 +6,7 @@ import { sleepinessQuestionnaires } from './sleepiness';
 import { chronotypesQuestionnaires } from './chronotypes';
 import { movementQuestionnaires } from './movement';
 import { anxietyQuestionnaires } from './anxiety';
+import { qualityOfLifeQuestionnaires } from './quality-of-life';
 import { othersQuestionnaires } from './others';
 
 // Combine all questionnaires into a single array
@@ -16,6 +17,7 @@ export const questionnaires: Questionnaire[] = [
   ...chronotypesQuestionnaires,
   ...movementQuestionnaires,
   ...anxietyQuestionnaires,
+  ...qualityOfLifeQuestionnaires,
   ...othersQuestionnaires
 ];
 
@@ -27,5 +29,6 @@ export {
   chronotypesQuestionnaires,
   movementQuestionnaires,
   anxietyQuestionnaires,
+  qualityOfLifeQuestionnaires,
   othersQuestionnaires
 };

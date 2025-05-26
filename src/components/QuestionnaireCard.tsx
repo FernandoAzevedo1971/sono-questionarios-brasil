@@ -1,3 +1,4 @@
+
 import { Questionnaire } from "@/data";
 import { Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,7 @@ const QuestionnaireCard = ({ questionnaire }: { questionnaire: Questionnaire }) 
     // List of questionnaires with internal online versions
     const internalOnlineQuestionnaires = [
       'epworth', 'isi', 'fas', 'fss', 'goal', 'sacs', 'stop-bang', 'ham-a', 'berlin', 'psqi',
-      'meq-ho', 'nosas', 'hdas', 'rbdsq' // Added rbdsq to the list
+      'meq-ho', 'nosas', 'hdas', 'rbdsq', 'fosq-36'
     ];
     
     return internalOnlineQuestionnaires.includes(id);

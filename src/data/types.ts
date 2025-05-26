@@ -1,5 +1,5 @@
 
-export type CategoryId = 'insonia' | 'apneia' | 'sonolencia' | 'cronotipos' | 'movimentos' | 'outros' | 'ansiedade';
+export type CategoryId = 'insonia' | 'apneia' | 'sonolencia' | 'cronotipos' | 'movimentos' | 'outros' | 'ansiedade' | 'qualidade-vida';
 
 export type Questionnaire = {
   id: string;

@@ -46,6 +46,12 @@ export const categories: Category[] = [
     icon: 'brain',
   },
   {
+    id: 'qualidade-vida',
+    name: 'Qualidade de Vida',
+    description: 'Questionários para avaliação da qualidade de vida relacionada ao sono.',
+    icon: 'heart',
+  },
+  {
     id: 'outros',
     name: 'Outros',
     description: 'Questionários diversos relacionados à medicina do sono.',

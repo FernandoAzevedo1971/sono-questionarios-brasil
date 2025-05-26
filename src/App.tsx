@@ -24,13 +24,14 @@ import SacsPage from "./pages/SacsPage";
 import StopBangPage from "./pages/StopBangPage";
 import HamAPage from "./pages/HamAPage";
 import PsqiPage from "./pages/PsqiPage";
-import PsqiIntroPage from "./pages/PsqiIntroPage"; // New import
-import PsqiPtPage from "./pages/PsqiPtPage"; // New import
+import PsqiIntroPage from "./pages/PsqiIntroPage";
+import PsqiPtPage from "./pages/PsqiPtPage";
 import BerlinPage from "./pages/BerlinPage";
 import MeqHoPage from "./pages/MeqHoPage";
 import NoSasPage from "./pages/NoSasPage";
 import HdasPage from "./pages/HdasPage";
 import RbdsqPage from "./pages/RbdsqPage";
+import Fosq36Page from "./pages/Fosq36Page";
 import AuthPage from "./pages/AuthPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -66,7 +67,6 @@ const App = () => (
             <Route path="/questionarios/sacs" element={<ProtectedRoute><SacsPage /></ProtectedRoute>} />
             <Route path="/questionarios/stop-bang" element={<ProtectedRoute><StopBangPage /></ProtectedRoute>} />
             <Route path="/questionarios/ham-a" element={<ProtectedRoute><HamAPage /></ProtectedRoute>} />
-            {/* Redirect from /questionarios/psqi to the intro page */}
             <Route path="/questionarios/psqi" element={<ProtectedRoute><Navigate to="/questionarios/psqi-intro" replace /></ProtectedRoute>} />
             <Route path="/questionarios/psqi-intro" element={<ProtectedRoute><PsqiIntroPage /></ProtectedRoute>} />
             <Route path="/questionarios/psqi-pt" element={<ProtectedRoute><PsqiPtPage /></ProtectedRoute>} />
@@ -75,6 +75,7 @@ const App = () => (
             <Route path="/questionarios/nosas" element={<ProtectedRoute><NoSasPage /></ProtectedRoute>} />
             <Route path="/questionarios/hdas" element={<ProtectedRoute><HdasPage /></ProtectedRoute>} />
             <Route path="/questionarios/rbdsq" element={<ProtectedRoute><RbdsqPage /></ProtectedRoute>} />
+            <Route path="/questionarios/fosq-36" element={<ProtectedRoute><Fosq36Page /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
