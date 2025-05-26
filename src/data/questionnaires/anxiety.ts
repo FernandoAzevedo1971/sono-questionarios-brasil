@@ -41,4 +41,17 @@ export const anxietyQuestionnaires: Questionnaire[] = [
       'Gorenstein C, Andrade L. Validation of a Portuguese version of the Beck Depression Inventory and the State-Trait Anxiety Inventory in Brazilian subjects. Brazilian Journal of Medical and Biological Research. 1996;29(4):453–457.'
     ],
   },
+  {
+    id: 'phq-9',
+    name: 'PHQ-9 – Questionário do Paciente para Depressão',
+    description: 'Instrumento breve e eficaz para avaliação da gravidade da depressão através de 9 itens baseados nos critérios do DSM-IV.',
+    indication: 'Triagem e monitoramento da gravidade dos sintomas depressivos em cuidados primários e contextos clínicos.',
+    pdfUrl: '/questionarios/phq-9.pdf',
+    category: 'ansiedade',
+    onlineUrl: '/questionarios/phq-9',
+    references: [
+      'Kroenke K, Spitzer RL, Williams JB. The PHQ-9: validity of a brief depression severity measure. J Gen Intern Med. 2001 Sep;16(9):606–13.',
+      'Santos IS, Tavares BF, Munhoz TN, et al. Sensitivity and specificity of the Patient Health Questionnaire-9 (PHQ-9) among adults from the general population. Cadernos de Saúde Pública. 2013;29(8):1533–1543.'
+    ],
+  },
 ];

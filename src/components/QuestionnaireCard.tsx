@@ -10,7 +10,7 @@ const QuestionnaireCard = ({ questionnaire }: { questionnaire: Questionnaire }) 
     // List of questionnaires with internal online versions
     const internalOnlineQuestionnaires = [
       'epworth', 'isi', 'fas', 'fss', 'goal', 'sacs', 'stop-bang', 'ham-a', 'berlin', 'psqi',
-      'meq-ho', 'nosas', 'hdas', 'rbdsq', 'fosq-36', 'beck-depression'
+      'meq-ho', 'nosas', 'hdas', 'rbdsq', 'fosq-36', 'beck-depression', 'phq-9'
     ];
     
     return internalOnlineQuestionnaires.includes(id);

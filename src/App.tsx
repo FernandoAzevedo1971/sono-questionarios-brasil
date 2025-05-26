@@ -33,6 +33,7 @@ import HdasPage from "./pages/HdasPage";
 import RbdsqPage from "./pages/RbdsqPage";
 import Fosq36Page from "./pages/Fosq36Page";
 import BeckDepressionPage from "./pages/BeckDepressionPage";
+import Phq9Page from "./pages/Phq9Page";
 import AuthPage from "./pages/AuthPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -69,6 +70,7 @@ const App = () => (
             <Route path="/questionarios/stop-bang" element={<ProtectedRoute><StopBangPage /></ProtectedRoute>} />
             <Route path="/questionarios/ham-a" element={<ProtectedRoute><HamAPage /></ProtectedRoute>} />
             <Route path="/questionarios/beck-depression" element={<ProtectedRoute><BeckDepressionPage /></ProtectedRoute>} />
+            <Route path="/questionarios/phq-9" element={<ProtectedRoute><Phq9Page /></ProtectedRoute>} />
             <Route path="/questionarios/psqi" element={<ProtectedRoute><Navigate to="/questionarios/psqi-intro" replace /></ProtectedRoute>} />
             <Route path="/questionarios/psqi-intro" element={<ProtectedRoute><PsqiIntroPage /></ProtectedRoute>} />
             <Route path="/questionarios/psqi-pt" element={<ProtectedRoute><PsqiPtPage /></ProtectedRoute>} />
