@@ -10,27 +10,37 @@ import { Label } from "@/components/ui/label";
 import { Info } from "lucide-react";
 
 const phq9Questions = [
-  "Pouco interesse ou prazer em fazer as coisas",
-  "Sentir-se para baixo, deprimido ou sem esperança",
-  "Dificuldade para dormir ou dormir demais",
-  "Sentir-se cansado ou com pouca energia",
-  "Falta de apetite ou comer em excesso",
-  "Sentir-se mal consigo mesmo – ou que é um fracasso ou que decepcionou sua família",
-  "Dificuldade de concentração nas atividades do dia a dia",
-  "Mover-se ou falar devagar a ponto de outras pessoas perceberem. Ou o contrário – estar muito agitado(a) ou inquieto(a)",
-  "Pensamentos de que seria melhor estar morto(a) ou de se machucar de alguma forma"
+  "Nas últimas duas semanas, quantos dias o(a) sr.(a) teve pouco interesse ou pouco prazer em fazer as coisas?",
+  "Nas últimas duas semanas, quantos dias o(a) sr.(a) se sentiu para baixo, deprimido(a) ou sem perspectiva?",
+  "Nas últimas duas semanas, quantos dias o(a) sr.(a) teve dificuldade para pegar no sono ou permanecer dormindo ou dormiu mais do que de costume?",
+  "Nas últimas duas semanas, quantos dias o(a) sr.(a) se sentiu cansado(a) ou com pouca energia?",
+  "Nas últimas duas semanas, quantos dias o(a) sr.(a) teve falta de apetite ou comeu demais?",
+  "Nas últimas duas semanas, quantos dias o(a) sr.(a) se sentiu mal consigo mesmo(a) ou achou que é um fracasso ou que decepcionou sua família ou a você mesmo(a)?",
+  "Nas últimas duas semanas, quantos dias o(a) sr.(a) teve dificuldade para se concentrar nas coisas (como ler o jornal ou ver televisão)?",
+  "Nas últimas duas semanas, quantos dias o(a) sr.(a) teve lentidão para se movimentar ou falar (a ponto das outras pessoas perceberem), ou ao contrário, esteve tão agitado(a) que você ficava andando de um lado para o outro mais do que de costume?",
+  "Nas últimas duas semanas, quantos dias o(a) sr.(a) pensou em se ferir de alguma maneira ou que seria melhor estar morto(a)?"
 ];
+
+const functionalQuestion = "Considerando as últimas duas semanas, os sintomas anteriores lhe causaram algum tipo de dificuldade para trabalhar ou estudar ou tomar conta das coisas em casa ou para se relacionar com as pessoas?";
 
 const options = [
   { value: "0", label: "Nenhum dia" },
-  { value: "1", label: "Vários dias" },
-  { value: "2", label: "Mais da metade dos dias" },
+  { value: "1", label: "Menos de uma semana" },
+  { value: "2", label: "Uma semana ou mais" },
   { value: "3", label: "Quase todos os dias" }
+];
+
+const functionalOptions = [
+  { value: "0", label: "Nenhuma dificuldade" },
+  { value: "1", label: "Pouca dificuldade" },
+  { value: "2", label: "Muita dificuldade" },
+  { value: "3", label: "Extrema dificuldade" }
 ];
 
 const Phq9Page = () => {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [functionalAnswer, setFunctionalAnswer] = useState<number | null>(null);
   const [score, setScore] = useState<number | null>(null);
 
   const handleOptionChange = (questionIndex: number, value: string) => {
@@ -38,6 +48,10 @@ const Phq9Page = () => {
       ...prev,
       [questionIndex]: parseInt(value)
     }));
+  };
+
+  const handleFunctionalChange = (value: string) => {
+    setFunctionalAnswer(parseInt(value));
   };
 
   const calculateScore = () => {
@@ -60,7 +74,7 @@ const Phq9Page = () => {
     return "bg-red-50 border-red-100 text-red-700";
   };
 
-  const isFormComplete = Object.keys(answers).length === phq9Questions.length;
+  const isFormComplete = Object.keys(answers).length === phq9Questions.length && functionalAnswer !== null;
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50">
@@ -103,7 +117,7 @@ const Phq9Page = () => {
               
               <div className="text-neutral-700 mb-6 text-left">
                 <p className="mb-4 text-left">
-                  O PHQ-9 é um instrumento breve e eficaz para triagem e monitoramento da gravidade dos sintomas depressivos.
+                  Versão em português do Patient Health Questionnaire-9 (PHQ-9), extraída e modificada de Fraguas Jr. et al.
                 </p>
                 
                 <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
@@ -118,10 +132,7 @@ const Phq9Page = () => {
                   </div>
                 </div>
 
-                <p className="font-medium mb-2 text-left">Instruções:</p>
-                <p className="mb-4 text-left">
-                  Nas últimas duas semanas, com que frequência você foi incomodado por algum dos problemas abaixo?
-                </p>
+                <p className="font-medium mb-2 text-left text-lg">AGORA VAMOS FALAR SOBRE COMO O(A) SR.(A) TEM SE SENTIDO NAS ÚLTIMAS DUAS SEMANAS.</p>
               </div>
 
               <div className="text-left">
@@ -131,7 +142,7 @@ const Phq9Page = () => {
                       <CardContent className="p-4">
                         <div className="flex flex-col text-left">
                           <h3 className="font-medium text-neutral-900 mb-3 text-left">
-                            {index + 1}. {question}
+                            {index + 1}) {question}
                           </h3>
                           
                           <RadioGroup
@@ -150,7 +161,7 @@ const Phq9Page = () => {
                                   htmlFor={`q${index}-${option.value}`}
                                   className="text-sm text-neutral-700 cursor-pointer text-left"
                                 >
-                                  {option.label} ({option.value})
+                                  ({option.value}) {option.label}
                                 </Label>
                               </div>
                             ))}
@@ -159,6 +170,39 @@ const Phq9Page = () => {
                       </CardContent>
                     </Card>
                   ))}
+
+                  {/* Functional Question */}
+                  <Card className="border border-gray-200 bg-blue-50">
+                    <CardContent className="p-4">
+                      <div className="flex flex-col text-left">
+                        <h3 className="font-medium text-neutral-900 mb-3 text-left">
+                          10) {functionalQuestion}
+                        </h3>
+                        
+                        <RadioGroup
+                          value={functionalAnswer?.toString() || ""}
+                          onValueChange={handleFunctionalChange}
+                          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
+                        >
+                          {functionalOptions.map((option) => (
+                            <div key={option.value} className="flex items-center space-x-2">
+                              <RadioGroupItem 
+                                value={option.value} 
+                                id={`functional-${option.value}`}
+                                className="transition-all duration-200"
+                              />
+                              <Label
+                                htmlFor={`functional-${option.value}`}
+                                className="text-sm text-neutral-700 cursor-pointer text-left"
+                              >
+                                ({option.value}) {option.label}
+                              </Label>
+                            </div>
+                          ))}
+                        </RadioGroup>
+                      </div>
+                    </CardContent>
+                  </Card>
 
                   <div className="pt-6 border-t border-gray-200">
                     <Button 
@@ -181,6 +225,12 @@ const Phq9Page = () => {
                     <p className="font-medium mb-2 text-left">
                       Interpretação: {getScoreInterpretation(score)}
                     </p>
+                    
+                    {functionalAnswer !== null && (
+                      <p className="text-sm mb-2 text-left">
+                        Dificuldade funcional: {functionalOptions[functionalAnswer]?.label}
+                      </p>
+                    )}
                     
                     <div className="mt-4">
                       <div className="w-full bg-gray-200 rounded-full h-2.5">
@@ -237,8 +287,9 @@ const Phq9Page = () => {
                     <h3 className="font-medium text-neutral-900 mb-2 text-left">Características</h3>
                     <ul className="text-sm text-neutral-600 space-y-1 text-left">
                       <li>• 9 itens baseados nos critérios do DSM-IV</li>
+                      <li>• 1 item adicional sobre dificuldade funcional</li>
                       <li>• Tempo de aplicação: 2-3 minutos</li>
-                      <li>• Pontuação: 0-27 pontos</li>
+                      <li>• Pontuação: 0-27 pontos (itens 1-9)</li>
                       <li>• Domínio público</li>
                     </ul>
                   </div>
@@ -248,8 +299,8 @@ const Phq9Page = () => {
                     <ul className="text-sm text-neutral-600 space-y-1 text-left">
                       <li>• Sensibilidade: 77,5%</li>
                       <li>• Especificidade: 86,7%</li>
-                      <li>• Ponto de corte {">="} 10</li>
-                      <li>• Alfa de Cronbach {">"} 0,80</li>
+                      <li>• Ponto de corte ≥ 10</li>
+                      <li>• Alfa de Cronbach {">"}0,80</li>
                     </ul>
                   </div>
 
@@ -261,6 +312,9 @@ const Phq9Page = () => {
                       </p>
                       <p className="text-left">
                         Santos IS, et al. Sensitivity and specificity of the Patient Health Questionnaire-9 (PHQ-9) among adults from the general population. Cad Saúde Pública. 2013;29(8):1533–1543.
+                      </p>
+                      <p className="text-left">
+                        Fraguas Jr. et al. Versão em português do Patient Health Questionnaire-9 (PHQ-9).
                       </p>
                     </div>
                   </div>
