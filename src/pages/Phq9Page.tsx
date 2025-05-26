@@ -97,12 +97,12 @@ const Phq9Page = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Main Content */}
             <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h1 className="text-2xl font-bold text-neutral-900 mb-4">
+              <h1 className="text-2xl font-bold text-neutral-900 mb-4 text-left">
                 PHQ-9 – Questionário do Paciente para Depressão
               </h1>
               
               <div className="text-neutral-700 mb-6 text-left">
-                <p className="mb-4">
+                <p className="mb-4 text-left">
                   O PHQ-9 é um instrumento breve e eficaz para triagem e monitoramento da gravidade dos sintomas depressivos.
                 </p>
                 
@@ -110,16 +110,16 @@ const Phq9Page = () => {
                   <div className="flex items-start gap-2">
                     <Info className="w-5 h-5 text-blue-500 mt-0.5" />
                     <div>
-                      <h3 className="font-medium text-blue-900 mb-1">Domínio Público</h3>
-                      <p className="text-sm text-blue-700">
+                      <h3 className="font-medium text-blue-900 mb-1 text-left">Domínio Público</h3>
+                      <p className="text-sm text-blue-700 text-left">
                         O PHQ-9 é de domínio público e pode ser usado gratuitamente para qualquer aplicação clínica, institucional ou científica.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <p className="font-medium mb-2">Instruções:</p>
-                <p className="mb-4">
+                <p className="font-medium mb-2 text-left">Instruções:</p>
+                <p className="mb-4 text-left">
                   Nas últimas duas semanas, com que frequência você foi incomodado por algum dos problemas abaixo?
                 </p>
               </div>
@@ -130,7 +130,7 @@ const Phq9Page = () => {
                     <Card key={index} className="border border-gray-200">
                       <CardContent className="p-4">
                         <div className="flex flex-col text-left">
-                          <h3 className="font-medium text-neutral-900 mb-3">
+                          <h3 className="font-medium text-neutral-900 mb-3 text-left">
                             {index + 1}. {question}
                           </h3>
                           
@@ -148,7 +148,7 @@ const Phq9Page = () => {
                                 />
                                 <Label
                                   htmlFor={`q${index}-${option.value}`}
-                                  className="text-sm text-neutral-700 cursor-pointer"
+                                  className="text-sm text-neutral-700 cursor-pointer text-left"
                                 >
                                   {option.label} ({option.value})
                                 </Label>
@@ -174,11 +174,11 @@ const Phq9Page = () => {
                 {score !== null && (
                   <div className={`mt-6 p-4 border rounded-lg ${getSeverityClass(score)} text-left`}>
                     <div className="mb-2">
-                      <p className="font-medium">
+                      <p className="font-medium text-left">
                         Sua pontuação: {score} de 27 pontos
                       </p>
                     </div>
-                    <p className="font-medium mb-2">
+                    <p className="font-medium mb-2 text-left">
                       Interpretação: {getScoreInterpretation(score)}
                     </p>
                     
@@ -199,9 +199,9 @@ const Phq9Page = () => {
                       </div>
                     </div>
 
-                    <div className="mt-4 text-xs">
-                      <p className="mb-2"><strong>Interpretação dos escores:</strong></p>
-                      <ul className="space-y-1">
+                    <div className="mt-4 text-xs text-left">
+                      <p className="mb-2 text-left"><strong>Interpretação dos escores:</strong></p>
+                      <ul className="space-y-1 text-left">
                         <li>• 0–4: Depressão mínima</li>
                         <li>• 5–9: Depressão leve</li>
                         <li>• 10–14: Depressão moderada</li>
@@ -227,15 +227,15 @@ const Phq9Page = () => {
                 
                 <div className="space-y-4 text-left">
                   <div>
-                    <h3 className="font-medium text-neutral-900 mb-2">Sobre o PHQ-9</h3>
-                    <p className="text-sm text-neutral-600">
+                    <h3 className="font-medium text-neutral-900 mb-2 text-left">Sobre o PHQ-9</h3>
+                    <p className="text-sm text-neutral-600 text-left">
                       O PHQ-9 é uma ferramenta de triagem amplamente utilizada para detectar e monitorar a gravidade da depressão em cuidados primários.
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="font-medium text-neutral-900 mb-2">Características</h3>
-                    <ul className="text-sm text-neutral-600 space-y-1">
+                    <h3 className="font-medium text-neutral-900 mb-2 text-left">Características</h3>
+                    <ul className="text-sm text-neutral-600 space-y-1 text-left">
                       <li>• 9 itens baseados nos critérios do DSM-IV</li>
                       <li>• Tempo de aplicação: 2-3 minutos</li>
                       <li>• Pontuação: 0-27 pontos</li>
@@ -244,8 +244,8 @@ const Phq9Page = () => {
                   </div>
 
                   <div>
-                    <h3 className="font-medium text-neutral-900 mb-2">Propriedades Psicométricas</h3>
-                    <ul className="text-sm text-neutral-600 space-y-1">
+                    <h3 className="font-medium text-neutral-900 mb-2 text-left">Propriedades Psicométricas</h3>
+                    <ul className="text-sm text-neutral-600 space-y-1 text-left">
                       <li>• Sensibilidade: 77,5%</li>
                       <li>• Especificidade: 86,7%</li>
                       <li>• Ponto de corte {">="} 10</li>
@@ -254,12 +254,12 @@ const Phq9Page = () => {
                   </div>
 
                   <div>
-                    <h3 className="font-medium text-neutral-900 mb-2">Referências</h3>
-                    <div className="text-xs text-neutral-600 space-y-2">
-                      <p>
+                    <h3 className="font-medium text-neutral-900 mb-2 text-left">Referências</h3>
+                    <div className="text-xs text-neutral-600 space-y-2 text-left">
+                      <p className="text-left">
                         Kroenke K, Spitzer RL, Williams JB. The PHQ-9: validity of a brief depression severity measure. J Gen Intern Med. 2001;16(9):606–13.
                       </p>
-                      <p>
+                      <p className="text-left">
                         Santos IS, et al. Sensitivity and specificity of the Patient Health Questionnaire-9 (PHQ-9) among adults from the general population. Cad Saúde Pública. 2013;29(8):1533–1543.
                       </p>
                     </div>

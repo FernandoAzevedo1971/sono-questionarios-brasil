@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -7,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { AlertTriangle } from "lucide-react";
 
 type BeckQuestion = {
   id: string;
@@ -335,11 +335,32 @@ const BeckDepressionPage = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Panel - Questionnaire Form */}
             <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h1 className="text-2xl font-bold text-neutral-900 mb-4">
+              <h1 className="text-2xl font-bold text-neutral-900 mb-4 text-left">
                 Inventário de Depressão de Beck (BDI)
               </h1>
 
-              <p className="mb-6 text-neutral-600">
+              {/* Copyright Notice */}
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+                <div className="flex items-start gap-2">
+                  <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5" />
+                  <div>
+                    <h3 className="font-medium text-amber-900 mb-1 text-left">Aviso sobre Direitos Autorais</h3>
+                    <p className="text-sm text-amber-800 text-left">
+                      A Escala de Depressão de Beck (BDI) é protegida por direitos autorais. A versão original, 
+                      publicada em 1961, foi posteriormente revisada e registrada em 1978, e os direitos autorais 
+                      são atualmente detidos pela Pearson Assessments. A versão mais recente, o BDI-II, lançada 
+                      em 1996, também é protegida por direitos autorais e comercializada exclusivamente pela Pearson.
+                    </p>
+                    <p className="text-sm text-amber-800 mt-2 text-left">
+                      O uso do BDI ou BDI-II em contextos clínicos, educacionais ou de pesquisa requer aquisição 
+                      legal por meio da Pearson. A reprodução não autorizada, distribuição ou adaptação da escala 
+                      constitui violação dos direitos autorais.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="mb-6 text-neutral-600 text-left">
                 Este questionário consiste em 21 grupos de afirmações. Depois de ler cuidadosamente cada grupo, 
                 faça um círculo em torno do número (0, 1, 2 ou 3) diante da afirmação, em cada grupo, 
                 que descreve melhor a maneira como você tem se sentido nesta semana, incluindo hoje. 
@@ -354,7 +375,7 @@ const BeckDepressionPage = () => {
                     <CardContent className="p-4">
                       <div className="flex flex-col space-y-2">
                         <div className="mb-3">
-                          <h3 className="font-bold text-neutral-900 text-lg">
+                          <h3 className="font-bold text-neutral-900 text-lg text-left">
                             {question.letter} - {question.title}
                           </h3>
                         </div>
@@ -374,7 +395,7 @@ const BeckDepressionPage = () => {
                               />
                               <Label 
                                 htmlFor={`${question.id}-${option.value}`}
-                                className="text-sm text-neutral-700 cursor-pointer leading-relaxed"
+                                className="text-sm text-neutral-700 cursor-pointer leading-relaxed text-left"
                               >
                                 <span className="font-medium">{option.value === "0" ? "0" : option.value}:</span> {option.text}
                               </Label>
@@ -395,14 +416,14 @@ const BeckDepressionPage = () => {
                 </Button>
 
                 {score !== null && (
-                  <div className={`mt-6 p-4 border rounded-lg ${getSeverityClass(score)}`}>
-                    <p className="font-medium mb-1">
+                  <div className={`mt-6 p-4 border rounded-lg ${getSeverityClass(score)} text-left`}>
+                    <p className="font-medium mb-1 text-left">
                       Sua pontuação: {score} pontos
                     </p>
-                    <p>
+                    <p className="text-left">
                       Interpretação: <strong>{getScoreInterpretation(score)}</strong>
                     </p>
-                    <p className="text-xs mt-2">
+                    <p className="text-xs mt-2 text-left">
                       * A pontuação varia de 0 a 63 pontos.<br />
                       * Some a quantidade de pontos referente à sua resposta (exemplo: 2a = 2 pontos).
                     </p>
@@ -418,43 +439,43 @@ const BeckDepressionPage = () => {
                   Baixar versão em PDF
                 </Button>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Sobre o Inventário</h2>
-                <p className="text-neutral-700 mb-4">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Sobre o Inventário</h2>
+                <p className="text-neutral-700 mb-4 text-left">
                   O Inventário de Depressão de Beck (BDI) é um dos instrumentos mais utilizados 
                   para avaliação da gravidade dos sintomas depressivos em contextos clínicos e de pesquisa.
                 </p>
                 
-                <p className="text-neutral-700 mb-4">
+                <p className="text-neutral-700 mb-4 text-left">
                   Desenvolvido por Aaron T. Beck em 1961, consiste em 21 itens que abrangem 
                   aspectos cognitivos, afetivos, comportamentais e somáticos da depressão.
                 </p>
 
                 <div className="mb-4 p-3 bg-blue-50 rounded-md">
-                  <p className="text-sm text-blue-700">
+                  <p className="text-sm text-blue-700 text-left">
                     <strong>Importante:</strong> Este questionário é apenas uma ferramenta de triagem. 
                     O resultado obtido aqui não substitui uma avaliação clínica adequada por um profissional qualificado.
                   </p>
                 </div>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Interpretação dos Resultados</h2>
-                <ul className="list-disc pl-5 mb-6 text-neutral-700 space-y-1">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Interpretação dos Resultados</h2>
+                <ul className="list-disc pl-5 mb-6 text-neutral-700 space-y-1 text-left">
                   <li>Abaixo de 10: Sem depressão ou depressão leve</li>
                   <li>Entre 10 e 18: Depressão leve a moderada</li>
                   <li>Entre 19 e 29: Depressão moderada a grave</li>
                   <li>Entre 30 e 63: Depressão grave</li>
                 </ul>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Referências</h2>
-                <div className="text-sm text-neutral-600 space-y-2">
-                  <p>
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Referências</h2>
+                <div className="text-sm text-neutral-600 space-y-2 text-left">
+                  <p className="text-left">
                     Beck AT, Ward CH, Mendelson M, Mock J, Erbaugh J. An inventory for measuring depression. 
                     Archives of General Psychiatry. 1961;4:561–571.
                   </p>
-                  <p>
+                  <p className="text-left">
                     Cunha JA. Manual da versão em português das Escalas Beck. 
                     São Paulo: Casa do Psicólogo; 2001.
                   </p>
-                  <p>
+                  <p className="text-left">
                     Gorenstein C, Andrade L. Validation of a Portuguese version of the Beck Depression Inventory 
                     and the State-Trait Anxiety Inventory in Brazilian subjects. 
                     Brazilian Journal of Medical and Biological Research. 1996;29(4):453–457.

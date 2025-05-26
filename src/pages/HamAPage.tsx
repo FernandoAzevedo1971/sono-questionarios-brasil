@@ -155,11 +155,11 @@ const HamAPage = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Panel - Questionnaire Form */}
             <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h1 className="text-2xl font-bold text-neutral-900 mb-4">
+              <h1 className="text-2xl font-bold text-neutral-900 mb-4 text-left">
                 Escala de Avaliação de Ansiedade de Hamilton (HAM-A)
               </h1>
 
-              <p className="mb-6 text-neutral-600">
+              <p className="mb-6 text-neutral-600 text-left">
                 Avalie cada item de acordo com os seguintes graus de intensidade:
               </p>
 
@@ -173,11 +173,11 @@ const HamAPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td className="py-2 px-4 border-b">Nenhum</td><td className="py-2 px-4 border-b">Ausência do sintoma</td><td className="py-2 px-4 border-b">0</td></tr>
-                    <tr><td className="py-2 px-4 border-b">Leve</td><td className="py-2 px-4 border-b">Sintoma leve, pouco intenso</td><td className="py-2 px-4 border-b">1</td></tr>
-                    <tr><td className="py-2 px-4 border-b">Médio</td><td className="py-2 px-4 border-b">Sintoma moderado, perturba, mas é tolerável</td><td className="py-2 px-4 border-b">2</td></tr>
-                    <tr><td className="py-2 px-4 border-b">Forte</td><td className="py-2 px-4 border-b">Sintoma severo, muito perturbador</td><td className="py-2 px-4 border-b">3</td></tr>
-                    <tr><td className="py-2 px-4 border-b">Máximo</td><td className="py-2 px-4 border-b">Sintoma extremo, incapacitante</td><td className="py-2 px-4 border-b">4</td></tr>
+                    <tr><td className="py-2 px-4 border-b text-left">Nenhum</td><td className="py-2 px-4 border-b text-left">Ausência do sintoma</td><td className="py-2 px-4 border-b text-left">0</td></tr>
+                    <tr><td className="py-2 px-4 border-b text-left">Leve</td><td className="py-2 px-4 border-b text-left">Sintoma leve, pouco intenso</td><td className="py-2 px-4 border-b text-left">1</td></tr>
+                    <tr><td className="py-2 px-4 border-b text-left">Médio</td><td className="py-2 px-4 border-b text-left">Sintoma moderado, perturba, mas é tolerável</td><td className="py-2 px-4 border-b text-left">2</td></tr>
+                    <tr><td className="py-2 px-4 border-b text-left">Forte</td><td className="py-2 px-4 border-b text-left">Sintoma severo, muito perturbador</td><td className="py-2 px-4 border-b text-left">3</td></tr>
+                    <tr><td className="py-2 px-4 border-b text-left">Máximo</td><td className="py-2 px-4 border-b text-left">Sintoma extremo, incapacitante</td><td className="py-2 px-4 border-b text-left">4</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -188,8 +188,8 @@ const HamAPage = () => {
                     <CardContent className="p-4">
                       <div className="flex flex-col space-y-2">
                         <div className="mb-2">
-                          <h3 className="font-medium text-neutral-900">{question.text}</h3>
-                          <p className="text-sm text-neutral-600">{question.description}</p>
+                          <h3 className="font-medium text-neutral-900 text-left">{question.text}</h3>
+                          <p className="text-sm text-neutral-600 text-left">{question.description}</p>
                         </div>
                         
                         <RadioGroup
@@ -200,7 +200,7 @@ const HamAPage = () => {
                           {[0, 1, 2, 3, 4].map((value) => (
                             <div key={`${question.id}-${value}`} className="flex items-center space-x-2">
                               <RadioGroupItem value={value.toString()} id={`${question.id}-${value}`} />
-                              <Label htmlFor={`${question.id}-${value}`}>
+                              <Label htmlFor={`${question.id}-${value}`} className="text-left">
                                 {value === 0 && "Nenhum"}
                                 {value === 1 && "Leve"}
                                 {value === 2 && "Médio"}
@@ -224,14 +224,14 @@ const HamAPage = () => {
                 </Button>
 
                 {score !== null && (
-                  <div className={`mt-6 p-4 border rounded-lg ${getSeverityClass(score)}`}>
-                    <p className="font-medium mb-1">
+                  <div className={`mt-6 p-4 border rounded-lg ${getSeverityClass(score)} text-left`}>
+                    <p className="font-medium mb-1 text-left">
                       Sua pontuação: {score} pontos
                     </p>
-                    <p>
+                    <p className="text-left">
                       Interpretação: <strong>{getScoreInterpretation(score)}</strong>
                     </p>
-                    <p className="text-xs mt-2">
+                    <p className="text-xs mt-2 text-left">
                       * Os primeiros 7 itens estão relacionados a sintomas de humor ansioso.<br />
                       * Os últimos 7 itens estão relacionados a sintomas físicos de ansiedade.<br />
                       * A pontuação varia de 0 a 56.
@@ -248,39 +248,39 @@ const HamAPage = () => {
                   Baixar versão em PDF
                 </Button>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Sobre a escala</h2>
-                <p className="text-neutral-700 mb-4">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Sobre a escala</h2>
+                <p className="text-neutral-700 mb-4 text-left">
                   A Escala de Avaliação de Ansiedade de Hamilton (HAM-A) é um instrumento clínico 
                   aplicado por profissionais para avaliar a gravidade dos sintomas de ansiedade.
                 </p>
                 
-                <p className="text-neutral-700 mb-4">
+                <p className="text-neutral-700 mb-4 text-left">
                   Desenvolvida originalmente por Max Hamilton em 1959, esta escala consiste em 14 itens que 
                   abrangem tanto sintomas psíquicos quanto somáticos da ansiedade.
                 </p>
 
                 <div className="mb-4 p-3 bg-blue-50 rounded-md">
-                  <p className="text-sm text-blue-700">
+                  <p className="text-sm text-blue-700 text-left">
                     <strong>Importante:</strong> Esta escala deve ser aplicada por um profissional qualificado. 
                     O resultado obtido aqui não substitui uma avaliação clínica adequada.
                   </p>
                 </div>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Interpretação</h2>
-                <ul className="list-disc pl-5 mb-6 text-neutral-700 space-y-1">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Interpretação</h2>
+                <ul className="list-disc pl-5 mb-6 text-neutral-700 space-y-1 text-left">
                   <li>0 - 17: ansiedade normal</li>
                   <li>18 - 24: ansiedade leve</li>
                   <li>25 - 29: ansiedade moderada</li>
                   <li>≥ 30: ansiedade grave</li>
                 </ul>
 
-                <h2 className="text-lg font-semibold text-neutral-900 mb-3">Referências</h2>
-                <p className="text-sm text-neutral-600">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-3 text-left">Referências</h2>
+                <p className="text-sm text-neutral-600 text-left">
                   Brendan T. Carroll, Roger G. Kathol, Russell Noyes, Tina G. Wald, Gerald H. Clamon,
                   Screening for depression and anxiety in cancer patients using the Hospital Anxiety and Depression Scale,
                   General Hospital Psychiatry, Volume 15, Issue 2, 1993, Pages 69-74.
                 </p>
-                <p className="text-sm text-neutral-600 mt-2 italic">
+                <p className="text-sm text-neutral-600 mt-2 italic text-left">
                   Nota: Não há validação oficial para a língua portuguesa. A tradução utilizada é uma tradução livre.
                 </p>
               </div>
