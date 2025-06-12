@@ -9,45 +9,13 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      profiles: {
-        Row: {
-          birth_date: string
-          created_at: string | null
-          id: string
-          is_admin: boolean
-          name: string
-          updated_at: string | null
-          user_type: string
-        }
-        Insert: {
-          birth_date: string
-          created_at?: string | null
-          id: string
-          is_admin?: boolean
-          name: string
-          updated_at?: string | null
-          user_type: string
-        }
-        Update: {
-          birth_date?: string
-          created_at?: string | null
-          id?: string
-          is_admin?: boolean
-          name?: string
-          updated_at?: string | null
-          user_type?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      is_profile_owner: {
-        Args: { profile_id: string }
-        Returns: boolean
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never

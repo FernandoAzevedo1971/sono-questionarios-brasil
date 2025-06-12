@@ -4,8 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "@/contexts/AuthContext";
-import ProtectedRoute from "@/components/ProtectedRoute";
 import ScrollToTop from "@/components/ScrollToTop";
 
 import Index from "./pages/Index";
@@ -34,57 +32,47 @@ import RbdsqPage from "./pages/RbdsqPage";
 import Fosq36Page from "./pages/Fosq36Page";
 import BeckDepressionPage from "./pages/BeckDepressionPage";
 import Phq9Page from "./pages/Phq9Page";
-import AuthPage from "./pages/AuthPage";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
-import ProfilePage from "./pages/ProfilePage";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            {/* Public routes */}
-            <Route path="/auth" element={<AuthPage />} />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
-            
-            {/* Protected routes */}
-            <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
-            <Route path="/categorias/:categoryId" element={<ProtectedRoute><CategoryPage /></ProtectedRoute>} />
-            <Route path="/pesquisa" element={<ProtectedRoute><SearchResults /></ProtectedRoute>} />
-            <Route path="/sobre" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
-            <Route path="/contato" element={<ProtectedRoute><ContactPage /></ProtectedRoute>} />
-            <Route path="/termos" element={<ProtectedRoute><TermsPage /></ProtectedRoute>} />
-            <Route path="/perfil" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-            <Route path="/questionarios/epworth" element={<ProtectedRoute><EpworthPage /></ProtectedRoute>} />
-            <Route path="/questionarios/isi" element={<ProtectedRoute><IsiPage /></ProtectedRoute>} />
-            <Route path="/questionarios/fas" element={<ProtectedRoute><FasPage /></ProtectedRoute>} />
-            <Route path="/questionarios/fss" element={<ProtectedRoute><FssPage /></ProtectedRoute>} />
-            <Route path="/questionarios/goal" element={<ProtectedRoute><GoalPage /></ProtectedRoute>} />
-            <Route path="/questionarios/sacs" element={<ProtectedRoute><SacsPage /></ProtectedRoute>} />
-            <Route path="/questionarios/stop-bang" element={<ProtectedRoute><StopBangPage /></ProtectedRoute>} />
-            <Route path="/questionarios/ham-a" element={<ProtectedRoute><HamAPage /></ProtectedRoute>} />
-            <Route path="/questionarios/beck-depression" element={<ProtectedRoute><BeckDepressionPage /></ProtectedRoute>} />
-            <Route path="/questionarios/phq-9" element={<ProtectedRoute><Phq9Page /></ProtectedRoute>} />
-            <Route path="/questionarios/psqi" element={<ProtectedRoute><Navigate to="/questionarios/psqi-intro" replace /></ProtectedRoute>} />
-            <Route path="/questionarios/psqi-intro" element={<ProtectedRoute><PsqiIntroPage /></ProtectedRoute>} />
-            <Route path="/questionarios/psqi-pt" element={<ProtectedRoute><PsqiPtPage /></ProtectedRoute>} />
-            <Route path="/questionarios/berlin" element={<ProtectedRoute><BerlinPage /></ProtectedRoute>} />
-            <Route path="/questionarios/meq-ho" element={<ProtectedRoute><MeqHoPage /></ProtectedRoute>} />
-            <Route path="/questionarios/nosas" element={<ProtectedRoute><NoSasPage /></ProtectedRoute>} />
-            <Route path="/questionarios/hdas" element={<ProtectedRoute><HdasPage /></ProtectedRoute>} />
-            <Route path="/questionarios/rbdsq" element={<ProtectedRoute><RbdsqPage /></ProtectedRoute>} />
-            <Route path="/questionarios/fosq-36" element={<ProtectedRoute><Fosq36Page /></ProtectedRoute>} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          {/* All routes are now public */}
+          <Route path="/" element={<Index />} />
+          <Route path="/categorias/:categoryId" element={<CategoryPage />} />
+          <Route path="/pesquisa" element={<SearchResults />} />
+          <Route path="/sobre" element={<AboutPage />} />
+          <Route path="/contato" element={<ContactPage />} />
+          <Route path="/termos" element={<TermsPage />} />
+          <Route path="/questionarios/epworth" element={<EpworthPage />} />
+          <Route path="/questionarios/isi" element={<IsiPage />} />
+          <Route path="/questionarios/fas" element={<FasPage />} />
+          <Route path="/questionarios/fss" element={<FssPage />} />
+          <Route path="/questionarios/goal" element={<GoalPage />} />
+          <Route path="/questionarios/sacs" element={<SacsPage />} />
+          <Route path="/questionarios/stop-bang" element={<StopBangPage />} />
+          <Route path="/questionarios/ham-a" element={<HamAPage />} />
+          <Route path="/questionarios/beck-depression" element={<BeckDepressionPage />} />
+          <Route path="/questionarios/phq-9" element={<Phq9Page />} />
+          <Route path="/questionarios/psqi" element={<Navigate to="/questionarios/psqi-intro" replace />} />
+          <Route path="/questionarios/psqi-intro" element={<PsqiIntroPage />} />
+          <Route path="/questionarios/psqi-pt" element={<PsqiPtPage />} />
+          <Route path="/questionarios/berlin" element={<BerlinPage />} />
+          <Route path="/questionarios/meq-ho" element={<MeqHoPage />} />
+          <Route path="/questionarios/nosas" element={<NoSasPage />} />
+          <Route path="/questionarios/hdas" element={<HdasPage />} />
+          <Route path="/questionarios/rbdsq" element={<RbdsqPage />} />
+          <Route path="/questionarios/fosq-36" element={<Fosq36Page />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 
