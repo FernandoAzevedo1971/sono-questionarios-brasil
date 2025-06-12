@@ -91,7 +91,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                Portal de Questionários em Medicina do Sono – Brasil
+                Portal de Questionários em Medicina do Sono – Dr. Fernando Azevedo
               </h1>
               <p className="text-lg md:text-xl opacity-90 mb-8 text-left">
                 Acesse questionários validados em português para uso na prática clínica

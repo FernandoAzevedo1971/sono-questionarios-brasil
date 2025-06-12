@@ -21,7 +21,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center justify-between">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-primary-700 font-bold text-xl">
-            Portal de Questionários em Medicina do Sono
+            Portal de Questionários em Medicina do Sono – Dr. Fernando Azevedo
           </Link>
           <div className="md:hidden">
             {/* Mobile menu button would go here if needed */}

@@ -21,7 +21,7 @@ const AboutPage = () => {
             </div>
             <h1 className="text-3xl font-bold mb-2">Sobre o Portal</h1>
             <p className="text-lg opacity-90">
-              Conheça o Portal de Questionários em Medicina do Sono – Brasil
+              Conheça o Portal de Questionários em Medicina do Sono – Dr. Fernando Azevedo
             </p>
           </div>
         </section>
@@ -33,7 +33,7 @@ const AboutPage = () => {
               <h2 className="text-2xl font-semibold mb-6 text-neutral-900">Nossa Missão</h2>
               
               <p className="text-neutral-700 mb-6">
-                O Portal de Questionários em Medicina do Sono – Brasil tem como missão 
+                O Portal de Questionários em Medicina do Sono – Dr. Fernando Azevedo tem como missão 
                 facilitar o acesso a instrumentos validados em português para uso 
                 na prática clínica e na pesquisa em medicina do sono no Brasil.
               </p>
