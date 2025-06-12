@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-neutral-600 text-sm">
-              &copy; {new Date().getFullYear()} Portal de Questionários em Medicina do Sono – Dr. Fernando Azevedo
+              &copy; {new Date().getFullYear()} Portal de Questionários em Medicina do Sono<br />Dr. Fernando Azevedo
             </p>
           </div>
           <div>
