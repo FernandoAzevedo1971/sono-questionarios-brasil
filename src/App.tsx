@@ -30,6 +30,7 @@ import NoSasPage from "./pages/NoSasPage";
 import HdasPage from "./pages/HdasPage";
 import RbdsqPage from "./pages/RbdsqPage";
 import Fosq36Page from "./pages/Fosq36Page";
+import Fosq10Page from "./pages/Fosq10Page";
 import BeckDepressionPage from "./pages/BeckDepressionPage";
 import Phq9Page from "./pages/Phq9Page";
 
@@ -69,6 +70,7 @@ const App = () => (
           <Route path="/questionarios/hdas" element={<HdasPage />} />
           <Route path="/questionarios/rbdsq" element={<RbdsqPage />} />
           <Route path="/questionarios/fosq-36" element={<Fosq36Page />} />
+          <Route path="/questionarios/fosq-10" element={<Fosq10Page />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
