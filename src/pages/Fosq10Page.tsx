@@ -11,38 +11,12 @@ import QuestionnaireContainer from "@/components/questionnaire/QuestionnaireCont
 import QuestionnaireContent from "@/components/questionnaire/QuestionnaireContent";
 import QuestionItem from "@/components/questionnaire/QuestionItem";
 
-type PersonalData = {
-  name: string;
-  birthDate: string;
-  age: string;
-  sex: string;
-  profession: string;
-  weight: string;
-  height: string;
-  bmi: string;
-  date: string;
-  medication: string;
-};
-
 type Answers = {
   [key: string]: string;
 };
 
 const Fosq10Page = () => {
   const navigate = useNavigate();
-  const [personalData, setPersonalData] = useState<PersonalData>({
-    name: "",
-    birthDate: "",
-    age: "",
-    sex: "",
-    profession: "",
-    weight: "",
-    height: "",
-    bmi: "",
-    date: "",
-    medication: ""
-  });
-
   const [answers, setAnswers] = useState<Answers>({});
   const [showResults, setShowResults] = useState(false);
 
@@ -162,10 +136,6 @@ const Fosq10Page = () => {
     }
   ];
 
-  const handlePersonalDataChange = (field: keyof PersonalData, value: string) => {
-    setPersonalData(prev => ({ ...prev, [field]: value }));
-  };
-
   const handleAnswerChange = (questionId: number, value: string) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
   };
@@ -189,18 +159,6 @@ const Fosq10Page = () => {
   };
 
   const resetForm = () => {
-    setPersonalData({
-      name: "",
-      birthDate: "",
-      age: "",
-      sex: "",
-      profession: "",
-      weight: "",
-      height: "",
-      bmi: "",
-      date: "",
-      medication: ""
-    });
     setAnswers({});
     setShowResults(false);
   };
@@ -272,109 +230,6 @@ const Fosq10Page = () => {
         }
       >
         <div className="space-y-6">
-          {/* Dados Pessoais */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Dados Pessoais</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="name">Nome</Label>
-                  <Input
-                    id="name"
-                    value={personalData.name}
-                    onChange={(e) => handlePersonalDataChange("name", e.target.value)}
-                    placeholder="Nome completo"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="birthDate">Data de Nascimento</Label>
-                  <Input
-                    id="birthDate"
-                    value={personalData.birthDate}
-                    onChange={(e) => handlePersonalDataChange("birthDate", e.target.value)}
-                    placeholder="DD/MM/AAAA"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="age">Idade</Label>
-                  <Input
-                    id="age"
-                    value={personalData.age}
-                    onChange={(e) => handlePersonalDataChange("age", e.target.value)}
-                    placeholder="Idade"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="sex">Sexo</Label>
-                  <Input
-                    id="sex"
-                    value={personalData.sex}
-                    onChange={(e) => handlePersonalDataChange("sex", e.target.value)}
-                    placeholder="M/F"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="profession">Profissão</Label>
-                  <Input
-                    id="profession"
-                    value={personalData.profession}
-                    onChange={(e) => handlePersonalDataChange("profession", e.target.value)}
-                    placeholder="Profissão"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="weight">Peso</Label>
-                  <Input
-                    id="weight"
-                    value={personalData.weight}
-                    onChange={(e) => handlePersonalDataChange("weight", e.target.value)}
-                    placeholder="Peso (kg)"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="height">Altura</Label>
-                  <Input
-                    id="height"
-                    value={personalData.height}
-                    onChange={(e) => handlePersonalDataChange("height", e.target.value)}
-                    placeholder="Altura (m)"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="bmi">IMC</Label>
-                  <Input
-                    id="bmi"
-                    value={personalData.bmi}
-                    onChange={(e) => handlePersonalDataChange("bmi", e.target.value)}
-                    placeholder="IMC"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="date">Data</Label>
-                  <Input
-                    id="date"
-                    value={personalData.date}
-                    onChange={(e) => handlePersonalDataChange("date", e.target.value)}
-                    placeholder="DD/MM/AAAA"
-                  />
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="medication">Medicação</Label>
-                <Input
-                  id="medication"
-                  value={personalData.medication}
-                  onChange={(e) => handlePersonalDataChange("medication", e.target.value)}
-                  placeholder="Medicações em uso"
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Separator />
-
           {/* Questões */}
           <div className="space-y-6">
             <div className="flex justify-between items-center">
