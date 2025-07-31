@@ -11,11 +11,11 @@ import { Button } from "@/components/ui/button";
 const questions = [
   {
     id: 1,
-    text: "Sentado e lendo",
+    text: "Sentado e lendo, fora do horario de dormir",
   },
   {
     id: 2,
-    text: "Assistindo TV",
+    text: "Assistindo TV, fora do horario de dormir",
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ const questions = [
   },
   {
     id: 4,
-    text: "Andando de carro por uma hora sem parar, como passageiro",
+    text: "Andando, como passageiro, de carro ou outro transporte, por uma hora sem parar",
   },
   {
     id: 5,
@@ -31,15 +31,15 @@ const questions = [
   },
   {
     id: 6,
-    text: "Sentado conversando com alguém",
+    text: "Sentado, conversando com alguém",
   },
   {
     id: 7,
-    text: "Sentado quieto após o almoço sem bebida de álcool",
+    text: "Sentado, quieto, após o almoço, sem bebida alcóolica",
   },
   {
     id: 8,
-    text: "Em um carro parado no trânsito por alguns minutos",
+    text: "Como motorista em um carro, parado no trânsito por alguns minutos",
   },
 ];
 
