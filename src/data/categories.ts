@@ -10,28 +10,16 @@ export type Category = {
 
 export const categories: Category[] = [
   {
-    id: 'insonia',
-    name: 'Insônia e Qualidade do Sono',
-    description: 'Questionários relacionados ao diagnóstico e avaliação de insônia e qualidade do sono.',
-    icon: 'bed',
-  },
-  {
-    id: 'apneia',
-    name: 'Apneia do Sono',
-    description: 'Instrumentos para triagem e avaliação de apneia obstrutiva do sono.',
-    icon: 'lungs',
-  },
-  {
     id: 'sonolencia',
     name: 'Avaliação de Sonolência Diurna e Fadiga',
     description: 'Escalas para avaliação de sonolência diurna e fadiga.',
     icon: 'moon',
   },
   {
-    id: 'cronotipos',
-    name: 'Distúrbios de Ritmo Circadiano',
-    description: 'Questionários para avaliação de cronotipos e ritmo circadiano.',
-    icon: 'clock',
+    id: 'apneia',
+    name: 'Apneia do Sono',
+    description: 'Instrumentos para triagem e avaliação de apneia obstrutiva do sono.',
+    icon: 'lungs',
   },
   {
     id: 'movimentos',
@@ -50,6 +38,18 @@ export const categories: Category[] = [
     name: 'Qualidade de Vida',
     description: 'Questionários para avaliação da qualidade de vida relacionada ao sono.',
     icon: 'heart',
+  },
+  {
+    id: 'cronotipos',
+    name: 'Distúrbios de Ritmo Circadiano',
+    description: 'Questionários para avaliação de cronotipos e ritmo circadiano.',
+    icon: 'clock',
+  },
+  {
+    id: 'insonia',
+    name: 'Insônia e Qualidade do Sono',
+    description: 'Questionários relacionados ao diagnóstico e avaliação de insônia e qualidade do sono.',
+    icon: 'bed',
   },
   {
     id: 'outros',
