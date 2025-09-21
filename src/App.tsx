@@ -33,6 +33,7 @@ import Fosq36Page from "./pages/Fosq36Page";
 import Fosq10Page from "./pages/Fosq10Page";
 import BeckDepressionPage from "./pages/BeckDepressionPage";
 import Phq9Page from "./pages/Phq9Page";
+import PromisFatiguePage from "./pages/PromisFatiguePage";
 
 const queryClient = new QueryClient();
 
@@ -70,7 +71,8 @@ const App = () => (
           <Route path="/questionarios/hdas" element={<HdasPage />} />
           <Route path="/questionarios/rbdsq" element={<RbdsqPage />} />
           <Route path="/questionarios/fosq-36" element={<Fosq36Page />} />
-          <Route path="/questionarios/fosq-10" element={<Fosq10Page />} />
+        <Route path="/questionarios/fosq-10" element={<Fosq10Page />} />
+        <Route path="/questionarios/promis-fatigue" element={<PromisFatiguePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

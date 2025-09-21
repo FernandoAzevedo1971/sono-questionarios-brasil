@@ -32,4 +32,18 @@ export const sleepinessQuestionnaires: Questionnaire[] = [
     category: 'sonolencia',
     references: ['Krupp LB, LaRocca NG, Muir-Nash J, Steinberg AD. The fatigue severity scale. Application to patients with multiple sclerosis and systemic lupus erythematosus. Arch Neurol. 1989 Oct;46(10):1121-3.'],
   },
+  {
+    id: 'promis-fatigue',
+    name: 'PROMIS Fatigue v1.0 Short Form 8a',
+    description: 'Avalia fadiga auto-relatada e seu impacto nas atividades físicas, mentais e sociais.',
+    indication: 'Avaliação de fadiga com base nas experiências da última semana.',
+    pdfUrl: '/questionarios/promis-fatigue.pdf',
+    onlineUrl: '/questionarios/promis-fatigue',
+    category: 'sonolencia',
+    references: [
+      'Lai, J.S., Cella, D., Choi, S.W., Junghaenel, D.U., Christodoulou, C., Gershon, R., & Stone, A. (2011). How Item Banks and Their Application Can Influence Measurement Practice in Rehabilitation Medicine: A PROMIS Fatigue Item Bank Example. Archives of Physical Medicine and Rehabilitation, 92(10 Supplement), S20-S27.',
+      'Manual disponível em: https://www.healthmeasures.net/images/PROMIS/manuals/Scoring_Manual_Only/PROMIS_Fatigue_User_Manual_and_Scoring_Instructions_05Dec2023.pdf',
+      'Questionário disponível em: www.HealthMeasures.net'
+    ],
+  },
 ];
