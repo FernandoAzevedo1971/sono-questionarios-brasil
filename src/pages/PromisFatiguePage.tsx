@@ -75,17 +75,6 @@ const questions = [
     ]
   },
   {
-    id: 'q6',
-    text: 'Até que ponto sua fadiga interferiu no seu funcionamento físico?',
-    options: [
-      { value: '1', label: 'Nem um pouco', points: 1 },
-      { value: '2', label: 'Um pouco', points: 2 },
-      { value: '3', label: 'Moderadamente', points: 3 },
-      { value: '4', label: 'Bastante', points: 4 },
-      { value: '5', label: 'Muito', points: 5 }
-    ]
-  },
-  {
     id: 'q7',
     text: 'Com que frequência você teve que se esforçar para fazer as coisas por causa da sua fadiga?',
     options: [
@@ -254,7 +243,7 @@ export default function PromisFatiguePage() {
               {questions.map((question, index) => (
                 <Card key={question.id} className="border-muted">
                   <CardContent className="p-4">
-                    <h3 className="font-medium mb-4 text-foreground">
+                    <h3 className="font-medium mb-4 text-foreground text-left">
                       {index + 1}. {question.text}
                     </h3>
                     <RadioGroup
@@ -264,16 +253,16 @@ export default function PromisFatiguePage() {
                     >
                       {question.options.map((option) => (
                         <div key={option.value} className="flex items-center space-x-2">
-                          <RadioGroupItem 
+                          <RadioGroupItem
                             value={option.value} 
                             id={`${question.id}-${option.value}`}
                             className="text-primary"
                           />
                           <Label 
                             htmlFor={`${question.id}-${option.value}`}
-                            className="cursor-pointer hover:text-primary transition-colors"
+                            className="cursor-pointer hover:text-primary transition-colors text-left"
                           >
-                            {option.label} ({option.points} ponto{option.points > 1 ? 's' : ''})
+                            {option.label}
                           </Label>
                         </div>
                       ))}
