@@ -75,6 +75,17 @@ const questions = [
     ]
   },
   {
+    id: 'q6',
+    text: 'Até que ponto sua fadiga interferiu no seu funcionamento físico?',
+    options: [
+      { value: '1', label: 'Nem um pouco', points: 1 },
+      { value: '2', label: 'Um pouco', points: 2 },
+      { value: '3', label: 'Moderadamente', points: 3 },
+      { value: '4', label: 'Bastante', points: 4 },
+      { value: '5', label: 'Muito', points: 5 }
+    ]
+  },
+  {
     id: 'q7',
     text: 'Com que frequência você teve que se esforçar para fazer as coisas por causa da sua fadiga?',
     options: [
