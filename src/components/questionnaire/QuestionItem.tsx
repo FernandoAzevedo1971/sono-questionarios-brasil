@@ -59,7 +59,7 @@ const QuestionItem = ({
           optionLabels 
             ? "flex flex-col space-y-2" 
             : inline 
-              ? "flex flex-row items-center gap-x-6" 
+              ? "flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-x-6" 
               : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         } ${reducedSpacing ? 'mt-1' : ''}`}
       >
