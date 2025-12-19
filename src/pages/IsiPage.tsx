@@ -10,7 +10,7 @@ import ResultDisplay from "@/components/questionnaire/ResultDisplay";
 const questions = [
   {
     id: 1,
-    text: "Dificuldade em pegar no sono",
+    text: "Dificuldade em iniciar o sono",
     options: ["0", "1", "2", "3", "4"],
     optionLabels: ["Nenhuma", "Leve", "Moderada", "Grave", "Muito grave"]
   },
