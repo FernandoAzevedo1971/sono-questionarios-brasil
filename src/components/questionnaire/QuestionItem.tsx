@@ -55,13 +55,7 @@ const QuestionItem = ({
       <RadioGroup
         value={value}
         onValueChange={onChange}
-        className={`${
-          optionLabels 
-            ? "flex flex-col space-y-2" 
-            : inline 
-              ? "flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-x-6" 
-              : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-        } ${reducedSpacing ? 'mt-1' : ''}`}
+        className={`flex flex-col space-y-2 ${reducedSpacing ? 'mt-1' : ''}`}
       >
         {options.map((option, index) => (
           <div 
