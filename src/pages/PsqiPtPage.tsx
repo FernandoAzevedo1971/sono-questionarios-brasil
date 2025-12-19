@@ -12,38 +12,21 @@ import ProgressBar from "@/components/questionnaire/ProgressBar";
 type TimeInputProps = {
   id: string;
   label: string;
-  hourValue: string;
-  minuteValue: string;
-  onHourChange: (value: string) => void;
-  onMinuteChange: (value: string) => void;
+  value: string;
+  onChange: (value: string) => void;
 };
 
-const TimeInput = ({ id, label, hourValue, minuteValue, onHourChange, onMinuteChange }: TimeInputProps) => {
+const TimeInput = ({ id, label, value, onChange }: TimeInputProps) => {
   return (
     <div className="text-left mb-4">
       <p className="font-medium mb-3">{label}</p>
-      <div className="flex items-center gap-2">
-        <Input
-          id={`${id}-hour`}
-          type="number"
-          min="0"
-          max="23"
-          value={hourValue}
-          onChange={(e) => onHourChange(e.target.value)}
-          className="w-20"
-        />
-        <span>h</span>
-        <Input
-          id={`${id}-min`}
-          type="number"
-          min="0"
-          max="59"
-          value={minuteValue}
-          onChange={(e) => onMinuteChange(e.target.value)}
-          className="w-20"
-        />
-        <span>min</span>
-      </div>
+      <Input
+        id={id}
+        type="time"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-36"
+      />
     </div>
   );
 };
@@ -74,15 +57,40 @@ const MinuteInput = ({ id, label, value, onChange }: MinuteInputProps) => {
   );
 };
 
+type DurationInputProps = {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+};
+
+const DurationInput = ({ id, label, value, onChange }: DurationInputProps) => {
+  return (
+    <div className="text-left mb-4">
+      <p className="font-medium mb-3">{label}</p>
+      <div className="flex items-center gap-2">
+        <Input
+          id={id}
+          type="number"
+          min="0"
+          max="24"
+          step="0.5"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="w-24"
+        />
+        <span>horas</span>
+      </div>
+    </div>
+  );
+};
+
 const PsqiPtPage = () => {
   // Time inputs
-  const [bedHour, setBedHour] = useState("");
-  const [bedMinute, setBedMinute] = useState("");
+  const [bedTime, setBedTime] = useState("");
   const [fallAsleepMinutes, setFallAsleepMinutes] = useState("");
-  const [wakeHour, setWakeHour] = useState("");
-  const [wakeMinute, setWakeMinute] = useState("");
-  const [sleepHour, setSleepHour] = useState("");
-  const [sleepMinute, setSleepMinute] = useState("");
+  const [wakeTime, setWakeTime] = useState("");
+  const [sleepHours, setSleepHours] = useState("");
   
   // Frequency responses
   const [problem30Min, setProblem30Min] = useState("");
@@ -162,8 +170,8 @@ const PsqiPtPage = () => {
     
     // Component 3: Sleep duration
     let c3 = 0;
-    if (sleepHour) {
-      const hours = parseInt(sleepHour) + (parseInt(sleepMinute || "0") / 60);
+    if (sleepHours) {
+      const hours = parseFloat(sleepHours);
       c3 = hours > 7 ? 0 :
             hours >= 6 ? 1 :
             hours >= 5 ? 2 : 3;
@@ -171,10 +179,14 @@ const PsqiPtPage = () => {
     
     // Component 4: Sleep efficiency
     let c4 = 0;
-    if (bedHour && wakeHour && sleepHour) {
+    if (bedTime && wakeTime && sleepHours) {
+      // Parse time strings (HH:MM format)
+      const [bedHour, bedMinute] = bedTime.split(":").map(Number);
+      const [wakeHour, wakeMinute] = wakeTime.split(":").map(Number);
+      
       // Calculate time in bed in minutes
-      const bedTimeMinutes = parseInt(bedHour) * 60 + parseInt(bedMinute || "0");
-      let wakeTimeMinutes = parseInt(wakeHour) * 60 + parseInt(wakeMinute || "0");
+      const bedTimeMinutes = bedHour * 60 + bedMinute;
+      let wakeTimeMinutes = wakeHour * 60 + wakeMinute;
       
       // Adjust if wakeTime is earlier than bedTime (next day)
       if (wakeTimeMinutes < bedTimeMinutes) {
@@ -182,7 +194,7 @@ const PsqiPtPage = () => {
       }
       
       const timeInBedMinutes = wakeTimeMinutes - bedTimeMinutes;
-      const sleepTimeMinutes = parseInt(sleepHour) * 60 + parseInt(sleepMinute || "0");
+      const sleepTimeMinutes = parseFloat(sleepHours) * 60;
       
       // Calculate efficiency percentage
       const efficiency = (sleepTimeMinutes / timeInBedMinutes) * 100;
@@ -240,13 +252,10 @@ const PsqiPtPage = () => {
   };
 
   const resetForm = () => {
-    setBedHour("");
-    setBedMinute("");
+    setBedTime("");
     setFallAsleepMinutes("");
-    setWakeHour("");
-    setWakeMinute("");
-    setSleepHour("");
-    setSleepMinute("");
+    setWakeTime("");
+    setSleepHours("");
     setProblem30Min("");
     setWakeEarly("");
     setBathroom("");
@@ -278,10 +287,10 @@ const PsqiPtPage = () => {
     let count = 0;
     
     // Time inputs (Questions 1-4)
-    if (bedHour || bedMinute) count++;
+    if (bedTime) count++;
     if (fallAsleepMinutes) count++;
-    if (wakeHour || wakeMinute) count++;
-    if (sleepHour || sleepMinute) count++;
+    if (wakeTime) count++;
+    if (sleepHours) count++;
     
     // Question 5 (a-j)
     if (problem30Min) count++;
@@ -346,10 +355,8 @@ const PsqiPtPage = () => {
               <TimeInput
                 id="bedtime"
                 label="1) Durante o mês passado, a que horas se deitou à noite na maioria das vezes?"
-                hourValue={bedHour}
-                minuteValue={bedMinute}
-                onHourChange={setBedHour}
-                onMinuteChange={setBedMinute}
+                value={bedTime}
+                onChange={setBedTime}
               />
               
               <MinuteInput
@@ -362,19 +369,15 @@ const PsqiPtPage = () => {
               <TimeInput
                 id="waketime"
                 label="3) Durante o mês passado, a que horas acordou (levantou) de manhã na maioria das vezes?"
-                hourValue={wakeHour}
-                minuteValue={wakeMinute}
-                onHourChange={setWakeHour}
-                onMinuteChange={setWakeMinute}
+                value={wakeTime}
+                onChange={setWakeTime}
               />
               
-              <TimeInput
+              <DurationInput
                 id="sleeptime"
                 label="4) Durante o mês passado, quantas horas de sono por noite dormiu? (pode ser diferente do número de horas que ficou na cama)."
-                hourValue={sleepHour}
-                minuteValue={sleepMinute}
-                onHourChange={setSleepHour}
-                onMinuteChange={setSleepMinute}
+                value={sleepHours}
+                onChange={setSleepHours}
               />
             </CardContent>
           </Card>
